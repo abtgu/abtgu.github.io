@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="CTF-WEB文件上传1. 前端校验 校验方法：JavaScript判断后缀，类型等 绕过：Burpsuite抓包，禁用js2. Content-Type校验 检测image&#x2F;gif           $ _ FILES[‘userfile’]  [‘type’] !&#x3D; “image&#x2F;gif” http头可以随意修改，不可信 绕过：Burpsuite抓包3. 黑名单 过滤绕过 可能过滤不全 .p">
+<meta name="description" content="CTF-WEB文件上传1. 前端校验 校验方法：JavaScript判断后缀，类型等 绕过：Burpsuite抓包，禁用js  2. Content-Type校验 检测image&#x2F;gif           $ _ FILES[‘userfile’]  [‘type’] !&#x3D; “image&#x2F;gif” http头可以随意修改，不可信 绕过：Burpsuite抓包  3. 黑名单 过滤绕过 可能过滤不">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTF-WEB文件上传,SQL注入,XXS漏洞知识学习笔记">
 <meta property="og:url" content="https://abtgu.github.io/2020/03/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/index.html">
 <meta property="og:site_name" content="abtgu的博客">
-<meta property="og:description" content="CTF-WEB文件上传1. 前端校验 校验方法：JavaScript判断后缀，类型等 绕过：Burpsuite抓包，禁用js2. Content-Type校验 检测image&#x2F;gif           $ _ FILES[‘userfile’]  [‘type’] !&#x3D; “image&#x2F;gif” http头可以随意修改，不可信 绕过：Burpsuite抓包3. 黑名单 过滤绕过 可能过滤不全 .p">
+<meta property="og:description" content="CTF-WEB文件上传1. 前端校验 校验方法：JavaScript判断后缀，类型等 绕过：Burpsuite抓包，禁用js  2. Content-Type校验 检测image&#x2F;gif           $ _ FILES[‘userfile’]  [‘type’] !&#x3D; “image&#x2F;gif” http头可以随意修改，不可信 绕过：Burpsuite抓包  3. 黑名单 过滤绕过 可能过滤不">
 <meta property="article:published_time" content="2020-03-14T02:23:26.737Z">
-<meta property="article:modified_time" content="2020-03-14T03:15:35.918Z">
+<meta property="article:modified_time" content="2020-03-14T08:20:42.656Z">
 <meta property="article:author" content="abtgu">
 <meta property="article:tag" content="文件上传">
 <meta property="article:tag" content="SQL注入">
@@ -363,10 +363,14 @@
       
         <h1 id="CTF-WEB"><a href="#CTF-WEB" class="headerlink" title="CTF-WEB"></a>CTF-WEB</h1><h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><h3 id="1-前端校验"><a href="#1-前端校验" class="headerlink" title="1. 前端校验"></a>1. 前端校验</h3><ul>
 <li>校验方法：JavaScript判断后缀，类型等</li>
-<li>绕过：Burpsuite抓包，禁用js<h3 id="2-Content-Type校验"><a href="#2-Content-Type校验" class="headerlink" title="2. Content-Type校验"></a>2. Content-Type校验</h3></li>
+<li>绕过：Burpsuite抓包，禁用js</li>
+</ul>
+<h3 id="2-Content-Type校验"><a href="#2-Content-Type校验" class="headerlink" title="2. Content-Type校验"></a>2. Content-Type校验</h3><ul>
 <li>检测image/gif           $ _ FILES[‘userfile’]  [‘type’] != “image/gif”</li>
 <li>http头可以随意修改，不可信</li>
-<li>绕过：Burpsuite抓包<h3 id="3-黑名单-过滤绕过"><a href="#3-黑名单-过滤绕过" class="headerlink" title="3. 黑名单 过滤绕过"></a>3. 黑名单 过滤绕过</h3></li>
+<li>绕过：Burpsuite抓包</li>
+</ul>
+<h3 id="3-黑名单-过滤绕过"><a href="#3-黑名单-过滤绕过" class="headerlink" title="3. 黑名单 过滤绕过"></a>3. 黑名单 过滤绕过</h3><ul>
 <li>可能过滤不全<ul>
 <li>.php3  .php5  .phtml</li>
 <li>.htaccess</li>
@@ -376,9 +380,11 @@
 <li>简单替换                      str_ireplace($deny_ext,’’,$file_name);</li>
 <li>windows特性<ul>
 <li>空格 和 点 在文件末尾会被忽略</li>
-<li>::$DATA 忽略<h3 id="4-特殊文件"><a href="#4-特殊文件" class="headerlink" title="4. 特殊文件"></a>4. 特殊文件</h3></li>
+<li>::$DATA 忽略</li>
 </ul>
 </li>
+</ul>
+<h3 id="4-特殊文件"><a href="#4-特殊文件" class="headerlink" title="4. 特殊文件"></a>4. 特殊文件</h3><ul>
 <li>.htaccess全称是Hypertext Access(超文本入口)，控制目录文件行为</li>
 <li>配置<ul>
 <li>AllowOverride All</li>
@@ -388,9 +394,11 @@
 <li>功能：文件夹密码保护、用户自动重定向、自定义错误页面、改变你的文件扩展名、封禁特定IP地址的用户、只允许特定地址IP的用户、禁止目录列表</li>
 <li>利用：<ul>
 <li>上传.htaccess 让给定目录下所有文件被视为php解析<pre><code>SetHandler appllcation/x-httpd-php</code></pre></li>
-<li>将所有xxx结尾的文件视为php解析<pre><code>AddType appllcation/x-httpd-php xxx</code></pre><h3 id="5-漏洞解析"><a href="#5-漏洞解析" class="headerlink" title="5. 漏洞解析"></a>5. 漏洞解析</h3></li>
+<li>将所有xxx结尾的文件视为php解析<pre><code>AddType appllcation/x-httpd-php xxx</code></pre></li>
 </ul>
 </li>
+</ul>
+<h3 id="5-漏洞解析"><a href="#5-漏洞解析" class="headerlink" title="5. 漏洞解析"></a>5. 漏洞解析</h3><ul>
 <li>Apache<ul>
 <li>陌生后缀解析：从后往前解析，碰到陌生后缀跳过，直到碰到认识的后缀<ul>
 <li>apache 1.x，2.x ：1.php.xxx —-&gt; 先解析xxx 之后php…</li>
@@ -401,22 +409,28 @@
 </ul>
 </li>
 <li>nginx：cgi方式支持php解析，正则判断<ul>
-<li>条件：cgi.fix_pathinfo=1：phpinfo.jpg /1.php<h3 id="6-00-url编码-和-0x00-16进制-截断"><a href="#6-00-url编码-和-0x00-16进制-截断" class="headerlink" title="6. %00(url编码) 和 0x00 (16进制)截断"></a>6. %00(url编码) 和 0x00 (16进制)截断</h3></li>
+<li>条件：cgi.fix_pathinfo=1：phpinfo.jpg /1.php</li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="6-00-url编码-和-0x00-16进制-截断"><a href="#6-00-url编码-和-0x00-16进制-截断" class="headerlink" title="6. %00(url编码) 和 0x00 (16进制)截断"></a>6. %00(url编码) 和 0x00 (16进制)截断</h3><ul>
 <li>场景：$img_path = $ _ GET[‘save_path’].”/“.rand(10,99).date(“YmdHls”).’’.’’.$file_ext;</li>
 <li>利用<ul>
 <li>GET传参：save_path = ../upload/info.php%00</li>
-<li>POST传参：save_path = ../upload/info.php\x00<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><h3 id="1-典型攻击手段："><a href="#1-典型攻击手段：" class="headerlink" title="1. 典型攻击手段："></a>1. 典型攻击手段：</h3></li>
+<li>POST传参：save_path = ../upload/info.php\x00</li>
 </ul>
 </li>
+</ul>
+<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><h3 id="1-典型攻击手段："><a href="#1-典型攻击手段：" class="headerlink" title="1. 典型攻击手段："></a>1. 典型攻击手段：</h3><ul>
 <li>判断应用程序是否存在注入漏洞</li>
 <li>收集信息、并判断数据库类型</li>
 <li>根据注入参数类型，重构SQL语句原貌</li>
 <li>猜表名、字段名</li>
-<li>获取账户信息、攻击WEB或为下一步攻击做准备<h3 id="2-出题人套路："><a href="#2-出题人套路：" class="headerlink" title="2. 出题人套路："></a>2. 出题人套路：</h3></li>
+<li>获取账户信息、攻击WEB或为下一步攻击做准备</li>
+</ul>
+<h3 id="2-出题人套路："><a href="#2-出题人套路：" class="headerlink" title="2. 出题人套路："></a>2. 出题人套路：</h3><ul>
 <li>屏蔽关键词<ul>
 <li>加无意义符号：空格，回车，tab键</li>
 <li>编码</li>
@@ -453,13 +467,19 @@
 <li>追踪函数</li>
 </ul>
 </li>
-<li>寻找疑似漏洞功能<h2 id="XSS漏洞-alert-1"><a href="#XSS漏洞-alert-1" class="headerlink" title="XSS漏洞(alert(1))"></a>XSS漏洞(<script>alert(1)</script>)</h2><h3 id="1-反射型"><a href="#1-反射型" class="headerlink" title="1. 反射型"></a>1. 反射型</h3></li>
+<li>寻找疑似漏洞功能</li>
 </ul>
 </li>
+</ul>
+<h2 id="XSS漏洞"><a href="#XSS漏洞" class="headerlink" title="XSS漏洞"></a>XSS漏洞</h2><h3 id="1-反射型"><a href="#1-反射型" class="headerlink" title="1. 反射型"></a>1. 反射型</h3><ul>
 <li>一般不会进入服务器</li>
 <li>特点：非持久性型，参数跨站脚本</li>
-<li>作用：调用用户cookie或者进行钓鱼<h3 id="2-dom型"><a href="#2-dom型" class="headerlink" title="2. dom型"></a>2. dom型</h3></li>
-<li>新型的xss漏洞，基于js，可以归属于反射型xss<h3 id="3-存储型"><a href="#3-存储型" class="headerlink" title="3. 存储型"></a>3. 存储型</h3></li>
+<li>作用：调用用户cookie或者进行钓鱼</li>
+</ul>
+<h3 id="2-dom型"><a href="#2-dom型" class="headerlink" title="2. dom型"></a>2. dom型</h3><ul>
+<li>新型的xss漏洞，基于js，可以归属于反射型xss</li>
+</ul>
+<h3 id="3-存储型"><a href="#3-存储型" class="headerlink" title="3. 存储型"></a>3. 存储型</h3><ul>
 <li>进入服务器</li>
 <li>特点：持久型、更具有危害性</li>
 <li>作用：渗透、挂马、蠕虫病毒、钓鱼</li>
@@ -676,7 +696,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CTF-WEB"><span class="nav-text">CTF-WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件上传"><span class="nav-text">文件上传</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-前端校验"><span class="nav-text">1. 前端校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Content-Type校验"><span class="nav-text">2. Content-Type校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-黑名单-过滤绕过"><span class="nav-text">3. 黑名单 过滤绕过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-特殊文件"><span class="nav-text">4. 特殊文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-漏洞解析"><span class="nav-text">5. 漏洞解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-00-url编码-和-0x00-16进制-截断"><span class="nav-text">6. %00(url编码) 和 0x00 (16进制)截断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL注入"><span class="nav-text">SQL注入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-典型攻击手段："><span class="nav-text">1. 典型攻击手段：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-出题人套路："><span class="nav-text">2. 出题人套路：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XSS漏洞-alert-1"><span class="nav-text">XSS漏洞(alert(1))</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-反射型"><span class="nav-text">1. 反射型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-dom型"><span class="nav-text">2. dom型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-存储型"><span class="nav-text">3. 存储型</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CTF-WEB"><span class="nav-text">CTF-WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件上传"><span class="nav-text">文件上传</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-前端校验"><span class="nav-text">1. 前端校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Content-Type校验"><span class="nav-text">2. Content-Type校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-黑名单-过滤绕过"><span class="nav-text">3. 黑名单 过滤绕过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-特殊文件"><span class="nav-text">4. 特殊文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-漏洞解析"><span class="nav-text">5. 漏洞解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-00-url编码-和-0x00-16进制-截断"><span class="nav-text">6. %00(url编码) 和 0x00 (16进制)截断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL注入"><span class="nav-text">SQL注入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-典型攻击手段："><span class="nav-text">1. 典型攻击手段：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-出题人套路："><span class="nav-text">2. 出题人套路：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XSS漏洞"><span class="nav-text">XSS漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-反射型"><span class="nav-text">1. 反射型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-dom型"><span class="nav-text">2. dom型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-存储型"><span class="nav-text">3. 存储型</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -712,7 +732,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共791字</span>
+  <span class="post-count">博客全站共796字</span>
 </div>
 
 <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
