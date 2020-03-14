@@ -359,112 +359,19 @@
       
         
           
-            <p>[TOC]</p>
-<h1 id="CTF-WEB"><a href="#CTF-WEB" class="headerlink" title="CTF-WEB"></a>CTF-WEB</h1><h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><h3 id="1-前端校验"><a href="#1-前端校验" class="headerlink" title="1. 前端校验"></a>1. 前端校验</h3><ul>
-<li>校验方法：JavaScript判断后缀，类型等</li>
-<li>绕过：Burpsuite抓包，禁用js<h3 id="2-Content-Type校验"><a href="#2-Content-Type校验" class="headerlink" title="2. Content-Type校验"></a>2. Content-Type校验</h3></li>
-<li>检测image/gif           $ _ FILES[‘userfile’]  [‘type’] != “image/gif”</li>
-<li>http头可以随意修改，不可信</li>
-<li>绕过：Burpsuite抓包<h3 id="3-黑名单-过滤绕过"><a href="#3-黑名单-过滤绕过" class="headerlink" title="3. 黑名单 过滤绕过"></a>3. 黑名单 过滤绕过</h3></li>
-<li>可能过滤不全<ul>
-<li>.php3  .php5  .phtml</li>
-<li>.htaccess</li>
-</ul>
-</li>
-<li>大小写绕过</li>
-<li>简单替换                      str_ireplace($deny_ext,’’,$file_name);</li>
-<li>windows特性<ul>
-<li>空格 和 点 在文件末尾会被忽略</li>
-<li>::$DATA 忽略<h3 id="4-特殊文件"><a href="#4-特殊文件" class="headerlink" title="4. 特殊文件"></a>4. 特殊文件</h3></li>
-</ul>
-</li>
-<li>.htaccess全称是Hypertext Access(超文本入口)，控制目录文件行为</li>
-<li>配置<ul>
-<li>AllowOverride All</li>
-<li>LoadModule rewrite_module /user/lib/apache2/modules/mod_rewrite.so</li>
-</ul>
-</li>
-<li>功能：文件夹密码保护、用户自动重定向、自定义错误页面、改变你的文件扩展名、封禁特定IP地址的用户、只允许特定地址IP的用户、禁止目录列表</li>
-<li>利用：<ul>
-<li>上传.htaccess 让给定目录下所有文件被视为php解析<pre><code>SetHandler appllcation/x-httpd-php</code></pre></li>
-<li>将所有xxx结尾的文件视为php解析<pre><code>AddType appllcation/x-httpd-php xxx</code></pre><h3 id="5-漏洞解析"><a href="#5-漏洞解析" class="headerlink" title="5. 漏洞解析"></a>5. 漏洞解析</h3></li>
-</ul>
-</li>
-<li>Apache<ul>
-<li>陌生后缀解析：从后往前解析，碰到陌生后缀跳过，直到碰到认识的后缀<ul>
-<li>apache 1.x，2.x ：1.php.xxx —-&gt; 先解析xxx 之后php…</li>
-</ul>
-</li>
-<li>换行解析(CVE-2017-15715)：将换行符作为后缀解析<ul>
-<li>apache 2.4.0-2.4.29：1.php%0A </li>
-</ul>
-</li>
-<li>nginx：cgi方式支持php解析，正则判断<ul>
-<li>条件：cgi.fix_pathinfo=1：phpinfo.jpg /1.php<h3 id="6-00-url编码-和-0x00-16进制-截断"><a href="#6-00-url编码-和-0x00-16进制-截断" class="headerlink" title="6. %00(url编码) 和 0x00 (16进制)截断"></a>6. %00(url编码) 和 0x00 (16进制)截断</h3></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>场景：$img_path = $ _ GET[‘save_path’].”/“.rand(10,99).date(“YmdHls”).’’.’’.$file_ext;</li>
-<li>利用<ul>
-<li>GET传参：save_path = ../upload/info.php%00</li>
-<li>POST传参：save_path = ../upload/info.php\x00<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><h3 id="1-典型攻击手段："><a href="#1-典型攻击手段：" class="headerlink" title="1. 典型攻击手段："></a>1. 典型攻击手段：</h3></li>
-</ul>
-</li>
-<li>判断应用程序是否存在注入漏洞</li>
-<li>收集信息、并判断数据库类型</li>
-<li>根据注入参数类型，重构SQL语句原貌</li>
-<li>猜表名、字段名</li>
-<li>获取账户信息、攻击WEB或为下一步攻击做准备<h3 id="2-出题人套路："><a href="#2-出题人套路：" class="headerlink" title="2. 出题人套路："></a>2. 出题人套路：</h3></li>
-<li>屏蔽关键词<ul>
-<li>加无意义符号：空格，回车，tab键</li>
-<li>编码</li>
-<li>替换关键词</li>
-<li>拼接</li>
-<li>大小写混写、双写</li>
-<li>内联注释</li>
-</ul>
-</li>
-<li>隐藏注入点<ul>
-<li>增加页面数</li>
-<li>使逻辑结构复杂化</li>
-<li>伪装不是注入点</li>
-<li>改变注入参数(http头文件)</li>
-</ul>
-</li>
-<li>加密<ul>
-<li>加密后在进入数据库  ffifdyop</li>
-</ul>
-</li>
-<li>手注 + 盲注<ul>
-<li>sqlmap等工具等绕狗脚本</li>
-</ul>
-</li>
-<li>代码审计和综合考察<ul>
-<li>扫描目录<ul>
-<li>robots.txt </li>
-<li>tar、zip、bak、rar等</li>
-</ul>
-</li>
-<li>代码审计：<ul>
-<li>通读代码（结构、功能、关键信息）</li>
-<li>细审上传、数据存取、命令执行等页面</li>
-<li>追踪函数</li>
-</ul>
-</li>
-<li>寻找疑似漏洞功能<h2 id="XSS漏洞-alert-1"><a href="#XSS漏洞-alert-1" class="headerlink" title="XSS漏洞(alert(1))"></a>XSS漏洞(<script>alert(1)</script>)</h2><h3 id="1-反射型"><a href="#1-反射型" class="headerlink" title="1. 反射型"></a>1. 反射型</h3></li>
-</ul>
-</li>
-<li>一般不会进入服务器</li>
-<li>特点：非持久性型，参数跨站脚本</li>
-<li>作用：调用用户cookie或者进行钓鱼<h3 id="2-dom型"><a href="#2-dom型" class="headerlink" title="2. dom型"></a>2. dom型</h3></li>
-<li>新型的xss漏洞，基于js，可以归属于反射型xss<h3 id="3-存储型"><a href="#3-存储型" class="headerlink" title="3. 存储型"></a>3. 存储型</h3></li>
-<li>进入服务器</li>
-<li>特点：持久型、更具有危害性</li>
-<li>作用：渗透、挂马、蠕虫病毒、钓鱼</li>
-</ul>
-
-          
+          [TOC]
+CTF-WEB文件上传1. 前端校验
+校验方法：JavaScript判断后缀，类型等
+绕过：Burpsuite抓包，禁用js2. Content-Type校验
+检测image/gif           $ _ FILES[‘userfile’]  [‘type’] != “image/
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -582,21 +489,15 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/04/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
