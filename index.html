@@ -359,14 +359,18 @@
       
         
           
-          古典密码学单表替换简单介绍
+           古典密码学
+ 单表替换
+ 简单介绍
+
 特点：明文和密文一一对应。
 密钥空间小的情况下，暴力破解。
 密文足够长的时候，采用词频分析。
 特征：一般只能加密字母，不会加密特殊符号，且不会变换字母顺序，加密过后大概率第四或第五位为“{”。
 
-常见单表替换密码
-凯撒密码(Caesar)：按照字母表顺序向前（后）移动固定
+ 常见单表替换密码
+
+凯撒密码(Caesar)：按照字母表顺序向
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -514,12 +518,16 @@
       
         
           
-          CTF-WEB文件上传1. 前端校验
+           CTF-WEB
+ 文件上传
+ 1. 前端校验
+
 校验方法：JavaScript判断后缀，类型等
 绕过：Burpsuite抓包，禁用js
 
-2. Content-Type校验
-检测image/gif           $ _ FILES[‘userfile’]  [‘type’] != “image/gif”
+ 2. Content-Type校验
+
+检测image/gif           $ _ FILES[‘userfile’]  [‘type’] != “im
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1034,6 +1042,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
