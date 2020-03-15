@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="abtgu的博客">
 <meta property="og:description" content="古典密码学单表替换简单介绍 特点：明文和密文一一对应。 密钥空间小的情况下，暴力破解。 密文足够长的时候，采用词频分析。 特征：一般只能加密字母，不会加密特殊符号，且不会变换字母顺序，加密过后大概率第四或第五位为“{”。  常见单表替换密码 凯撒密码(Caesar)：按照字母表顺序向前（后）移动固定数目；在线加解密：http:&#x2F;&#x2F;planetcalc.com&#x2F;1434&#x2F; ROT13：特殊的凯撒密码">
 <meta property="article:published_time" content="2020-03-14T12:19:58.428Z">
-<meta property="article:modified_time" content="2020-03-15T09:10:36.308Z">
+<meta property="article:modified_time" content="2020-03-15T09:13:50.881Z">
 <meta property="article:author" content="abtgu">
 <meta property="article:tag" content="密码学">
 <meta name="twitter:card" content="summary">
@@ -409,8 +409,10 @@
 <li>线性攻击：将明文和密文的对应比特进行异或并计算结果为0的概率。</li>
 </ol>
 <h2 id="RSA加密（非对称加密）"><a href="#RSA加密（非对称加密）" class="headerlink" title="RSA加密（非对称加密）"></a>RSA加密（非对称加密）</h2><h3 id="简单介绍-3"><a href="#简单介绍-3" class="headerlink" title="简单介绍"></a>简单介绍</h3><ol>
-<li>RSA可以被用于加密解密，密钥交换，数字签名；基于大数分解难题；</li>
-<li>生成公私钥的步骤：<ul>
+<li><p>RSA可以被用于加密解密，密钥交换，数字签名；基于大数分解难题；</p>
+</li>
+<li><p>生成公私钥的步骤：</p>
+<ul>
 <li>随机生成两个素数p,q;</li>
 <li>计算N = p·q和欧拉函数φ(N)=(p-1)(q-1);</li>
 <li>随机选择一个加密密钥e，这里1&lt;e&lt;φ(N), gcd(e,φ(N)) = 1；</li>
@@ -419,9 +421,14 @@
 <li>保密解密密钥私钥KR = {d，N}。        </li>
 </ul>
 </li>
-<li>加密：<br>$$<br>C = M^e(mod N);<br>$$   </li>
-<li>解密：<br>$$<br>M = C^d(modN)<br>$$   </li>
-<li>题型：<ul>
+<li><p>加密：</p>
+<p>$$<br>C = M^e(mod N);<br>$$ </p>
+</li>
+<li><p>解密：</p>
+<p>$$<br>M = C^d(modN)<br>$$  </p>
+</li>
+<li><p>题型：</p>
+<ul>
 <li>直接解密（已知p，q，求d）；</li>
 <li>N相关攻击：<ul>
 <li>分解N，最大素数公约数；</li>
