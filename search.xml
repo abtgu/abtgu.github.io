@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>BJDCTF 2nd writeup</title>
-    <url>/%5Bobject%20Object%5D/writeup04/</url>
+    <url>/CTF/writeup04/</url>
     <content><![CDATA[<h1 id="bjdctf-2nd签到-y1ng"><a class="markdownIt-Anchor" href="#bjdctf-2nd签到-y1ng"></a> [BJDCTF 2nd]签到-y1ng</h1>
 <p><strong>题目：</strong> QkpEe1czbGMwbWVfVDBfQkpEQ1RGfQ==<br />
 <strong>解题思路：</strong> 直接base64解码即可。BJD{W3lc0me_T0_BJDCTF}</p>
@@ -55,7 +55,7 @@
   </entry>
   <entry>
     <title>WhaleCTF-隐写术writeup</title>
-    <url>/%5Bobject%20Object%5D/writeup03/</url>
+    <url>/CTF/writeup03/</url>
     <content><![CDATA[<h2 id="下雨天"><a class="markdownIt-Anchor" href="#下雨天"></a> 下雨天</h2>
 <p><strong>题目：</strong> 答案格式：GUETCTF{flag}，flag是解密内容。<br />
 <strong>解题思路：</strong> 题中图片</p>
@@ -104,7 +104,7 @@ notepad++打开在最下面发现flag</p>
   </entry>
   <entry>
     <title>WhaleCTF-隐写术 彩虹的声音</title>
-    <url>/%5Bobject%20Object%5D/writeup02/</url>
+    <url>/CTF/writeup02/</url>
     <content><![CDATA[<p><strong>题目</strong>：风雨过后就会见到彩虹的，答案格式是key{xxxx}，所以答案是？<br />
 <strong>解题思路</strong>：用Audacity打开音频文件，观察波形，选择用频谱图查看<img src="https://img-blog.csdnimg.cn/20200318151223353.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /><br />
 得到flag<br />
@@ -119,7 +119,7 @@ notepad++打开在最下面发现flag</p>
   </entry>
   <entry>
     <title>Whale-隐写术 分解1</title>
-    <url>/%5Bobject%20Object%5D/writeup01/</url>
+    <url>/CTF/writeup01/</url>
     <content><![CDATA[<h2 id="分解1"><a class="markdownIt-Anchor" href="#分解1"></a> 分解1</h2>
 <pre><code>题目：答案的格式是sctf{xxxxx}，所以答案是
 </code></pre>
@@ -141,7 +141,7 @@ notepad++打开在最下面发现flag</p>
   </entry>
   <entry>
     <title>CTF-隐写术 学习笔记</title>
-    <url>/%5Bobject%20Object%5D/%E9%9A%90%E5%86%99%E6%9C%AF/</url>
+    <url>/CTF/%E9%9A%90%E5%86%99%E6%9C%AF/</url>
     <content><![CDATA[<h1 id="ctf-隐写术"><a class="markdownIt-Anchor" href="#ctf-隐写术"></a> CTF-隐写术</h1>
 <p>隐写术是关于信息隐藏，即不让计划的接受者之外的任何人知道信息的传递事件（不只是信息的内容）的一门技巧与科学。</p>
 <h2 id="常用文件头文件尾"><a class="markdownIt-Anchor" href="#常用文件头文件尾"></a> 常用文件头，文件尾</h2>
@@ -184,7 +184,7 @@ copy D:\1.jpg+D:\2.zip D:\3.jpg</p>
   </entry>
   <entry>
     <title>CTF-密码学知识学习笔记</title>
-    <url>/%5Bobject%20Object%5D/%E5%AF%86%E7%A0%81%E5%AD%A6/</url>
+    <url>/CTF/%E5%AF%86%E7%A0%81%E5%AD%A6/</url>
     <content><![CDATA[<h1 id="古典密码学"><a class="markdownIt-Anchor" href="#古典密码学"></a> 古典密码学</h1>
 <h2 id="单表替换"><a class="markdownIt-Anchor" href="#单表替换"></a> 单表替换</h2>
 <h3 id="简单介绍"><a class="markdownIt-Anchor" href="#简单介绍"></a> 简单介绍</h3>
@@ -311,7 +311,7 @@ copy D:\1.jpg+D:\2.zip D:\3.jpg</p>
   </entry>
   <entry>
     <title>CTF-WEB文件上传,SQL注入,XXS漏洞知识学习笔记</title>
-    <url>/%5Bobject%20Object%5D/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
+    <url>/CTF/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
     <content><![CDATA[<h1 id="ctf-web"><a class="markdownIt-Anchor" href="#ctf-web"></a> CTF-WEB</h1>
 <h2 id="文件上传"><a class="markdownIt-Anchor" href="#文件上传"></a> 文件上传</h2>
 <h3 id="1-前端校验"><a class="markdownIt-Anchor" href="#1-前端校验"></a> 1. 前端校验</h3>
@@ -480,7 +480,7 @@ AddType appllcation/x-httpd-php xxx</li>
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/%5Bobject%20Object%5D/hello-world/</url>
+    <url>/uncategorized/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
 <h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
