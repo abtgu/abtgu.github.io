@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>BJDCTF 2nd writeup(二)</title>
+    <url>/CTF/writeup05/</url>
+    <content><![CDATA[<h1 id="misc"><a class="markdownIt-Anchor" href="#misc"></a> Misc</h1>
+<h2 id="bjdctf-2nda_beautiful_picture"><a class="markdownIt-Anchor" href="#bjdctf-2nda_beautiful_picture"></a> [BJDCTF 2nd]A_Beautiful_Picture</h2>
+<p><strong>题目：</strong>  得到的 flag 建议用 flag{} 包上提交。<br />
+<strong>解题思路：</strong>  将图片放到kali中，发现报crc错误</p>
+<p><img src="https://img-blog.csdnimg.cn/20200329084749597.PNG#pic_center" alt="在这里插入图片描述" /></p>
+<p>直接上脚本爆破，脚本如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line">filename = <span class="string">'Misc-A_Beautiful_Picture-DreamerJack.png'</span></span><br><span class="line"><span class="keyword">with</span> open(filename, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    all_b = f.read()</span><br><span class="line">    crc32key = int(all_b[<span class="number">29</span>:<span class="number">33</span>].hex(),<span class="number">16</span>)</span><br><span class="line">  ![<span class="number">2</span>](C:\Users\daiqi\Desktop\writeupImages\<span class="number">2.</span>PNG)  data = bytearray(all_b[<span class="number">12</span>:<span class="number">29</span>])</span><br><span class="line">    n = <span class="number">4095</span>            </span><br><span class="line">    <span class="keyword">for</span> w <span class="keyword">in</span> range(n):          <span class="comment">#高和宽一起爆破</span></span><br><span class="line">        width = bytearray(struct.pack(<span class="string">'&gt;i'</span>, w))     </span><br><span class="line">        <span class="keyword">for</span> h <span class="keyword">in</span> range(n):</span><br><span class="line">            height = bytearray(struct.pack(<span class="string">'&gt;i'</span>, h))</span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">                data[x+<span class="number">4</span>] = width[x]</span><br><span class="line">                data[x+<span class="number">8</span>] = height[x]</span><br><span class="line">            crc32result = zlib.crc32(data)</span><br><span class="line">            <span class="keyword">if</span> crc32result == crc32key:</span><br><span class="line">                print(<span class="string">"宽为："</span>,end=<span class="string">""</span>)</span><br><span class="line">                print(width)</span><br><span class="line">                print(<span class="string">"高为："</span>,end=<span class="string">""</span>)</span><br><span class="line">                print(height)</span><br><span class="line">                exit(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>得宽高为：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020032908480919.PNG#pic_center" alt="在这里插入图片描述" /><br />
+修改高度，得到flag<br />
+<img src="https://img-blog.csdnimg.cn/20200329084826986.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+<h2 id="bjdctf-2nd小姐姐-y1ng"><a class="markdownIt-Anchor" href="#bjdctf-2nd小姐姐-y1ng"></a> [BJDCTF 2nd]小姐姐-y1ng</h2>
+<p><strong>题目：</strong>  你就是馋她身子，得到的 flag 建议用 flag{} 包上提交。<br />
+<strong>解题思路：</strong>  仔细观察图片，图片出现了错位，猜测中间被插入flag，用notepad++打开图片，搜索ctf，未找到flag，在搜索BJD，发现flag。（提醒：编码需选择UTF-8，不然找不到，别问我为啥知道o(╥﹏╥)o）。<br />
+<img src="https://img-blog.csdnimg.cn/20200329084844590.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+<h2 id="bjdctf-2ndtargz-y1ng"><a class="markdownIt-Anchor" href="#bjdctf-2ndtargz-y1ng"></a> [BJDCTF 2nd]TARGZ-y1ng</h2>
+<p><strong>题目：</strong>  哎？ 我的tar zxvf怎么不好使了？解压密码不需要爆破，得到的 flag 建议用 flag{} 包上提交。<br />
+<strong>解题思路：</strong> kali中打开，发现报错，用file命令查看文件类型，发现是zip，修改后缀名，题中提示密码不需爆破，尝试文件名，解压成功，发现其中还是压缩文件，典型的套娃，写脚本爆破即可。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile,os</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">unzip</span><span class="params">(zipname)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        passwd = zipname.split(<span class="string">'.'</span>)[<span class="number">0</span>]</span><br><span class="line">        zf = zipfile.ZipFile(zipname,<span class="string">'r'</span>)</span><br><span class="line">        zf.extractall(pwd=passwd.encode())</span><br><span class="line">        os.remove(zipname)</span><br><span class="line">        zipname = zf.namelist()[<span class="number">0</span>]</span><br><span class="line">        zf.close()</span><br><span class="line">unzip(<span class="string">"OKMIlLVft.tar.gz"</span>)</span><br></pre></td></tr></table></figure>
+<p>得到flag，BJD{wow_you_can_rea11y_dance}。</p>
+<h2 id="bjdctf-2ndimagin-开场曲"><a class="markdownIt-Anchor" href="#bjdctf-2ndimagin-开场曲"></a> [BJDCTF 2nd]Imagin - 开场曲</h2>
+<h1 id="crypto"><a class="markdownIt-Anchor" href="#crypto"></a> Crypto</h1>
+<h2 id="bjdctf-2ndcat_flag"><a class="markdownIt-Anchor" href="#bjdctf-2ndcat_flag"></a> [BJDCTF 2nd]cat_flag</h2>
+<p><strong>题目：</strong> 得到的 flag 建议用 flag{} 包上提交。<br />
+<strong>解题思路：</strong>  图中每行有8只猫，总共有两种猫，猜测为二进制ASCII码，二进制转换成字符串即可。BJD{M!a0~}。</p>
+<h2 id="bjdctf-2nd燕言燕语"><a class="markdownIt-Anchor" href="#bjdctf-2nd燕言燕语"></a> [BJDCTF 2nd]燕言燕语</h2>
+<p><strong>题目：</strong> 小燕子，穿花衣，年年春天来这里，我问燕子你为啥来，燕子说:<br />
+79616E7A69205A4A517B78696C7A765F6971737375686F635F73757A6A677D20<br />
+<strong>解题思路：</strong> 明显是16进制数据，转字符，得yanzi ZJQ{xilzv_iqssuhoc_suzjg} ，猜测是维吉尼亚密码，yanzi是密钥解密，得到flag。BJD{yanzi_jiushige_shabi}</p>
+<h2 id="燕言燕语"><a class="markdownIt-Anchor" href="#燕言燕语"></a> 燕言燕语</h2>
+<p><strong>题目：</strong> Y1ng根据English居然独自发明了一门语言，就叫Y1nglish。明文都是可读的英文单词，flag如果提交失败，自己读一下，把错误的单词修正，再提交(某个地方的u和i不需要调换顺序，错误点不在那里)。得到的 flag 建议用 flag{} 包上提交。<br />
+<strong>解题思路：</strong> 明显需要用到cryptogram solver，用quipqiup破解<br />
+地址：<a href="https://www.quipqiup.com/" target="_blank" rel="noopener">https://www.quipqiup.com/</a><br />
+得到BJD{pyth0n_Brut3_f0rc3_oR_quipquip_AI_Cr4cy}，根据提示将Cr4cy改成Cr4ck即可。</p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>WriteUp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>BJDCTF 2nd writeup</title>
     <url>/CTF/writeup04/</url>
     <content><![CDATA[<h1 id="bjdctf-2nd签到-y1ng"><a class="markdownIt-Anchor" href="#bjdctf-2nd签到-y1ng"></a> [BJDCTF 2nd]签到-y1ng</h1>
