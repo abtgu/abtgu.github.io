@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>MRCTF writeup</title>
+    <url>/CTF/writeup06/</url>
+    <content><![CDATA[<h1 id="misc"><a class="markdownIt-Anchor" href="#misc"></a> MISC</h1>
+<h2 id="eamisc"><a class="markdownIt-Anchor" href="#eamisc"></a> eamisc</h2>
+<p><strong>题目：</strong> Flag到底在哪嘞？<br />
+<strong>解题思路：</strong> 打开发现png格式图片，猜测高度被改写，写脚本进行CRC爆破，得到高度。<br />
+![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200330151346684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200330151346684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =300x)</p>
+<h2 id="cyberpunk"><a class="markdownIt-Anchor" href="#cyberpunk"></a> CyberPunk</h2>
+<p><strong>题目：</strong>  Hacking_security!<br />
+<strong>解题思路：</strong>  打开执行文件，发现需要的运行时间是2020年9月17日，直接更改系统时间，即可得到flag，MRCTF{We1cOm3_70_cyber_security}</p>
+<h2 id="千层套路"><a class="markdownIt-Anchor" href="#千层套路"></a> 千层套路</h2>
+<p><strong>题目：</strong>  套娃题 淦！<br />
+<strong>解题思路：</strong>  套娃题，直接上脚本</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile,os</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">unzip</span><span class="params">(zipname)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        passwd = zipname.split(<span class="string">'.'</span>)[<span class="number">0</span>]</span><br><span class="line">        zf = zipfile.ZipFile(zipname,<span class="string">'r'</span>)</span><br><span class="line">        zf.extractall(pwd=passwd.encode())</span><br><span class="line">        os.remove(zipname)</span><br><span class="line">        zipname = zf.namelist()[<span class="number">0</span>]</span><br><span class="line">        zf.close()</span><br><span class="line">unzip(<span class="string">"qctl.zip"</span>)</span><br></pre></td></tr></table></figure>
+<p>得到qr.txt，打开发现是rgb值，想到rgb转成二维码，上脚本</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">x = <span class="number">200</span>    <span class="comment">#x坐标  通过对txt里的行数进行整数分解</span></span><br><span class="line">y = <span class="number">200</span>    <span class="comment">#y坐标  x * y = 行数</span></span><br><span class="line"></span><br><span class="line">im = Image.new(<span class="string">"RGB"</span>, (x, y))   <span class="comment">#创建图片</span></span><br><span class="line">file = open(<span class="string">'qr.txt'</span>)    <span class="comment">#打开rbg值的文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#通过每个rgb点生成图片</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, x):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, y):</span><br><span class="line">        line = file.readline()  <span class="comment">#获取一行的rgb值</span></span><br><span class="line">        line = line.replace(<span class="string">"("</span>,<span class="string">""</span>)</span><br><span class="line">        line = line.replace(<span class="string">")\n"</span>,<span class="string">""</span>)</span><br><span class="line">        rgb = line.split(<span class="string">", "</span>)  <span class="comment">#分离rgb，文本中逗号后面有空格</span></span><br><span class="line">        im.putpixel((i, j), (int(rgb[<span class="number">0</span>]), int(rgb[<span class="number">1</span>]), int(rgb[<span class="number">2</span>])))    <span class="comment">#将rgb转化为像素</span></span><br><span class="line"></span><br><span class="line">im.show()   <span class="comment">#也可用im.save('flag.jpg')保存下来</span></span><br></pre></td></tr></table></figure>
+<p>得到一张二维码图片扫描，得flag。</p>
+<p>MRCTF{ta01uyout1nreet1n0usandtimes}。</p>
+<h2 id="你能看懂音符吗"><a class="markdownIt-Anchor" href="#你能看懂音符吗"></a> 你能看懂音符吗</h2>
+<p><strong>题目：</strong>  希望你可以参透这音符的奥秘。<br />
+<strong>解题思路：</strong>  打开压缩包，发现压缩包损坏，用winhex查看，发现文件头错误，将前两个数字与第三第四个数据互换即可。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200330151452413.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+打开发现word中提示“呀！一不小心把文档里的东西弄没了”，猜测文字被隐藏，点击选项，找到显示，勾选隐藏文字，发现一串音符，进行音符在线解密。</p>
+<p>♭♯♪‖¶♬♭♭♪♭‖‖♭♭♬‖♫♪‖♩♬‖♬♬♭♭♫‖♩♫‖♬♪♭♭♭‖¶∮‖‖‖‖♩♬‖♬♪‖♩♫♭♭♭♭♭§‖♩♩♭♭♫♭♭♭‖♬♭‖¶§♭♭♯‖♫∮‖♬¶‖¶∮‖♬♫‖♫♬‖♫♫§=</p>
+<p>解密地址：<a href="https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=yinyue" target="_blank" rel="noopener">https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=yinyue</a></p>
+<p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200330151527443.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200330151527443.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =350x)</p>
+<p>得到flag。MRCTF{thEse_n0tes_ArE_am@zing~}</p>
+<h1 id="crypto"><a class="markdownIt-Anchor" href="#crypto"></a> Crypto</h1>
+<h2 id="古典密码知多少"><a class="markdownIt-Anchor" href="#古典密码知多少"></a> 古典密码知多少</h2>
+<p><strong>题目：</strong>  佛曰：迦呐那侄耨盡切訶呐帝梵竟缽密俱彌穆曳罰呼迦孕諳婆<br />
+<strong>解题思路：</strong> 打开图片，发现是猪圈密码，圣堂武士密码，标准银河字母，对照密码表解密，</p>
+<p><img src="https://img-blog.csdnimg.cn/20200330151605266.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="银河字母" /><br />
+![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200330151706353.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200330151706353.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =250x)<br />
+![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/2020033015173771.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/2020033015173771.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =250x)</p>
+<p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200330151920190.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200330151920190.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =250x)</p>
+<p>得到FGCPFLIRTUASYON，图中提到栅栏，想到栅栏密码。当每组数字为3时，得到FLAGISCRYPTOFUN，故flag为MRCTF{CRYPTOFUN}</p>
+<h2 id="天干地支甲子"><a class="markdownIt-Anchor" href="#天干地支甲子"></a> 天干地支+甲子</h2>
+<p><strong>题目：</strong> 我是精通周易的旷世奇才。<br />
+<strong>解题思路：</strong> 根据天干地支纪年法找到txt中所给组合的数字编码，然后分别加上60，转换成ASSII码，得到flag。<br />
+<img src="https://img-blog.csdnimg.cn/20200330151952428.PNG#pic_center" alt="在这里插入图片描述" /></p>
+<h2 id="keyboard"><a class="markdownIt-Anchor" href="#keyboard"></a> keyboard</h2>
+<p><strong>题目：</strong>  你很了解这个🐎？？？<br />
+<strong>解题思路：</strong>  根据题目想到键盘密码，打开txt，发现全是数字，想到九键，每一行的数字个数对应该数字下字母的位置，得到mobilephone，故flag为MRCTF{mobilephone}。</p>
+<h2 id="vigenere"><a class="markdownIt-Anchor" href="#vigenere"></a> vigenere</h2>
+<p><strong>题目：</strong>  听说你很会密码。<br />
+<strong>解题思路：</strong>  由题目可知是维多尼亚密码，在线解密TXT中的内容，可以发现最后一段提示flag，加上下划线，大括号即可。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200330152014837.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+由题目可知是维多尼亚密码，在线解密TXT中的内容，可以发现最后一段提示flag，加上下划线，大括号即可。mrctf{vigenere_crypto_crack_man}。</p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>WriteUp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>BJDCTF 2nd writeup(二)</title>
     <url>/CTF/writeup05/</url>
     <content><![CDATA[<h1 id="misc"><a class="markdownIt-Anchor" href="#misc"></a> Misc</h1>

@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="密码学," />
+  <meta name="keywords" content="WriteUp," />
 
 
 
@@ -86,17 +86,22 @@
 
 
 
-<meta name="description" content="古典密码学  单表替换  简单介绍  特点：明文和密文一一对应。 密钥空间小的情况下，暴力破解。 密文足够长的时候，采用词频分析。 特征：一般只能加密字母，不会加密特殊符号，且不会变换字母顺序，加密过后大概率第四或第五位为“{”。   常见单表替换密码  凯撒密码(Caesar)：按照字母表顺序向前（后）移动固定数目； 在线加解密：http:&#x2F;&#x2F;planetcalc.com&#x2F;1434&#x2F; ROT1">
+<meta name="description" content="MISC  eamisc 题目： Flag到底在哪嘞？ 解题思路： 打开发现png格式图片，猜测高度被改写，写脚本进行CRC爆破，得到高度。 ![在这里插入图片描述](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200330151346684.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CTF-密码学知识学习笔记">
-<meta property="og:url" content="https://abtgu.github.io/CTF/%E5%AF%86%E7%A0%81%E5%AD%A6/index.html">
+<meta property="og:title" content="MRCTF writeup">
+<meta property="og:url" content="https://abtgu.github.io/CTF/writeup06/index.html">
 <meta property="og:site_name" content="abtgu的博客">
-<meta property="og:description" content="古典密码学  单表替换  简单介绍  特点：明文和密文一一对应。 密钥空间小的情况下，暴力破解。 密文足够长的时候，采用词频分析。 特征：一般只能加密字母，不会加密特殊符号，且不会变换字母顺序，加密过后大概率第四或第五位为“{”。   常见单表替换密码  凯撒密码(Caesar)：按照字母表顺序向前（后）移动固定数目； 在线加解密：http:&#x2F;&#x2F;planetcalc.com&#x2F;1434&#x2F; ROT1">
-<meta property="article:published_time" content="2020-03-14T12:19:58.428Z">
-<meta property="article:modified_time" content="2020-03-15T09:13:50.881Z">
+<meta property="og:description" content="MISC  eamisc 题目： Flag到底在哪嘞？ 解题思路： 打开发现png格式图片，猜测高度被改写，写脚本进行CRC爆破，得到高度。 ![在这里插入图片描述](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200330151346684.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200330151452413.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200330151605266.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200330151952428.PNG#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200330152014837.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-03-30T07:23:55.846Z">
+<meta property="article:modified_time" content="2020-03-30T07:25:57.417Z">
 <meta property="article:author" content="abtgu">
-<meta property="article:tag" content="密码学">
+<meta property="article:tag" content="WriteUp">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200330151452413.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center">
 
 
 
@@ -126,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://abtgu.github.io/CTF/密码学/"/>
+  <link rel="canonical" href="https://abtgu.github.io/CTF/writeup06/"/>
 
 
 
 
 
-  <title>CTF-密码学知识学习笔记 | abtgu的博客</title>
+  <title>MRCTF writeup | abtgu的博客</title>
   
 
 
@@ -311,7 +316,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://abtgu.github.io/CTF/%E5%AF%86%E7%A0%81%E5%AD%A6/">
+    <link itemprop="mainEntityOfPage" href="https://abtgu.github.io/CTF/writeup06/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="abtgu">
@@ -328,7 +333,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CTF-密码学知识学习笔记</h1>
+          <h1 class="post-title" itemprop="name headline">MRCTF writeup</h1>
         
 
         <div class="post-meta">
@@ -340,8 +345,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-14T20:19:58+08:00">
-                2020-03-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-30T15:23:55+08:00">
+                2020-03-30
               </time>
             
 
@@ -356,8 +361,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-15T17:13:50+08:00">
-                2020-03-15
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-30T15:25:57+08:00">
+                2020-03-30
               </time>
             
           </span>
@@ -412,122 +417,52 @@
       
 
       
-        <h1 id="古典密码学"><a class="markdownIt-Anchor" href="#古典密码学"></a> 古典密码学</h1>
-<h2 id="单表替换"><a class="markdownIt-Anchor" href="#单表替换"></a> 单表替换</h2>
-<h3 id="简单介绍"><a class="markdownIt-Anchor" href="#简单介绍"></a> 简单介绍</h3>
-<ul>
-<li>特点：明文和密文一一对应。</li>
-<li>密钥空间小的情况下，暴力破解。</li>
-<li>密文足够长的时候，采用词频分析。</li>
-<li>特征：一般只能加密字母，不会加密特殊符号，且不会变换字母顺序，加密过后大概率第四或第五位为“{”。</li>
-</ul>
-<h3 id="常见单表替换密码"><a class="markdownIt-Anchor" href="#常见单表替换密码"></a> 常见单表替换密码</h3>
-<ol>
-<li>凯撒密码(Caesar)：按照字母表顺序向前（后）移动固定数目；<br />
-在线加解密：<a href="http://planetcalc.com/1434/" target="_blank" rel="noopener">http://planetcalc.com/1434/</a></li>
-<li>ROT13：特殊的凯撒密码；</li>
-<li>埃特巴什码(Atbash Cipher)：第一个字母对应最后一个字母，第二个对应倒数第二个；</li>
-<li>简单替换密码：替换密码表没有规律，利用词频分析破解；</li>
-<li>仿射密码：通过数学函数建立字母映射（一元一次函数）；</li>
-<li>培根密码 (Baconian Cipher )：每个明文字母被一个由5字符(a,b)组成的序列替换。<br />
-在线加解密：<a href="http://rumkin.com/tools/cipher/baconian.php" target="_blank" rel="noopener">http://rumkin.com/tools/cipher/baconian.php</a><br />
-通常查表直接解：<br />
-<a href="http://blog.csdn.net/qq_39455664/article/details/78344952" target="_blank" rel="noopener">http://blog.csdn.net/qq_39455664/article/details/78344952</a></li>
-</ol>
-<h2 id="多表替换"><a class="markdownIt-Anchor" href="#多表替换"></a> 多表替换</h2>
-<h3 id="简单介绍-2"><a class="markdownIt-Anchor" href="#简单介绍-2"></a> 简单介绍</h3>
-<ul>
-<li>特点：明文和密文不在一一对应。</li>
-<li>基本不能用词频分析。</li>
-</ul>
-<h3 id="常见多表替换密码"><a class="markdownIt-Anchor" href="#常见多表替换密码"></a> 常见多表替换密码</h3>
-<ol>
-<li>维吉尼亚密码(Vigenere) ：使用一系列凯撒密码组成密码字母表的加密算法，行对应明文，列对应密钥；</li>
-<li>棋盘密码(Polybius)：一般是将给定的明文加密为两两组合的数字（或ADFGX），例，明文HELLO，加密后23 15 31 31 34。</li>
-</ol>
-<h2 id="其它密码"><a class="markdownIt-Anchor" href="#其它密码"></a> 其它密码</h2>
-<ol>
-<li>栅栏密码：明文分成n个一组，取每组的第i个字组成第i段密文，最后将多段组合在一起，栅栏的栏数就是分组个数；</li>
-<li>猪圈密码(Pigpen)：别称朱高密码、共济会密码、九宫格密码，一格子为基础的简单替代式密码。在线加解密：<a href="http://www.simonsingh.net/The_Black_Chamber/pigpen.html" target="_blank" rel="noopener">http://www.simonsingh.net/The_Black_Chamber/pigpen.html</a></li>
-<li>云影密码：01248密码，用01248四个数字，其中 0 用来表示间隔，其他数字以加法可以表示出 如：28=10，124=7，18=9，再用 1-&gt;26 表示 A-&gt;Z。</li>
-<li>摩斯密码：摩尔斯电码（又译为摩斯密码，Morse code）是一种时通时断的信号代码，通过不同的排列顺序来表达不同的英文字母、数字和标点符号。只有.（点）和-（划）<br />
-在线加解密：<a href="https://www.bejson.com/enc/morse/" target="_blank" rel="noopener">https://www.bejson.com/enc/morse/</a></li>
-<li>JSFuck： JSFuck 可以只用 6 个字符 !+ 来编写 JavaScript 程序。<br />
-在线加解密：<a href="http://www.jsfuck.com/" target="_blank" rel="noopener">http://www.jsfuck.com/</a></li>
-<li>BrainFuck和ook：是一种极小化的计算机语言。<br />
-在线加解密：<a href="https://www.splitbrain.org/services/ook" target="_blank" rel="noopener">https://www.splitbrain.org/services/ook</a></li>
-</ol>
-<h1 id="现代密码学"><a class="markdownIt-Anchor" href="#现代密码学"></a> 现代密码学</h1>
-<h2 id="基础"><a class="markdownIt-Anchor" href="#基础"></a> 基础</h2>
-<ul>
-<li>对称加密：加密和解密采用同一密钥。</li>
-<li>非对称加密：使用一堆密钥，分为公私钥，公钥加（解）密，私钥解（加）密。</li>
-</ul>
-<h2 id="des加密对称加密"><a class="markdownIt-Anchor" href="#des加密对称加密"></a> DES加密（对称加密）</h2>
-<h3 id="简单介绍-3"><a class="markdownIt-Anchor" href="#简单介绍-3"></a> 简单介绍</h3>
-<ol>
-<li>密钥是56比特，明文为64比特。</li>
-<li>DES的基本结构是Feistel网络；DES是一种16轮的Feistel网络；子密钥每轮都会变；</li>
-<li>Feistel网络特质：
-<ul>
-<li>轮数任意增加；</li>
-<li>加密解密结构相同；</li>
-<li>解密密钥倒着输入即可；</li>
-<li>任何函数都可以作为轮函数。</li>
-</ul>
-</li>
-</ol>
-<h3 id="des攻击"><a class="markdownIt-Anchor" href="#des攻击"></a> DES攻击</h3>
-<ol>
-<li>差分攻击：改变一部分明文并分析密文如何改变。</li>
-<li>线性攻击：将明文和密文的对应比特进行异或并计算结果为0的概率。</li>
-</ol>
-<h2 id="rsa加密非对称加密"><a class="markdownIt-Anchor" href="#rsa加密非对称加密"></a> RSA加密（非对称加密）</h2>
-<h3 id="简单介绍-4"><a class="markdownIt-Anchor" href="#简单介绍-4"></a> 简单介绍</h3>
-<ol>
-<li>
-<p>RSA可以被用于加密解密，密钥交换，数字签名；基于大数分解难题；</p>
-</li>
-<li>
-<p>生成公私钥的步骤：</p>
-<ul>
-<li>随机生成两个素数p,q;</li>
-<li>计算N = p·q和欧拉函数φ(N)=(p-1)(q-1);</li>
-<li>随机选择一个加密密钥e，这里1&lt;e&lt;φ(N), gcd(e,φ(N)) = 1；</li>
-<li>求解e·d=1 mod φ(N) 且 0≤d≤N   （乘法逆元）；</li>
-<li>发布加密密钥公钥KU = {e，N}；</li>
-<li>保密解密密钥私钥KR = {d，N}。</li>
-</ul>
-</li>
-<li>
-<p>加密：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mo>=</mo><msup><mi>M</mi><mi>e</mi></msup><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mi>N</mi><mo stretchy="false">)</mo><mo separator="true">;</mo></mrow><annotation encoding="application/x-tex">C = M^e(mod N);
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">e</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mpunct">;</span></span></span></span></span></p>
-</li>
-<li>
-<p>解密：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mo>=</mo><msup><mi>C</mi><mi>d</mi></msup><mo stretchy="false">(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">M = C^d(modN)
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span></span></p>
-</li>
-<li>
-<p>题型：</p>
-<ul>
-<li>直接解密（已知p，q，求d）；</li>
-<li>N相关攻击：
-<ul>
-<li>分解N，最大素数公约数；</li>
-<li>共模攻击：RSA体系在生成密钥的过程中使用了相同的模数n；</li>
-</ul>
-</li>
-<li>e相关攻击：
-<ul>
-<li>小指数e攻击：直接爆破；</li>
-<li>低加密指数广播攻击；</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
+        <h1 id="misc"><a class="markdownIt-Anchor" href="#misc"></a> MISC</h1>
+<h2 id="eamisc"><a class="markdownIt-Anchor" href="#eamisc"></a> eamisc</h2>
+<p><strong>题目：</strong> Flag到底在哪嘞？<br />
+<strong>解题思路：</strong> 打开发现png格式图片，猜测高度被改写，写脚本进行CRC爆破，得到高度。<br />
+![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200330151346684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200330151346684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =300x)</p>
+<h2 id="cyberpunk"><a class="markdownIt-Anchor" href="#cyberpunk"></a> CyberPunk</h2>
+<p><strong>题目：</strong>  Hacking_security!<br />
+<strong>解题思路：</strong>  打开执行文件，发现需要的运行时间是2020年9月17日，直接更改系统时间，即可得到flag，MRCTF{We1cOm3_70_cyber_security}</p>
+<h2 id="千层套路"><a class="markdownIt-Anchor" href="#千层套路"></a> 千层套路</h2>
+<p><strong>题目：</strong>  套娃题 淦！<br />
+<strong>解题思路：</strong>  套娃题，直接上脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile,os</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">unzip</span><span class="params">(zipname)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        passwd = zipname.split(<span class="string">'.'</span>)[<span class="number">0</span>]</span><br><span class="line">        zf = zipfile.ZipFile(zipname,<span class="string">'r'</span>)</span><br><span class="line">        zf.extractall(pwd=passwd.encode())</span><br><span class="line">        os.remove(zipname)</span><br><span class="line">        zipname = zf.namelist()[<span class="number">0</span>]</span><br><span class="line">        zf.close()</span><br><span class="line">unzip(<span class="string">"qctl.zip"</span>)</span><br></pre></td></tr></table></figure>
+<p>得到qr.txt，打开发现是rgb值，想到rgb转成二维码，上脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">x = <span class="number">200</span>    <span class="comment">#x坐标  通过对txt里的行数进行整数分解</span></span><br><span class="line">y = <span class="number">200</span>    <span class="comment">#y坐标  x * y = 行数</span></span><br><span class="line"></span><br><span class="line">im = Image.new(<span class="string">"RGB"</span>, (x, y))   <span class="comment">#创建图片</span></span><br><span class="line">file = open(<span class="string">'qr.txt'</span>)    <span class="comment">#打开rbg值的文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#通过每个rgb点生成图片</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, x):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, y):</span><br><span class="line">        line = file.readline()  <span class="comment">#获取一行的rgb值</span></span><br><span class="line">        line = line.replace(<span class="string">"("</span>,<span class="string">""</span>)</span><br><span class="line">        line = line.replace(<span class="string">")\n"</span>,<span class="string">""</span>)</span><br><span class="line">        rgb = line.split(<span class="string">", "</span>)  <span class="comment">#分离rgb，文本中逗号后面有空格</span></span><br><span class="line">        im.putpixel((i, j), (int(rgb[<span class="number">0</span>]), int(rgb[<span class="number">1</span>]), int(rgb[<span class="number">2</span>])))    <span class="comment">#将rgb转化为像素</span></span><br><span class="line"></span><br><span class="line">im.show()   <span class="comment">#也可用im.save('flag.jpg')保存下来</span></span><br></pre></td></tr></table></figure>
+<p>得到一张二维码图片扫描，得flag。</p>
+<p>MRCTF{ta01uyout1nreet1n0usandtimes}。</p>
+<h2 id="你能看懂音符吗"><a class="markdownIt-Anchor" href="#你能看懂音符吗"></a> 你能看懂音符吗</h2>
+<p><strong>题目：</strong>  希望你可以参透这音符的奥秘。<br />
+<strong>解题思路：</strong>  打开压缩包，发现压缩包损坏，用winhex查看，发现文件头错误，将前两个数字与第三第四个数据互换即可。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200330151452413.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+打开发现word中提示“呀！一不小心把文档里的东西弄没了”，猜测文字被隐藏，点击选项，找到显示，勾选隐藏文字，发现一串音符，进行音符在线解密。</p>
+<p>♭♯♪‖¶♬♭♭♪♭‖‖♭♭♬‖♫♪‖♩♬‖♬♬♭♭♫‖♩♫‖♬♪♭♭♭‖¶∮‖‖‖‖♩♬‖♬♪‖♩♫♭♭♭♭♭§‖♩♩♭♭♫♭♭♭‖♬♭‖¶§♭♭♯‖♫∮‖♬¶‖¶∮‖♬♫‖♫♬‖♫♫§=</p>
+<p>解密地址：<a href="https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=yinyue" target="_blank" rel="noopener">https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=yinyue</a></p>
+<p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200330151527443.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200330151527443.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =350x)</p>
+<p>得到flag。MRCTF{thEse_n0tes_ArE_am@zing~}</p>
+<h1 id="crypto"><a class="markdownIt-Anchor" href="#crypto"></a> Crypto</h1>
+<h2 id="古典密码知多少"><a class="markdownIt-Anchor" href="#古典密码知多少"></a> 古典密码知多少</h2>
+<p><strong>题目：</strong>  佛曰：迦呐那侄耨盡切訶呐帝梵竟缽密俱彌穆曳罰呼迦孕諳婆<br />
+<strong>解题思路：</strong> 打开图片，发现是猪圈密码，圣堂武士密码，标准银河字母，对照密码表解密，</p>
+<p><img src="https://img-blog.csdnimg.cn/20200330151605266.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="银河字母" /><br />
+![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200330151706353.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200330151706353.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =250x)<br />
+![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/2020033015173771.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/2020033015173771.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =250x)</p>
+<p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200330151920190.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200330151920190.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =250x)</p>
+<p>得到FGCPFLIRTUASYON，图中提到栅栏，想到栅栏密码。当每组数字为3时，得到FLAGISCRYPTOFUN，故flag为MRCTF{CRYPTOFUN}</p>
+<h2 id="天干地支甲子"><a class="markdownIt-Anchor" href="#天干地支甲子"></a> 天干地支+甲子</h2>
+<p><strong>题目：</strong> 我是精通周易的旷世奇才。<br />
+<strong>解题思路：</strong> 根据天干地支纪年法找到txt中所给组合的数字编码，然后分别加上60，转换成ASSII码，得到flag。<br />
+<img src="https://img-blog.csdnimg.cn/20200330151952428.PNG#pic_center" alt="在这里插入图片描述" /></p>
+<h2 id="keyboard"><a class="markdownIt-Anchor" href="#keyboard"></a> keyboard</h2>
+<p><strong>题目：</strong>  你很了解这个🐎？？？<br />
+<strong>解题思路：</strong>  根据题目想到键盘密码，打开txt，发现全是数字，想到九键，每一行的数字个数对应该数字下字母的位置，得到mobilephone，故flag为MRCTF{mobilephone}。</p>
+<h2 id="vigenere"><a class="markdownIt-Anchor" href="#vigenere"></a> vigenere</h2>
+<p><strong>题目：</strong>  听说你很会密码。<br />
+<strong>解题思路：</strong>  由题目可知是维多尼亚密码，在线解密TXT中的内容，可以发现最后一段提示flag，加上下划线，大括号即可。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200330152014837.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+由题目可知是维多尼亚密码，在线解密TXT中的内容，可以发现最后一段提示flag，加上下划线，大括号即可。mrctf{vigenere_crypto_crack_man}。</p>
 
       
     </div>
@@ -582,7 +517,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://abtgu.github.io/CTF/%E5%AF%86%E7%A0%81%E5%AD%A6/" title="CTF-密码学知识学习笔记">https://abtgu.github.io/CTF/%E5%AF%86%E7%A0%81%E5%AD%A6/</a>
+    <a href="https://abtgu.github.io/CTF/writeup06/" title="MRCTF writeup">https://abtgu.github.io/CTF/writeup06/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -597,7 +532,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag"> <i class="fa fa-tag"></i> 密码学</a>
+            <a href="/tags/WriteUp/" rel="tag"> <i class="fa fa-tag"></i> WriteUp</a>
           
         </div>
       
@@ -610,8 +545,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/CTF/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="next" title="CTF-WEB文件上传,SQL注入,XXS漏洞知识学习笔记">
-                <i class="fa fa-chevron-left"></i> CTF-WEB文件上传,SQL注入,XXS漏洞知识学习笔记
+              <a href="/CTF/writeup05/" rel="next" title="BJDCTF 2nd writeup(二)">
+                <i class="fa fa-chevron-left"></i> BJDCTF 2nd writeup(二)
               </a>
             
           </div>
@@ -619,10 +554,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/CTF/%E9%9A%90%E5%86%99%E6%9C%AF/" rel="prev" title="CTF-隐写术 学习笔记">
-                CTF-隐写术 学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -818,7 +749,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#古典密码学"><span class="nav-text"> 古典密码学</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单表替换"><span class="nav-text"> 单表替换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单介绍"><span class="nav-text"> 简单介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见单表替换密码"><span class="nav-text"> 常见单表替换密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多表替换"><span class="nav-text"> 多表替换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单介绍-2"><span class="nav-text"> 简单介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见多表替换密码"><span class="nav-text"> 常见多表替换密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它密码"><span class="nav-text"> 其它密码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#现代密码学"><span class="nav-text"> 现代密码学</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-text"> 基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#des加密对称加密"><span class="nav-text"> DES加密（对称加密）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单介绍-3"><span class="nav-text"> 简单介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#des攻击"><span class="nav-text"> DES攻击</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rsa加密非对称加密"><span class="nav-text"> RSA加密（非对称加密）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单介绍-4"><span class="nav-text"> 简单介绍</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#misc"><span class="nav-text"> MISC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#eamisc"><span class="nav-text"> eamisc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cyberpunk"><span class="nav-text"> CyberPunk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#千层套路"><span class="nav-text"> 千层套路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你能看懂音符吗"><span class="nav-text"> 你能看懂音符吗</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#crypto"><span class="nav-text"> Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#古典密码知多少"><span class="nav-text"> 古典密码知多少</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#天干地支甲子"><span class="nav-text"> 天干地支+甲子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#keyboard"><span class="nav-text"> keyboard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vigenere"><span class="nav-text"> vigenere</span></a></li></ol></li></ol></div>
             
 
           </div>
