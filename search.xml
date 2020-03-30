@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>VMware中的网络模式</title>
+    <url>/VMware/VMware%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="桥接模式"><a class="markdownIt-Anchor" href="#桥接模式"></a> 桥接模式</h2>
+<ol>
+<li>桥接模式是比较常用的一种网络模式，用来设置虚拟机与主机具有相同的网络地位。前提是需要在动态分配IP地址网络中，如果在静态分配IP地址的网络中，需要手动设置对应的IP地址。</li>
+<li>虚拟机中设置桥接模式： 点击虚拟机，点击网络适配器，选择桥接模式。</li>
+<li>对应主机的网卡：VMware Network Adapter VMnet0</li>
+</ol>
+<h2 id="nat模式"><a class="markdownIt-Anchor" href="#nat模式"></a> nat模式</h2>
+<ol>
+<li>NAT网络地址转换，主机与虚拟机构成一个网络，虚拟机可以通过主机与主机以外的网络通信，但主机以外的网络无法与虚拟机通信，例如：局域网。</li>
+<li>对外虚拟机的IP地址即为主机的IP地址。</li>
+<li>虚拟机中设置nat模式： 点击虚拟机，点击网络适配器，选择nat模式。</li>
+<li>对应主机的网卡：VMware Network Adapter VMnet8</li>
+</ol>
+<h2 id="仅主机模式"><a class="markdownIt-Anchor" href="#仅主机模式"></a> 仅主机模式</h2>
+<ol>
+<li>虚拟机完全封闭，不与外部网络通信，但是可以与当前主机进行通信。</li>
+<li>虚拟机中设置仅主机模式： 点击虚拟机，点击网络适配器，选择仅主机模式。</li>
+<li>对应主机的网卡：VMware Network Adapter VMnet1</li>
+</ol>
+]]></content>
+      <categories>
+        <category>VMware</category>
+      </categories>
+      <tags>
+        <tag>网络配置</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MRCTF writeup</title>
     <url>/CTF/writeup06/</url>
     <content><![CDATA[<h1 id="misc"><a class="markdownIt-Anchor" href="#misc"></a> MISC</h1>
