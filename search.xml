@@ -7,7 +7,7 @@
 <h2 id="eamisc"><a class="markdownIt-Anchor" href="#eamisc"></a> eamisc</h2>
 <p><strong>题目：</strong> Flag到底在哪嘞？<br />
 <strong>解题思路：</strong> 打开发现png格式图片，猜测高度被改写，写脚本进行CRC爆破，得到高度。<br />
-![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200330151346684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200330151346684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =300x)</p>
+<img src="https://img-blog.csdnimg.cn/20200330151346684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
 <h2 id="cyberpunk"><a class="markdownIt-Anchor" href="#cyberpunk"></a> CyberPunk</h2>
 <p><strong>题目：</strong>  Hacking_security!<br />
 <strong>解题思路：</strong>  打开执行文件，发现需要的运行时间是2020年9月17日，直接更改系统时间，即可得到flag，MRCTF{We1cOm3_70_cyber_security}</p>
@@ -24,18 +24,19 @@
 <strong>解题思路：</strong>  打开压缩包，发现压缩包损坏，用winhex查看，发现文件头错误，将前两个数字与第三第四个数据互换即可。</p>
 <p><img src="https://img-blog.csdnimg.cn/20200330151452413.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
 打开发现word中提示“呀！一不小心把文档里的东西弄没了”，猜测文字被隐藏，点击选项，找到显示，勾选隐藏文字，发现一串音符，进行音符在线解密。</p>
-<p>♭♯♪‖¶♬♭♭♪♭‖‖♭♭♬‖♫♪‖♩♬‖♬♬♭♭♫‖♩♫‖♬♪♭♭♭‖¶∮‖‖‖‖♩♬‖♬♪‖♩♫♭♭♭♭♭§‖♩♩♭♭♫♭♭♭‖♬♭‖¶§♭♭♯‖♫∮‖♬¶‖¶∮‖♬♫‖♫♬‖♫♫§=</p>
+<p>♭♯♪‖¶♬♭♭♪♭‖‖♭♭♬‖♫♪‖♩♬‖♬♬♭♭♫‖♩♫‖♬♪♭♭♭‖¶∮‖‖‖‖♩♬‖♬♪‖♩♫♭♭♭♭♭§‖♩♩♭♭♫♭♭♭‖♬♭‖<br />
+¶§♭♭♯‖♫∮‖♬¶‖¶∮‖♬♫‖♫♬‖♫♫§=</p>
 <p>解密地址：<a href="https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=yinyue" target="_blank" rel="noopener">https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=yinyue</a></p>
-<p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200330151527443.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200330151527443.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =350x)</p>
+<p><img src="https://img-blog.csdnimg.cn/20200330151527443.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
 <p>得到flag。MRCTF{thEse_n0tes_ArE_am@zing~}</p>
 <h1 id="crypto"><a class="markdownIt-Anchor" href="#crypto"></a> Crypto</h1>
 <h2 id="古典密码知多少"><a class="markdownIt-Anchor" href="#古典密码知多少"></a> 古典密码知多少</h2>
 <p><strong>题目：</strong>  佛曰：迦呐那侄耨盡切訶呐帝梵竟缽密俱彌穆曳罰呼迦孕諳婆<br />
 <strong>解题思路：</strong> 打开图片，发现是猪圈密码，圣堂武士密码，标准银河字母，对照密码表解密，</p>
 <p><img src="https://img-blog.csdnimg.cn/20200330151605266.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="银河字母" /><br />
-![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200330151706353.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200330151706353.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =250x)<br />
-![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/2020033015173771.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/2020033015173771.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =250x)</p>
-<p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200330151920190.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200330151920190.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center</a> =250x)</p>
+<img src="https://img-blog.csdnimg.cn/20200330151706353.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+<img src="https://img-blog.csdnimg.cn/2020033015173771.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+<p><img src="https://img-blog.csdnimg.cn/20200330151920190.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
 <p>得到FGCPFLIRTUASYON，图中提到栅栏，想到栅栏密码。当每组数字为3时，得到FLAGISCRYPTOFUN，故flag为MRCTF{CRYPTOFUN}</p>
 <h2 id="天干地支甲子"><a class="markdownIt-Anchor" href="#天干地支甲子"></a> 天干地支+甲子</h2>
 <p><strong>题目：</strong> 我是精通周易的旷世奇才。<br />
