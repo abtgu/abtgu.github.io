@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="WriteUp," />
+  <meta name="keywords" content="文件上传漏洞," />
 
 
 
@@ -86,21 +86,17 @@
 
 
 
-<meta name="description" content="分解1 题目：答案的格式是sctf{xxxxx}，所以答案是  解题思路：打开题中图片 根据题目分解，可以联想到文件提取，用kali下的binwalk查看 1binwalk -e 02-carter.jpg  发现其中隐藏一张图片，再用foremost分解 1foremost 02-carter.jpg -o 1  得到flag。">
+<meta name="description" content="文件上传漏洞绕过技巧  一、文件上传漏洞介绍 通常web 站点会有用户注册功能，而当用户登入之后大多数情况下都会存在类似头像上传、附件上传一类的功能，这些功能点往往存在上传验证方式不严格的安全缺陷，是在web 渗透中非常关键的突破口，只要经过仔细测试分析来绕过上传验证机制，往往会造成被攻击者直接上传web 后门，进而控制整个web 业务的控制权，复杂一点的情况是结合webserver 的解析漏洞">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Whale-隐写术 分解1">
-<meta property="og:url" content="https://abtgu.github.io/CTF/writeup01/index.html">
+<meta property="og:title" content="文件上传漏洞绕过技巧">
+<meta property="og:url" content="https://abtgu.github.io/WEB%E5%AE%89%E5%85%A8/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/index.html">
 <meta property="og:site_name" content="abtgu的博客">
-<meta property="og:description" content="分解1 题目：答案的格式是sctf{xxxxx}，所以答案是  解题思路：打开题中图片 根据题目分解，可以联想到文件提取，用kali下的binwalk查看 1binwalk -e 02-carter.jpg  发现其中隐藏一张图片，再用foremost分解 1foremost 02-carter.jpg -o 1  得到flag。">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200318094204424.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200318094517646.PNG">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200318094805469.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70">
-<meta property="article:published_time" content="2020-03-18T01:50:13.081Z">
-<meta property="article:modified_time" content="2020-03-18T02:06:19.125Z">
+<meta property="og:description" content="文件上传漏洞绕过技巧  一、文件上传漏洞介绍 通常web 站点会有用户注册功能，而当用户登入之后大多数情况下都会存在类似头像上传、附件上传一类的功能，这些功能点往往存在上传验证方式不严格的安全缺陷，是在web 渗透中非常关键的突破口，只要经过仔细测试分析来绕过上传验证机制，往往会造成被攻击者直接上传web 后门，进而控制整个web 业务的控制权，复杂一点的情况是结合webserver 的解析漏洞">
+<meta property="article:published_time" content="2020-03-31T10:32:19.273Z">
+<meta property="article:modified_time" content="2020-03-31T11:28:55.813Z">
 <meta property="article:author" content="abtgu">
-<meta property="article:tag" content="WriteUp">
+<meta property="article:tag" content="文件上传漏洞">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200318094204424.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70">
 
 
 
@@ -130,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://abtgu.github.io/CTF/writeup01/"/>
+  <link rel="canonical" href="https://abtgu.github.io/WEB安全/文件上传漏洞绕过技巧/"/>
 
 
 
 
 
-  <title>Whale-隐写术 分解1 | abtgu的博客</title>
+  <title>文件上传漏洞绕过技巧 | abtgu的博客</title>
   
 
 
@@ -315,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://abtgu.github.io/CTF/writeup01/">
+    <link itemprop="mainEntityOfPage" href="https://abtgu.github.io/WEB%E5%AE%89%E5%85%A8/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="abtgu">
@@ -332,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Whale-隐写术 分解1</h1>
+          <h1 class="post-title" itemprop="name headline">文件上传漏洞绕过技巧</h1>
         
 
         <div class="post-meta">
@@ -344,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-18T09:50:13+08:00">
-                2020-03-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-31T18:32:19+08:00">
+                2020-03-31
               </time>
             
 
@@ -360,8 +356,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-18T10:06:19+08:00">
-                2020-03-18
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-31T19:28:55+08:00">
+                2020-03-31
               </time>
             
           </span>
@@ -379,8 +375,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/" itemprop="url" rel="index">
-                    <span itemprop="name">CTF</span>
+                  <a href="/categories/WEB%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">WEB安全</span>
                   </a>
                 </span>
 
@@ -416,17 +412,197 @@
       
 
       
-        <h2 id="分解1"><a class="markdownIt-Anchor" href="#分解1"></a> 分解1</h2>
-<pre><code>题目：答案的格式是sctf{xxxxx}，所以答案是
-</code></pre>
-<p>解题思路：打开题中图片<img src="https://img-blog.csdnimg.cn/20200318094204424.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /><br />
-根据题目分解，可以联想到文件提取，用kali下的binwalk查看</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binwalk -e 02-carter.jpg</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200318094517646.PNG" alt="在这里插入图片描述" /><br />
-发现其中隐藏一张图片，再用foremost分解</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foremost 02-carter.jpg -o 1</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200318094805469.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /><br />
-得到flag。</p>
+        <h1 id="文件上传漏洞绕过技巧"><a class="markdownIt-Anchor" href="#文件上传漏洞绕过技巧"></a> 文件上传漏洞绕过技巧</h1>
+<h1 id="一-文件上传漏洞介绍"><a class="markdownIt-Anchor" href="#一-文件上传漏洞介绍"></a> 一、文件上传漏洞介绍</h1>
+<p>通常web 站点会有用户注册功能，而当用户登入之后大多数情况下都会存在类似头像上传、附件上传一类的功能，这些功能点往往存在上传验证方式不严格的安全缺陷，是在web 渗透中非常关键的突破口，只要经过仔细测试分析来绕过上传验证机制，往往会造成被攻击者直接上传web 后门，进而控制整个web 业务的控制权，复杂一点的情况是结合webserver 的解析漏洞来上传后门获取权限。</p>
+<h1 id="二-验证方法与绕过"><a class="markdownIt-Anchor" href="#二-验证方法与绕过"></a> 二、验证方法与绕过</h1>
+<h2 id="11content-length验证"><a class="markdownIt-Anchor" href="#11content-length验证"></a> 1.1CONTENT-LENGTH验证</h2>
+<p>Content-Length验证是指服务器会对上传的文件内容长度进行检查，超出限制大小的文件将不允许被上传。虽然这种类型的验证不是很受欢迎，但在一些应用的文件上传中也时常能碰到。<br />
+示例：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($_FILES[<span class="string">"fileToUpload"</span>][<span class="string">"size"</span>] &gt; <span class="number">30</span>) &#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Sorry, your file is too large."</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="12content-length绕过"><a class="markdownIt-Anchor" href="#12content-length绕过"></a> 1.2CONTENT-LENGTH绕过</h2>
+<ol>
+<li>针对这种类型的验证，我们可以通过上传一些非常短的恶意代码来绕过。上传文件的大小取决于，（Web服务器上的最大长度限制，我们可以使用不同大小的文件来fuzzing上传程序，从而计算出它的限制范围）。</li>
+<li>如果截断上传文件最大大小，修改文件大小的限制，然后再发送给服务端。</li>
+</ol>
+<h2 id="21客户端javascript-检测通常为检测文件扩展名"><a class="markdownIt-Anchor" href="#21客户端javascript-检测通常为检测文件扩展名"></a> 2.1客户端javascript 检测(通常为检测文件扩展名)</h2>
+<p>顾名思义，就是在文件被上传到服务端的时候，对于文件名的扩展名进行检查，如果不合法，则拒绝这次上传。<br />
+有两种策略:黑名单策略，文件扩展名在黑名单中的为不合法。<br />
+示例代码:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$postfix = end(explode(<span class="string">'.'</span>,<span class="string">'$_POST['</span>filename<span class="string">']);</span></span><br><span class="line"><span class="string">if($postfix=='</span>php<span class="string">'||$postfix=='</span>asp<span class="string">'||$postfix=='</span>sh<span class="string">')&#123;</span></span><br><span class="line"><span class="string">echo "invalid file type";</span></span><br><span class="line"><span class="string">return;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>白名单策略，文件扩展名不在白名单中的均为不合法。<br />
+示例代码:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$postfix = end(explode(<span class="string">'.'</span>,<span class="string">'$_POST['</span>filename<span class="string">']);</span></span><br><span class="line"><span class="string">if($postfix=='</span>jpg<span class="string">'||$postfix=='</span>png<span class="string">'||$postfix=='</span>gif<span class="string">')&#123;</span></span><br><span class="line"><span class="string">//save the file and do something next</span></span><br><span class="line"><span class="string">&#125; else &#123;</span></span><br><span class="line"><span class="string">echo "invalid file type";</span></span><br><span class="line"><span class="string">return;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="21客户端javascript"><a class="markdownIt-Anchor" href="#21客户端javascript"></a> 2.1客户端javascript</h2>
+<p>黑名单绕过:<br />
+通过上传不受欢迎的php扩展来绕过黑名单。例如：pht，phpt，phtml，php3，php4，php5，php6。<br />
+白名单绕过:<br />
+通过某种类型的技巧来绕过白名单，例如添加空字节注入（shell.php％00.gif），或使用双重扩展来上传文件（shell.jpg.php）。<br />
+此外，我们还可以尝试扩展名大小写来绕过，例如：pHp，Php，phP</p>
+<p>白名单策略是更加安全的，通过限制上传类型为只有我们接受的类型，可以较好的保证安全，因为黑名单我们可以使用各种方法来进行注入和突破。</p>
+<h2 id="3-服务端mime-类型检测检测content-type-内容"><a class="markdownIt-Anchor" href="#3-服务端mime-类型检测检测content-type-内容"></a> 3. 服务端MIME 类型检测(检测Content-Type 内容)</h2>
+<p>如：  content-Type:aplication/x-php<br />
+绕过方法：<br />
+改为如下类型：</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Content-<span class="built_in">Type</span>: <span class="built_in">image</span>/jpg</span><br><span class="line">Content-<span class="built_in">Type</span>: <span class="built_in">image</span>/png</span><br><span class="line">Content-<span class="built_in">Type</span>: <span class="built_in">image</span>/jpeg</span><br><span class="line">Content-<span class="built_in">Type</span>: <span class="built_in">image</span>/gif</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">常用的MIMETYPE表</span><br><span class="line"><span class="built_in">text</span>/plain（纯文本）</span><br><span class="line"><span class="built_in">text</span>/html（HTML文档）</span><br><span class="line"><span class="built_in">text</span>/javascript（js代码）</span><br><span class="line"><span class="built_in">application</span>/xhtml+xml（XHTML文档）</span><br><span class="line">image/gif（GIF图像）</span><br><span class="line">image/jpeg（JPEG图像）</span><br><span class="line">image/png（PNG图像）</span><br><span class="line">video/mpeg（MPEG动画）</span><br><span class="line"><span class="built_in">application</span>/octet-stream（二进制数据）</span><br><span class="line"><span class="built_in">application</span>/pdf（PDF文档）</span><br><span class="line"><span class="built_in">application</span>/(编程语言) 该种语言的代码</span><br><span class="line"><span class="built_in">application</span>/msword（Microsoft Word文件）</span><br><span class="line">message/rfc822（RFC <span class="number">822</span>形式）</span><br><span class="line">multipart/alternative（HTML邮件的HTML形式和纯文本形式，相同内容使用不同形式表示）</span><br><span class="line"><span class="built_in">application</span>/x-www-form-urlencoded（POST方法提交的表单）</span><br><span class="line">multipart/form-data（POST提交时伴随文件上传的表单）</span><br></pre></td></tr></table></figure>
+<h2 id="4分析文件头内容来检查文件类型"><a class="markdownIt-Anchor" href="#4分析文件头内容来检查文件类型"></a> 4.分析文件头内容来检查文件类型</h2>
+<p>一种检查类型的方式是使用对于文件内容的验证机制，这种方法利用的是每一个特定类型的文件都会有不太一样的开头或者标志位。可以通过比如php的exif_imagetype()函数<br />
+一个通过这种方法来过滤的示例代码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (! exif_imagetype($_FILES[<span class="string">'uploadedfile'</span>][<span class="string">'tmp_name'</span>])) &#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"File is not an image"</span>;</span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>绕过方法：<br />
+给上传脚本加上相应的幻数头字节就可以，php引擎会将 &lt;?之前的内容当作html文本，不解释而跳过之，后面的代码仍然能够得到执行比如下面：</p>
+<p>（一般不限制图片文件格式的时候使用GIF的头比较方便，因为全都是文本可打印字符。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line"></span><br><span class="line">&lt;? </span><br><span class="line">php echo shell_exec($_GET[&#39;cmd&#39;]);</span><br><span class="line">?</span><br></pre></td></tr></table></figure>
+<p>图片文件通常有称作幻数的头字节，我们来看一下几种图片文件的幻数：<br />
+（注意！下面是二进制而不是文本格式的数据）<br />
+JPG</p>
+<p>PNG</p>
+<p>如果是其他类型的二进制文件，也有响应的头字节，如下表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">格式</th>
+<th style="text-align:center">文件头</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">TIFF (tif)</td>
+<td style="text-align:center">49492A00</td>
+</tr>
+<tr>
+<td style="text-align:center">Windows Bitmap (bmp)</td>
+<td style="text-align:center">424D</td>
+</tr>
+<tr>
+<td style="text-align:center">CAD (dwg)</td>
+<td style="text-align:center">41433130</td>
+</tr>
+<tr>
+<td style="text-align:center">Adobe Photoshop (psd)</td>
+<td style="text-align:center">38425053</td>
+</tr>
+<tr>
+<td style="text-align:center">Rich Text Format (rtf)</td>
+<td style="text-align:center">7B5C727466</td>
+</tr>
+<tr>
+<td style="text-align:center">MS Word/Excel (xls.or.doc)</td>
+<td style="text-align:center">D0CF11E0</td>
+</tr>
+<tr>
+<td style="text-align:center">MS Access (mdb)</td>
+<td style="text-align:center">5374616E64617264204A</td>
+</tr>
+<tr>
+<td style="text-align:center">ZIP Archive (zip)</td>
+<td style="text-align:center">504B0304</td>
+</tr>
+<tr>
+<td style="text-align:center">RAR Archive (rar)</td>
+<td style="text-align:center">52617221</td>
+</tr>
+<tr>
+<td style="text-align:center">Wave (wav)</td>
+<td style="text-align:center">57415645</td>
+</tr>
+<tr>
+<td style="text-align:center">AVI (avi)</td>
+<td style="text-align:center">41564920</td>
+</tr>
+<tr>
+<td style="text-align:center">Real Media (rm)</td>
+<td style="text-align:center">2E524D46</td>
+</tr>
+<tr>
+<td style="text-align:center">MPEG (mpg)</td>
+<td style="text-align:center">000001BA</td>
+</tr>
+<tr>
+<td style="text-align:center">MPEG (mpg)</td>
+<td style="text-align:center">000001B3</td>
+</tr>
+<tr>
+<td style="text-align:center">Quicktime (mov)</td>
+<td style="text-align:center">6D6F6F76</td>
+</tr>
+<tr>
+<td style="text-align:center">Adobe Acrobat (pdf)</td>
+<td style="text-align:center">255044462D312E</td>
+</tr>
+<tr>
+<td style="text-align:center">Windows Media (asf)</td>
+<td style="text-align:center">3026B2758E66CF11</td>
+</tr>
+<tr>
+<td style="text-align:center">MIDI (mid)</td>
+<td style="text-align:center">4D546864</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5文件加载检测"><a class="markdownIt-Anchor" href="#5文件加载检测"></a> 5.文件加载检测</h2>
+<p>一般是调用API 或函数去进行文件加载测试，常见的是图像渲染测试，再变态点的甚至是进行二次渲染(后面会提到)。<br />
+对渲染/加载测试的攻击方式是代码注入绕过；对二次渲染的攻击方式是攻击文件加载器自身。<br />
+先说下对渲染/加载测试攻击-代码注入绕过,可以用图像处理软件对一张图片进行代码注入。用winhex看数据可以分析出这类工具的原理是在不破坏文件本身的渲染情况下找一个空白区进行填充代码，一般会是图片的注释区。对于渲染测试基本上都能绕过，毕竟本身的文件结构是完整的。</p>
+<p>但如果碰到变态的二次渲染,基本上就没法绕过了，估计就只能对文件加载器进行攻击了。<br />
+一般进行遇到二次渲染，想绕过，它相当于是把原本属于图像数据的部分抓了出来，再用自己的API 或函数进行重新渲染，在这个过程中非图像数据的部分直接就被隔离开了。能想到的一个思路就是基于数据二义性，即让数据既是图像数据也包含一句话木马代码，就像shellcode 通过数据二义性绕过IDS 检测特殊字符一样的道理。<br />
+如果要对文件加载器进行攻击，常见的就是溢出攻击，上传自己的恶意文件后，服务器上的文件加载器会主动进行加载测试，加载测试时被溢出攻击执行shellcode比如access/mdb 溢出如果要对文件加载器进行攻击，常见的就是溢出攻击，上传自己的恶意文件后，服务器上的文件加载器会主动进行加载测试，加载测试时被溢出攻击执行shellcode比如access/mdb 溢出。<br />
+总之对文件完整性检测的绕过，通常就直接用个结构完整的文件进行代码注入即可没必要再去测到底是检查的幻数还是文件头结构之类的了。<br />
+解析攻击<br />
+攻击角度来分是这样的:<br />
+直接解析(完全没防御或有一点简单的防御)<br />
+比如我们直接就可以上传一个扩展名是.php的文件,只需要简单地绕过客户端javascript 检测或者服务端MIME 类型检测就行了。<br />
+配合解析(有一定程度的防御)<br />
+我们可以理解为先代码注入到服务器上，上传一个带有一句话木马的图片或文件之类<br />
+让它待在某个位置，等待这一个解析的配合。(比如php 的文件包含解析，web 服务器的解析漏洞，.htaccess 解析等)</p>
+<p>本地文件包含解析<br />
+主要是php 的本地文件包含(远程文件包含不属于上传攻击绕过范畴)</p>
+<p>htaccess解析<br />
+就不用多说了，看看之前.htaccess 文件攻击的那个案例,用户自己定义如何去调用解析器解析文件就可以了。<br />
+web应用程序解析漏洞以及其原理</p>
+<p>Apache 解析漏洞<br />
+解析: test.php.任意不属于黑名单且也不属于Apache解析白名单的名称<br />
+描述: 一个文件名为x1.x2.x3 的文件，Apache 会从x3 的位置往x1 的位置开始尝试解析,<br />
+如果x3 不属于Apache 能解析的扩展名，那么Apache会尝试去解析x2 的位置，这样一直往前尝试，直到遇到一个能解析的扩展名为止</p>
+<p>IIS 解析漏洞<br />
+解析- test.asp/任意文件名|test.asp; 任意文件名| 任意文件名/任意文件名.php<br />
+描述- IIS6.0 在解析asp 格式的时候有两个解析漏洞，一个是如果目录名包含”.asp”字符串，那么这个目录下所有的文件都会按照asp 去解析，另一个是只要文件名中含有”.asp;”会优先按asp 来解析。<br />
+IIS7.0/7.5 是对php 解析时有一个类似于Nginx的解析漏洞，对任意文件名只要在URL后面追加上字符串”/任意文件名.php”就会按照php 的方式去解析。</p>
+<p>Nginx 解析漏洞<br />
+解析- 任意文件名/任意文件名.php | 任意文件名%00.php<br />
+描述- 目前Nginx 主要有这两种漏洞，一个是对任意文件名，在后面添加/任意文件名.php<br />
+的解析漏洞，比如原本文件名是test.jpg，可以添加为test.jpg/x.php 进行解析攻击。还有一种是对低版本的Nginx 可以在任意文件名后面添加%00.php 进行解析攻击。</p>
+<h2 id="6限制web-server对于特定类型文件的行为"><a class="markdownIt-Anchor" href="#6限制web-server对于特定类型文件的行为"></a> 6.限制Web Server对于特定类型文件的行为</h2>
+<p>导致文件上传漏洞的根本原因在于服务把用户上传的本应是数据的内容当作了代码，一般来说，用户上传的内容都会被存储到特定的一个文件夹下，比如我们很多人习惯于放在 ./upload/ 下面要防止数据被当作代码执行，我们可以限制web server对于特定文件夹的行为。<br />
+大多数服务端软件都可以支持用户对于特定类型文件的行为的自定义，以Apache为例：<br />
+在默认情况下，对与 .php文件Apache会当作代码来执行，对于 html,css,js文件，则会直接由HTTP Response交给客户端程序对于一些资源文件，比如txt，doc，rar等等，则也会以文件下载的方式传送的客户端。我们希望用户上传的东西仅仅当作资源和数据而不能当作代码，因此可以使用服务器程序的接口来进行限制。<br />
+以Apache为例,我们可以利用 .htaccess 文件机制来对web server行为进行限制<br />
+在这里插一句，如果不是专门的文件下载目录，请务必关掉文件夹浏览的权限，以防止嗅探和可能的越权，也是使用.htaccess文件，在其中加上一句</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute"><span class="nomarkup">Options</span></span> <span class="literal">All</span> -Indexes</span><br></pre></td></tr></table></figure>
+<p>即可。<br />
+禁止脚本执行有多种方式可以实现，而且分别有不同的效果，我们分别来看一下</p>
+<ol>
+<li>指定特定扩展名的文件的处理方式,原理是指定Response的Content-Type可以加上如下几行</li>
+</ol>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AddType text/plain <span class="string">.pl</span> <span class="string">.py</span> <span class="string">.php</span></span><br></pre></td></tr></table></figure>
+<p>这种情况下，以上几种脚本文件会被当作纯文本来显示出来，你也可以换成其他的Content-Type<br />
+2. 如果要完全禁止特定扩展名的文件被访问，用下面的几行</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Options</span> <span class="selector-tag">-ExecCGI</span></span><br><span class="line"><span class="selector-tag">AddHandler</span> <span class="selector-tag">cgi-script</span> <span class="selector-class">.php</span> <span class="selector-class">.pl</span> <span class="selector-class">.py</span> <span class="selector-class">.jsp</span> <span class="selector-class">.asp</span> <span class="selector-class">.htm</span> <span class="selector-class">.shtml</span> <span class="selector-class">.sh</span> <span class="selector-class">.cgi</span>识别</span><br></pre></td></tr></table></figure>
+<p>在这种情况下，以上几种类型的文件被访问的时候，会返回403 Forbidden的错误<br />
+3. 也可以强制web服务器对于特定文件类型的处理，与第一条不同的是， 下面的方法直接强行让apache将文件识别为你指定的类型，而第一种是让浏览器</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;FilesMatch "\.(php|pl|py|jsp|asp|htm|shtml|sh|cgi)$"&gt;</span></span><br><span class="line"><span class="attribute">ForceType</span> text/plain</span><br><span class="line"><span class="section">&lt;/FilesMatch&gt;</span></span><br></pre></td></tr></table></figure>
+<p>看代码就可以很明白的知道，符合上面正则的全部被认为是纯文本，也可以继续往里面加入其他类型。<br />
+4. 只允许访问特定类型的文件</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;Files ^(*.jpeg|*.jpg|*.png|*.gif)&gt;</span></span><br><span class="line"><span class="attribute"><span class="nomarkup">order</span></span> deny,allow</span><br><span class="line"><span class="attribute"><span class="nomarkup">deny</span></span> from <span class="literal">all</span></span><br><span class="line"><span class="section">&lt;/Files&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在一个上传图片的文件夹下面，就可以加上这段代码，使得该文件夹里面只有图片扩展名的文件才可以被访问，其他类型都是拒绝访问。<br />
+这又是一个白名单的处理方案。<br />
+永远记得，白名单是最有保障的安全措施。</p>
+<h1 id="三-反制"><a class="markdownIt-Anchor" href="#三-反制"></a> 三、反制</h1>
+<p>可以通过 move_uploaded_file 函数把自己写的.htaccess 文件上传，覆盖掉服务器上的文件，来定义文件类型和执行权限如果做到了这一点，将获得相当大的权限。</p>
+<blockquote>
+<p>转载于:<a href="https://www.cnblogs.com/-wenli/p/9911556.html" target="_blank" rel="noopener">https://www.cnblogs.com/-wenli/p/9911556.html</a></p>
+</blockquote>
 
       
     </div>
@@ -481,7 +657,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://abtgu.github.io/CTF/writeup01/" title="Whale-隐写术 分解1">https://abtgu.github.io/CTF/writeup01/</a>
+    <a href="https://abtgu.github.io/WEB%E5%AE%89%E5%85%A8/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/" title="文件上传漏洞绕过技巧">https://abtgu.github.io/WEB%E5%AE%89%E5%85%A8/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -496,7 +672,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/WriteUp/" rel="tag"> <i class="fa fa-tag"></i> WriteUp</a>
+            <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" rel="tag"> <i class="fa fa-tag"></i> 文件上传漏洞</a>
           
         </div>
       
@@ -509,8 +685,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/CTF/%E9%9A%90%E5%86%99%E6%9C%AF/" rel="next" title="CTF-隐写术 学习笔记">
-                <i class="fa fa-chevron-left"></i> CTF-隐写术 学习笔记
+              <a href="/WEB%E5%AE%89%E5%85%A8/%E4%B8%87%E8%83%BD%E5%AF%86%E7%A0%81%E6%BC%8F%E6%B4%9E/" rel="next" title="万能密码漏洞">
+                <i class="fa fa-chevron-left"></i> 万能密码漏洞
               </a>
             
           </div>
@@ -518,10 +694,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/CTF/writeup02/" rel="prev" title="WhaleCTF-隐写术 彩虹的声音">
-                WhaleCTF-隐写术 彩虹的声音 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -717,7 +889,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分解1"><span class="nav-text"> 分解1</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文件上传漏洞绕过技巧"><span class="nav-text"> 文件上传漏洞绕过技巧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一-文件上传漏洞介绍"><span class="nav-text"> 一、文件上传漏洞介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-验证方法与绕过"><span class="nav-text"> 二、验证方法与绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11content-length验证"><span class="nav-text"> 1.1CONTENT-LENGTH验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12content-length绕过"><span class="nav-text"> 1.2CONTENT-LENGTH绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21客户端javascript-检测通常为检测文件扩展名"><span class="nav-text"> 2.1客户端javascript 检测(通常为检测文件扩展名)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21客户端javascript"><span class="nav-text"> 2.1客户端javascript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-服务端mime-类型检测检测content-type-内容"><span class="nav-text"> 3. 服务端MIME 类型检测(检测Content-Type 内容)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4分析文件头内容来检查文件类型"><span class="nav-text"> 4.分析文件头内容来检查文件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5文件加载检测"><span class="nav-text"> 5.文件加载检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6限制web-server对于特定类型文件的行为"><span class="nav-text"> 6.限制Web Server对于特定类型文件的行为</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-反制"><span class="nav-text"> 三、反制</span></a></li></ol></div>
             
 
           </div>
