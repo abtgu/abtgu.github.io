@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>文件上传漏洞绕过技巧</title>
+    <title>libnum库的安装与使用</title>
     <url>/Python/libnum%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="1-安装"><a class="markdownIt-Anchor" href="#1-安装"></a> 1. 安装</h1>
 <h2 id="linux"><a class="markdownIt-Anchor" href="#linux"></a> Linux</h2>
