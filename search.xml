@@ -2,9 +2,64 @@
 <search>
   <entry>
     <title>文件上传漏洞绕过技巧</title>
+    <url>/Python/libnum%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="1-安装"><a class="markdownIt-Anchor" href="#1-安装"></a> 1. 安装</h1>
+<h2 id="linux"><a class="markdownIt-Anchor" href="#linux"></a> Linux</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/hellman/libnum</span><br><span class="line"><span class="built_in">cd</span> libnum</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+<h2 id="windows"><a class="markdownIt-Anchor" href="#windows"></a> Windows</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install libnum</span><br></pre></td></tr></table></figure>
+<h1 id="2-常见函数使用"><a class="markdownIt-Anchor" href="#2-常见函数使用"></a> 2. 常见函数使用</h1>
+<h2 id="coverting"><a class="markdownIt-Anchor" href="#coverting"></a> Coverting</h2>
+<ol>
+<li>libnum.s2n(s)：字符串转换为数字。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">s = <span class="string">"ab12"</span></span><br><span class="line">print(libnum.s2n(s))</span><br><span class="line"></span><br><span class="line">result: <span class="number">1633825074</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>libnum.s2n(n)：数字转换为字符串。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">n = <span class="number">1633825074</span></span><br><span class="line">print(libnum.n2s(n))</span><br><span class="line"></span><br><span class="line">result: ab12</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>libnum.s2b(s)：字符串转换为二进制字符串。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">s = <span class="string">"ab12"</span></span><br><span class="line">print(libnum.s2b(s))</span><br><span class="line"></span><br><span class="line">result: <span class="number">01100001011000100011000100110010</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>libnum.b2s(b)：二进制字符串转换为字符串。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">b = <span class="string">"01100001011000100011000100110010"</span></span><br><span class="line">print(libnum.b2s(b))</span><br><span class="line"></span><br><span class="line">result: ab12</span><br></pre></td></tr></table></figure>
+<h2 id="primes"><a class="markdownIt-Anchor" href="#primes"></a> Primes</h2>
+<ol>
+<li>libnum.primes(n)：返回不大于n的素数列表。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">print(libnum.primes(<span class="number">19</span>))</span><br><span class="line"></span><br><span class="line">result: [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>]</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>libnum.generate_prime(n)：产生长度为n位的伪素数。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">print(libnum.generate_prime(<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">result: <span class="number">1021</span></span><br></pre></td></tr></table></figure>
+<h2 id="其它"><a class="markdownIt-Anchor" href="#其它"></a> 其它</h2>
+<ol>
+<li>libnum.factorize(n)：返回n的所有素因子及每个素因子的个数。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">print(libnum.factorize(<span class="number">60</span>))</span><br><span class="line"></span><br><span class="line">result: &#123;<span class="number">2</span>: <span class="number">2</span>, <span class="number">3</span>: <span class="number">1</span>, <span class="number">5</span>: <span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>libnum.modular.invmod(e,m)：返回e模m的逆元。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">print(libnum.modular.invmod(<span class="number">5</span>,<span class="number">24</span>))</span><br><span class="line"></span><br><span class="line">result: <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其它函数请看github项目里的说明。<br />
+github地址：<a href="https://github.com/hellman/libnum" target="_blank" rel="noopener">https://github.com/hellman/libnum</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>libnum库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文件上传漏洞绕过技巧</title>
     <url>/WEB%E5%AE%89%E5%85%A8/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<h1 id="文件上传漏洞绕过技巧"><a class="markdownIt-Anchor" href="#文件上传漏洞绕过技巧"></a> 文件上传漏洞绕过技巧</h1>
-<h1 id="一-文件上传漏洞介绍"><a class="markdownIt-Anchor" href="#一-文件上传漏洞介绍"></a> 一、文件上传漏洞介绍</h1>
+    <content><![CDATA[<h1 id="一-文件上传漏洞介绍"><a class="markdownIt-Anchor" href="#一-文件上传漏洞介绍"></a> 一、文件上传漏洞介绍</h1>
 <p>通常web 站点会有用户注册功能，而当用户登入之后大多数情况下都会存在类似头像上传、附件上传一类的功能，这些功能点往往存在上传验证方式不严格的安全缺陷，是在web 渗透中非常关键的突破口，只要经过仔细测试分析来绕过上传验证机制，往往会造成被攻击者直接上传web 后门，进而控制整个web 业务的控制权，复杂一点的情况是结合webserver 的解析漏洞来上传后门获取权限。</p>
 <h1 id="二-验证方法与绕过"><a class="markdownIt-Anchor" href="#二-验证方法与绕过"></a> 二、验证方法与绕过</h1>
 <h2 id="11content-length验证"><a class="markdownIt-Anchor" href="#11content-length验证"></a> 1.1CONTENT-LENGTH验证</h2>
@@ -26,7 +81,8 @@
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$postfix = end(explode(<span class="string">'.'</span>,<span class="string">'$_POST['</span>filename<span class="string">']);</span></span><br><span class="line"><span class="string">if($postfix=='</span>jpg<span class="string">'||$postfix=='</span>png<span class="string">'||$postfix=='</span>gif<span class="string">')&#123;</span></span><br><span class="line"><span class="string">//save the file and do something next</span></span><br><span class="line"><span class="string">&#125; else &#123;</span></span><br><span class="line"><span class="string">echo "invalid file type";</span></span><br><span class="line"><span class="string">return;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 <h2 id="21客户端javascript"><a class="markdownIt-Anchor" href="#21客户端javascript"></a> 2.1客户端javascript</h2>
 <p>黑名单绕过:<br />
-通过上传不受欢迎的php扩展来绕过黑名单。例如：pht，phpt，phtml，php3，php4，php5，php6。<br />
+通过上传不受欢迎的php扩展来绕过黑名单。<br />
+例如：pht，phpt，phtml，php3，php4，php5，php6。<br />
 白名单绕过:<br />
 通过某种类型的技巧来绕过白名单，例如添加空字节注入（shell.php％00.gif），或使用双重扩展来上传文件（shell.jpg.php）。<br />
 此外，我们还可以尝试扩展名大小写来绕过，例如：pHp，Php，phP</p>

@@ -86,14 +86,14 @@
 
 
 
-<meta name="description" content="文件上传漏洞绕过技巧  一、文件上传漏洞介绍 通常web 站点会有用户注册功能，而当用户登入之后大多数情况下都会存在类似头像上传、附件上传一类的功能，这些功能点往往存在上传验证方式不严格的安全缺陷，是在web 渗透中非常关键的突破口，只要经过仔细测试分析来绕过上传验证机制，往往会造成被攻击者直接上传web 后门，进而控制整个web 业务的控制权，复杂一点的情况是结合webserver 的解析漏洞">
+<meta name="description" content="一、文件上传漏洞介绍 通常web 站点会有用户注册功能，而当用户登入之后大多数情况下都会存在类似头像上传、附件上传一类的功能，这些功能点往往存在上传验证方式不严格的安全缺陷，是在web 渗透中非常关键的突破口，只要经过仔细测试分析来绕过上传验证机制，往往会造成被攻击者直接上传web 后门，进而控制整个web 业务的控制权，复杂一点的情况是结合webserver 的解析漏洞来上传后门获取权限。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件上传漏洞绕过技巧">
 <meta property="og:url" content="https://abtgu.github.io/WEB%E5%AE%89%E5%85%A8/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/index.html">
 <meta property="og:site_name" content="abtgu的博客">
-<meta property="og:description" content="文件上传漏洞绕过技巧  一、文件上传漏洞介绍 通常web 站点会有用户注册功能，而当用户登入之后大多数情况下都会存在类似头像上传、附件上传一类的功能，这些功能点往往存在上传验证方式不严格的安全缺陷，是在web 渗透中非常关键的突破口，只要经过仔细测试分析来绕过上传验证机制，往往会造成被攻击者直接上传web 后门，进而控制整个web 业务的控制权，复杂一点的情况是结合webserver 的解析漏洞">
+<meta property="og:description" content="一、文件上传漏洞介绍 通常web 站点会有用户注册功能，而当用户登入之后大多数情况下都会存在类似头像上传、附件上传一类的功能，这些功能点往往存在上传验证方式不严格的安全缺陷，是在web 渗透中非常关键的突破口，只要经过仔细测试分析来绕过上传验证机制，往往会造成被攻击者直接上传web 后门，进而控制整个web 业务的控制权，复杂一点的情况是结合webserver 的解析漏洞来上传后门获取权限。">
 <meta property="article:published_time" content="2020-03-31T10:32:19.273Z">
-<meta property="article:modified_time" content="2020-03-31T11:28:55.813Z">
+<meta property="article:modified_time" content="2020-03-31T13:14:09.380Z">
 <meta property="article:author" content="abtgu">
 <meta property="article:tag" content="文件上传漏洞">
 <meta name="twitter:card" content="summary">
@@ -356,7 +356,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-31T19:28:55+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-31T21:14:09+08:00">
                 2020-03-31
               </time>
             
@@ -412,8 +412,7 @@
       
 
       
-        <h1 id="文件上传漏洞绕过技巧"><a class="markdownIt-Anchor" href="#文件上传漏洞绕过技巧"></a> 文件上传漏洞绕过技巧</h1>
-<h1 id="一-文件上传漏洞介绍"><a class="markdownIt-Anchor" href="#一-文件上传漏洞介绍"></a> 一、文件上传漏洞介绍</h1>
+        <h1 id="一-文件上传漏洞介绍"><a class="markdownIt-Anchor" href="#一-文件上传漏洞介绍"></a> 一、文件上传漏洞介绍</h1>
 <p>通常web 站点会有用户注册功能，而当用户登入之后大多数情况下都会存在类似头像上传、附件上传一类的功能，这些功能点往往存在上传验证方式不严格的安全缺陷，是在web 渗透中非常关键的突破口，只要经过仔细测试分析来绕过上传验证机制，往往会造成被攻击者直接上传web 后门，进而控制整个web 业务的控制权，复杂一点的情况是结合webserver 的解析漏洞来上传后门获取权限。</p>
 <h1 id="二-验证方法与绕过"><a class="markdownIt-Anchor" href="#二-验证方法与绕过"></a> 二、验证方法与绕过</h1>
 <h2 id="11content-length验证"><a class="markdownIt-Anchor" href="#11content-length验证"></a> 1.1CONTENT-LENGTH验证</h2>
@@ -435,7 +434,8 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$postfix = end(explode(<span class="string">'.'</span>,<span class="string">'$_POST['</span>filename<span class="string">']);</span></span><br><span class="line"><span class="string">if($postfix=='</span>jpg<span class="string">'||$postfix=='</span>png<span class="string">'||$postfix=='</span>gif<span class="string">')&#123;</span></span><br><span class="line"><span class="string">//save the file and do something next</span></span><br><span class="line"><span class="string">&#125; else &#123;</span></span><br><span class="line"><span class="string">echo "invalid file type";</span></span><br><span class="line"><span class="string">return;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 <h2 id="21客户端javascript"><a class="markdownIt-Anchor" href="#21客户端javascript"></a> 2.1客户端javascript</h2>
 <p>黑名单绕过:<br />
-通过上传不受欢迎的php扩展来绕过黑名单。例如：pht，phpt，phtml，php3，php4，php5，php6。<br />
+通过上传不受欢迎的php扩展来绕过黑名单。<br />
+例如：pht，phpt，phtml，php3，php4，php5，php6。<br />
 白名单绕过:<br />
 通过某种类型的技巧来绕过白名单，例如添加空字节注入（shell.php％00.gif），或使用双重扩展来上传文件（shell.jpg.php）。<br />
 此外，我们还可以尝试扩展名大小写来绕过，例如：pHp，Php，phP</p>
@@ -695,6 +695,10 @@ IIS7.0/7.5 是对php 解析时有一个类似于Nginx的解析漏洞，对任意
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/Python/libnum%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" rel="prev" title="文件上传漏洞绕过技巧">
+                文件上传漏洞绕过技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -800,7 +804,7 @@ var jiathis_config={
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -811,7 +815,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -822,7 +826,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -889,7 +893,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文件上传漏洞绕过技巧"><span class="nav-text"> 文件上传漏洞绕过技巧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一-文件上传漏洞介绍"><span class="nav-text"> 一、文件上传漏洞介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-验证方法与绕过"><span class="nav-text"> 二、验证方法与绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11content-length验证"><span class="nav-text"> 1.1CONTENT-LENGTH验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12content-length绕过"><span class="nav-text"> 1.2CONTENT-LENGTH绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21客户端javascript-检测通常为检测文件扩展名"><span class="nav-text"> 2.1客户端javascript 检测(通常为检测文件扩展名)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21客户端javascript"><span class="nav-text"> 2.1客户端javascript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-服务端mime-类型检测检测content-type-内容"><span class="nav-text"> 3. 服务端MIME 类型检测(检测Content-Type 内容)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4分析文件头内容来检查文件类型"><span class="nav-text"> 4.分析文件头内容来检查文件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5文件加载检测"><span class="nav-text"> 5.文件加载检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6限制web-server对于特定类型文件的行为"><span class="nav-text"> 6.限制Web Server对于特定类型文件的行为</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-反制"><span class="nav-text"> 三、反制</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-文件上传漏洞介绍"><span class="nav-text"> 一、文件上传漏洞介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-验证方法与绕过"><span class="nav-text"> 二、验证方法与绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11content-length验证"><span class="nav-text"> 1.1CONTENT-LENGTH验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12content-length绕过"><span class="nav-text"> 1.2CONTENT-LENGTH绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21客户端javascript-检测通常为检测文件扩展名"><span class="nav-text"> 2.1客户端javascript 检测(通常为检测文件扩展名)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21客户端javascript"><span class="nav-text"> 2.1客户端javascript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-服务端mime-类型检测检测content-type-内容"><span class="nav-text"> 3. 服务端MIME 类型检测(检测Content-Type 内容)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4分析文件头内容来检查文件类型"><span class="nav-text"> 4.分析文件头内容来检查文件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5文件加载检测"><span class="nav-text"> 5.文件加载检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6限制web-server对于特定类型文件的行为"><span class="nav-text"> 6.限制Web Server对于特定类型文件的行为</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-反制"><span class="nav-text"> 三、反制</span></a></li></ol></div>
             
 
           </div>
@@ -927,7 +931,7 @@ var jiathis_config={
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共8.8k字</span>
+  <span class="post-count">博客全站共9.1k字</span>
 </div>
 
 <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
