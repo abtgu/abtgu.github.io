@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="WriteUp," />
 
 
 
@@ -86,12 +86,28 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="abtgu的博客">
-<meta property="og:url" content="https://abtgu.github.io/archives/2020/03/index.html">
+<meta name="description" content="WEB  checkin 题目：  无 解题思路： 打开链接，发现提问作者，打开查看器，发现按钮被隐藏，输入框被限制，更改代码，输入作者名，提示一个博客  打开，在最上方发现flag的一部分  仔细查看，有一篇名为《远古的blog》的博客，打开 在最下方发现另一部分flag。   admin 题目： login in as admin. 解题思路： 打开是登录框，提示用户名是admin，使用万能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WUST-CTF2020 writeup">
+<meta property="og:url" content="https://abtgu.github.io/CTF/writeup07/index.html">
 <meta property="og:site_name" content="abtgu的博客">
+<meta property="og:description" content="WEB  checkin 题目：  无 解题思路： 打开链接，发现提问作者，打开查看器，发现按钮被隐藏，输入框被限制，更改代码，输入作者名，提示一个博客  打开，在最上方发现flag的一部分  仔细查看，有一篇名为《远古的blog》的博客，打开 在最下方发现另一部分flag。   admin 题目： login in as admin. 解题思路： 打开是登录框，提示用户名是admin，使用万能">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200402202012979.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200402202032464.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200402202136377.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200402202211340.PNG">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200402202236809.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200402202253178.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200402202314993.PNG#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020040220233260.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200402202351213.PNG">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200402202407616.PNG#pic_center">
+<meta property="article:published_time" content="2020-04-03T01:03:18.129Z">
+<meta property="article:modified_time" content="2020-04-03T01:05:45.510Z">
 <meta property="article:author" content="abtgu">
+<meta property="article:tag" content="WriteUp">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200402202012979.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center">
 
 
 
@@ -121,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://abtgu.github.io/archives/2020/03/"/>
+  <link rel="canonical" href="https://abtgu.github.io/CTF/writeup07/"/>
 
 
 
 
 
-  <title>归档 | abtgu的博客</title>
+  <title>WUST-CTF2020 writeup | abtgu的博客</title>
   
 
 
@@ -146,7 +162,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -292,518 +308,325 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://abtgu.github.io/CTF/writeup07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="abtgu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="abtgu的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">WUST-CTF2020 writeup</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-03T09:03:18+08:00">
+                2020-04-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-04-03T09:05:45+08:00">
+                2020-04-03
+              </time>
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 15 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index">
+                    <span itemprop="name">CTF</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2020">2020</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/WEB%E5%AE%89%E5%85%A8/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/" itemprop="url">
-              
-                <span itemprop="name">文件上传漏洞绕过技巧</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-31T18:32:19+08:00"
-              content="2020-03-31" >
-          03-31
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/WEB%E5%AE%89%E5%85%A8/%E4%B8%87%E8%83%BD%E5%AF%86%E7%A0%81%E6%BC%8F%E6%B4%9E/" itemprop="url">
-              
-                <span itemprop="name">万能密码漏洞</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-31T14:13:41+08:00"
-              content="2020-03-31" >
-          03-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/VMware/VMware%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F/" itemprop="url">
-              
-                <span itemprop="name">VMware中的网络模式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-30T16:29:26+08:00"
-              content="2020-03-30" >
-          03-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="web"><a class="markdownIt-Anchor" href="#web"></a> WEB</h1>
+<h2 id="checkin"><a class="markdownIt-Anchor" href="#checkin"></a> checkin</h2>
+<p><strong>题目：</strong>  无<br />
+<strong>解题思路：</strong> 打开链接，发现提问作者，打开查看器，发现按钮被隐藏，输入框被限制，更改代码，输入作者名，提示一个博客</p>
+<p><img src="https://img-blog.csdnimg.cn/20200402202012979.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+<p>打开，在最上方发现flag的一部分<br />
+<img src="https://img-blog.csdnimg.cn/20200402202032464.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+仔细查看，有一篇名为《远古的blog》的博客，打开<br />
+在最下方发现另一部分flag。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200402202136377.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+<h2 id="admin"><a class="markdownIt-Anchor" href="#admin"></a> admin</h2>
+<p><strong>题目：</strong> login in as admin.<br />
+<strong>解题思路：</strong> 打开是登录框，提示用户名是admin，使用万能密码，用户名输入：</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">admin</span><span class="string">' or '</span><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>登录成功后进入/adddddddddddddddddddddddminnnnnnnnnnnnnnnnnnnnnn.php页面，提示本地ip才能访问，构造X-Forwarded-For:127.0.0.1，之后提示</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">用GET方式传一个参数ais, 值为<span class="number">520</span></span><br><span class="line">用POST方式传一个参数wust, 值为<span class="number">1314</span></span><br></pre></td></tr></table></figure>
+<p>最后提示</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你离flag已经很近了，网址给你了：<span class="number">4</span>dz  aste.ubuntu.com<span class="regexp">/p/</span>    <span class="string">https:</span><span class="comment">//p  Rqr  cSf2</span></span><br></pre></td></tr></table></figure>
+<p>手动拼接还原网址 <a href="https://paste.ubuntu.com/p/cSf24dzRqr" target="_blank" rel="noopener">https://paste.ubuntu.com/p/cSf24dzRqr</a>   ，访问得到</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d<span class="number">2</span><span class="symbol">N0</span>ZjIwMjB<span class="number">7</span>bjB<span class="number">3</span>X<span class="number">3</span>lvdV<span class="number">9</span>rbjB<span class="number">3</span>X<span class="number">3</span>RoZV<span class="number">9</span>iYX<span class="symbol">NpY18</span>wZl<span class="number">9</span>zcWxfYW<span class="number">5</span>kX<span class="number">2</span>h<span class="number">0</span>dHB<span class="number">9</span></span><br></pre></td></tr></table></figure>
+<p>base64转码，得到flag，wctf2020{n0w_you_kn0w_the_basic_0f_sql_and_http}。</p>
+<h1 id="misc"><a class="markdownIt-Anchor" href="#misc"></a> MISC</h1>
+<h2 id="space-club"><a class="markdownIt-Anchor" href="#space-club"></a> Space Club</h2>
+<p><strong>题目：</strong>  无<br />
+<strong>解题思路：</strong> 打开txt，未发现任何文字，由于题目是space，想到空格，ctrl+a全选文本，果然发现空格，观察形势，联想到0,1二进制数据，写脚本运行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">txt = open(<span class="string">"space.txt"</span>,<span class="string">"r"</span>).readlines()</span><br><span class="line">tmp = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> txt:</span><br><span class="line">    <span class="keyword">if</span> len(i.strip(<span class="string">'\n'</span>)) == <span class="number">6</span>:</span><br><span class="line">        tmp = tmp + <span class="string">'0'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        tmp = tmp + <span class="string">'1'</span></span><br><span class="line"></span><br><span class="line">flag = libnum.b2s(tmp)</span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
+<p>得到flag，wctf2020{h3re_1s_y0ur_fl@g_s1x_s1x_s1x}。</p>
+<h2 id="welcome"><a class="markdownIt-Anchor" href="#welcome"></a> Welcome</h2>
+<p><strong>题目：</strong> 《论语》：三人行，必有我师焉。<br />
+<strong>解题思路：</strong> 打开压缩文件，发现需要打开摄像头，又提示三人行，尝试打开手机搜索一张带有三个人的图片，放到摄像头，flag出现。<br />
+wctf2020{We1cOme_t0_wCtF2o20_aNd_eNj0y_1t}</p>
+<h2 id="爬"><a class="markdownIt-Anchor" href="#爬"></a> 爬</h2>
+<p><strong>题目：</strong>  链接: <a href="https://pan.baidu.com/s/1DatOBKD-3cee_Tp8LuvPLg" target="_blank" rel="noopener">https://pan.baidu.com/s/1DatOBKD-3cee_Tp8LuvPLg</a><br />
+提取码: jm9z<br />
+<strong>解题思路：</strong> 查看文件头，发现是pdf，添加后缀名，打开，提示图片下隐藏flag，用ps打开，发现一张写有一串十六进制数的图片<br />
+<img src="https://img-blog.csdnimg.cn/20200402202211340.PNG" alt="在这里插入图片描述" /></p>
+<p>将其转换成文本，得到flag，wctf2020{th1s_1s_@_pdf_and_y0u_can_use_phot0sh0p}</p>
+<h2 id="find-me"><a class="markdownIt-Anchor" href="#find-me"></a> Find me</h2>
+<p><strong>题目：</strong> can u find me?<br />
+<strong>解题思路：</strong>  查看图片属性，发现备注有一段盲文，解密即可<br />
+解密地址：<a href="https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=mangwen" target="_blank" rel="noopener">https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=mangwen</a></p>
+<p>wctf2020{y<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>u_f<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>n<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>_M<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">e</span></span></span></span>ee<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">e</span></span></span></span>e}</p>
+<h2 id="shop"><a class="markdownIt-Anchor" href="#shop"></a> Shop</h2>
+<p><strong>题目：</strong>  you can buy the flag in the shop, here’s your exchange.<br />
+nc 47.97.40.187 12306。<br />
+<strong>解题思路：</strong> 在kali中运行nc 47.97.40.187 12306，出现下图</p>
+<p><img src="https://img-blog.csdnimg.cn/20200402202236809.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+选择2，出现cheaper，real两个选项，选择real，提示余额不足，选择cheaper，提示每个flag 999，让我们输入购买数量，这是想到 <strong>整数溢出</strong> ，输入一个大数，这里我输的是222222222</p>
+<p><img src="https://img-blog.csdnimg.cn/20200402202253178.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+果不其然，花费是负数，余额增加。这时去购买real，得到flag，</p>
+<p><img src="https://img-blog.csdnimg.cn/20200402202314993.PNG#pic_center" alt="在这里插入图片描述" /><br />
+wctf2020{0h_noooo_y0u_r0b_my_sh0p}。</p>
+<h2 id="girlfriend"><a class="markdownIt-Anchor" href="#girlfriend"></a> girlfriend</h2>
+<p><strong>题目：</strong> I want a girl friend !!!  将结果用wctf2020{}再提交<br />
+<strong>解题思路：</strong>  打开wav，仔细听，发现是拨号时的按键声，用DTMF解码器解码得到<br />
+<img src="https://img-blog.csdnimg.cn/2020040220233260.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+对应手机九键查找字母得到，youbremygirlfriends,提交发现错误，对照Audacity的频谱图，发现解码器缺少一个2，flag应该是wctf2020{youaremygirlfriends}。</p>
+<h2 id="alison-likes-jojo"><a class="markdownIt-Anchor" href="#alison-likes-jojo"></a> Alison likes jojo</h2>
+<p><strong>题目：</strong> As we known, Alison is a pretty girl.<br />
+<strong>解题思路：</strong> 下载题中文件，得到两张jpg，放到kali中用binwalk查看，发现boki.jpg隐藏zip，foremost分离，得到zip需要密码。<br />
+用fcrackzip破解</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fcrackzip -D -p /usr/share/wordlists/rockyou.txt -u 00000345.zip</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200402202351213.PNG" alt="在这里插入图片描述" /><br />
+得到密码888866，打开beisi.txt，发现一串字符：WVRKc2MySkhWbmxqV0Zac1dsYzBQUT09，用base64多次解码得到killerqueen，猜测其是加密密钥。想到outguess隐写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outguess -r jljy.jpg -k killerqueen 1.txt</span><br></pre></td></tr></table></figure>
+<p>得到flag，wctf2020{pretty_girl_alison_likes_jojo}。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200402202407616.PNG#pic_center" alt="在这里插入图片描述" /></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/CTF/writeup06/" itemprop="url">
-              
-                <span itemprop="name">MRCTF writeup</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-30T15:23:55+08:00"
-              content="2020-03-30" >
-          03-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/CTF/writeup05/" itemprop="url">
-              
-                <span itemprop="name">BJDCTF 2nd writeup(二)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-29T08:50:20+08:00"
-              content="2020-03-29" >
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/CTF/writeup04/" itemprop="url">
-              
-                <span itemprop="name">BJDCTF 2nd writeup</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-23T21:52:39+08:00"
-              content="2020-03-23" >
-          03-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/CTF/writeup03/" itemprop="url">
-              
-                <span itemprop="name">WhaleCTF-隐写术writeup</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-20T11:03:34+08:00"
-              content="2020-03-20" >
-          03-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/CTF/writeup02/" itemprop="url">
-              
-                <span itemprop="name">WhaleCTF-隐写术 彩虹的声音</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-19T20:00:55+08:00"
-              content="2020-03-19" >
-          03-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/CTF/writeup01/" itemprop="url">
-              
-                <span itemprop="name">Whale-隐写术 分解1</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-18T09:50:13+08:00"
-              content="2020-03-18" >
-          03-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/CTF/%E9%9A%90%E5%86%99%E6%9C%AF/" itemprop="url">
-              
-                <span itemprop="name">CTF-隐写术 学习笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-16T20:53:21+08:00"
-              content="2020-03-16" >
-          03-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/CTF/%E5%AF%86%E7%A0%81%E5%AD%A6/" itemprop="url">
-              
-                <span itemprop="name">CTF-密码学知识学习笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-14T20:19:58+08:00"
-              content="2020-03-14" >
-          03-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/CTF/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" itemprop="url">
-              
-                <span itemprop="name">CTF-WEB文件上传,SQL注入,XXS漏洞知识学习笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-14T10:23:26+08:00"
-              content="2020-03-14" >
-          03-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/uncategorized/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-04T15:30:43+08:00"
-              content="2020-03-04" >
-          03-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+	<div>
+      
+        
+      
+    </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="abtgu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="abtgu 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    abtgu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://abtgu.github.io/CTF/writeup07/" title="WUST-CTF2020 writeup">https://abtgu.github.io/CTF/writeup07/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WriteUp/" rel="tag"> <i class="fa fa-tag"></i> WriteUp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Python/libnum%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" rel="next" title="libnum库的安装与使用">
+                <i class="fa fa-chevron-left"></i> libnum库的安装与使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -811,6 +634,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -831,8 +658,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -930,6 +766,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#web"><span class="nav-text"> WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#checkin"><span class="nav-text"> checkin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#admin"><span class="nav-text"> admin</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#misc"><span class="nav-text"> MISC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#space-club"><span class="nav-text"> Space Club</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#welcome"><span class="nav-text"> Welcome</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#爬"><span class="nav-text"> 爬</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find-me"><span class="nav-text"> Find me</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shop"><span class="nav-text"> Shop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#girlfriend"><span class="nav-text"> girlfriend</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#alison-likes-jojo"><span class="nav-text"> Alison likes jojo</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1093,6 +945,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

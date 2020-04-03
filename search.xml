@@ -1,6 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>WUST-CTF2020 writeup</title>
+    <url>/CTF/writeup07/</url>
+    <content><![CDATA[<h1 id="web"><a class="markdownIt-Anchor" href="#web"></a> WEB</h1>
+<h2 id="checkin"><a class="markdownIt-Anchor" href="#checkin"></a> checkin</h2>
+<p><strong>题目：</strong>  无<br />
+<strong>解题思路：</strong> 打开链接，发现提问作者，打开查看器，发现按钮被隐藏，输入框被限制，更改代码，输入作者名，提示一个博客</p>
+<p><img src="https://img-blog.csdnimg.cn/20200402202012979.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+<p>打开，在最上方发现flag的一部分<br />
+<img src="https://img-blog.csdnimg.cn/20200402202032464.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+仔细查看，有一篇名为《远古的blog》的博客，打开<br />
+在最下方发现另一部分flag。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200402202136377.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+<h2 id="admin"><a class="markdownIt-Anchor" href="#admin"></a> admin</h2>
+<p><strong>题目：</strong> login in as admin.<br />
+<strong>解题思路：</strong> 打开是登录框，提示用户名是admin，使用万能密码，用户名输入：</p>
+<figure class="highlight nsis"><table><tr><td class="code"><pre><span class="line"><span class="literal">admin</span><span class="string">' or '</span><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>登录成功后进入/adddddddddddddddddddddddminnnnnnnnnnnnnnnnnnnnnn.php页面，提示本地ip才能访问，构造X-Forwarded-For:127.0.0.1，之后提示</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">用GET方式传一个参数ais, 值为<span class="number">520</span></span><br><span class="line">用POST方式传一个参数wust, 值为<span class="number">1314</span></span><br></pre></td></tr></table></figure>
+<p>最后提示</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">你离flag已经很近了，网址给你了：<span class="number">4</span>dz  aste.ubuntu.com<span class="regexp">/p/</span>    <span class="string">https:</span><span class="comment">//p  Rqr  cSf2</span></span><br></pre></td></tr></table></figure>
+<p>手动拼接还原网址 <a href="https://paste.ubuntu.com/p/cSf24dzRqr" target="_blank" rel="noopener">https://paste.ubuntu.com/p/cSf24dzRqr</a>   ，访问得到</p>
+<figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">d<span class="number">2</span><span class="symbol">N0</span>ZjIwMjB<span class="number">7</span>bjB<span class="number">3</span>X<span class="number">3</span>lvdV<span class="number">9</span>rbjB<span class="number">3</span>X<span class="number">3</span>RoZV<span class="number">9</span>iYX<span class="symbol">NpY18</span>wZl<span class="number">9</span>zcWxfYW<span class="number">5</span>kX<span class="number">2</span>h<span class="number">0</span>dHB<span class="number">9</span></span><br></pre></td></tr></table></figure>
+<p>base64转码，得到flag，wctf2020{n0w_you_kn0w_the_basic_0f_sql_and_http}。</p>
+<h1 id="misc"><a class="markdownIt-Anchor" href="#misc"></a> MISC</h1>
+<h2 id="space-club"><a class="markdownIt-Anchor" href="#space-club"></a> Space Club</h2>
+<p><strong>题目：</strong>  无<br />
+<strong>解题思路：</strong> 打开txt，未发现任何文字，由于题目是space，想到空格，ctrl+a全选文本，果然发现空格，观察形势，联想到0,1二进制数据，写脚本运行</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">txt = open(<span class="string">"space.txt"</span>,<span class="string">"r"</span>).readlines()</span><br><span class="line">tmp = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> txt:</span><br><span class="line">    <span class="keyword">if</span> len(i.strip(<span class="string">'\n'</span>)) == <span class="number">6</span>:</span><br><span class="line">        tmp = tmp + <span class="string">'0'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        tmp = tmp + <span class="string">'1'</span></span><br><span class="line"></span><br><span class="line">flag = libnum.b2s(tmp)</span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
+<p>得到flag，wctf2020{h3re_1s_y0ur_fl@g_s1x_s1x_s1x}。</p>
+<h2 id="welcome"><a class="markdownIt-Anchor" href="#welcome"></a> Welcome</h2>
+<p><strong>题目：</strong> 《论语》：三人行，必有我师焉。<br />
+<strong>解题思路：</strong> 打开压缩文件，发现需要打开摄像头，又提示三人行，尝试打开手机搜索一张带有三个人的图片，放到摄像头，flag出现。<br />
+wctf2020{We1cOme_t0_wCtF2o20_aNd_eNj0y_1t}</p>
+<h2 id="爬"><a class="markdownIt-Anchor" href="#爬"></a> 爬</h2>
+<p><strong>题目：</strong>  链接: <a href="https://pan.baidu.com/s/1DatOBKD-3cee_Tp8LuvPLg" target="_blank" rel="noopener">https://pan.baidu.com/s/1DatOBKD-3cee_Tp8LuvPLg</a><br />
+提取码: jm9z<br />
+<strong>解题思路：</strong> 查看文件头，发现是pdf，添加后缀名，打开，提示图片下隐藏flag，用ps打开，发现一张写有一串十六进制数的图片<br />
+<img src="https://img-blog.csdnimg.cn/20200402202211340.PNG" alt="在这里插入图片描述" /></p>
+<p>将其转换成文本，得到flag，wctf2020{th1s_1s_@_pdf_and_y0u_can_use_phot0sh0p}</p>
+<h2 id="find-me"><a class="markdownIt-Anchor" href="#find-me"></a> Find me</h2>
+<p><strong>题目：</strong> can u find me?<br />
+<strong>解题思路：</strong>  查看图片属性，发现备注有一段盲文，解密即可<br />
+解密地址：<a href="https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=mangwen" target="_blank" rel="noopener">https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=mangwen</a></p>
+<p>wctf2020{y<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>u_f<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>n<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>_M<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">e</span></span></span></span>ee<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>e</mi></mrow><annotation encoding="application/x-tex">e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">e</span></span></span></span>e}</p>
+<h2 id="shop"><a class="markdownIt-Anchor" href="#shop"></a> Shop</h2>
+<p><strong>题目：</strong>  you can buy the flag in the shop, here’s your exchange.<br />
+nc 47.97.40.187 12306。<br />
+<strong>解题思路：</strong> 在kali中运行nc 47.97.40.187 12306，出现下图</p>
+<p><img src="https://img-blog.csdnimg.cn/20200402202236809.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+选择2，出现cheaper，real两个选项，选择real，提示余额不足，选择cheaper，提示每个flag 999，让我们输入购买数量，这是想到 <strong>整数溢出</strong> ，输入一个大数，这里我输的是222222222</p>
+<p><img src="https://img-blog.csdnimg.cn/20200402202253178.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+果不其然，花费是负数，余额增加。这时去购买real，得到flag，</p>
+<p><img src="https://img-blog.csdnimg.cn/20200402202314993.PNG#pic_center" alt="在这里插入图片描述" /><br />
+wctf2020{0h_noooo_y0u_r0b_my_sh0p}。</p>
+<h2 id="girlfriend"><a class="markdownIt-Anchor" href="#girlfriend"></a> girlfriend</h2>
+<p><strong>题目：</strong> I want a girl friend !!!  将结果用wctf2020{}再提交<br />
+<strong>解题思路：</strong>  打开wav，仔细听，发现是拨号时的按键声，用DTMF解码器解码得到<br />
+<img src="https://img-blog.csdnimg.cn/2020040220233260.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+对应手机九键查找字母得到，youbremygirlfriends,提交发现错误，对照Audacity的频谱图，发现解码器缺少一个2，flag应该是wctf2020{youaremygirlfriends}。</p>
+<h2 id="alison-likes-jojo"><a class="markdownIt-Anchor" href="#alison-likes-jojo"></a> Alison likes jojo</h2>
+<p><strong>题目：</strong> As we known, Alison is a pretty girl.<br />
+<strong>解题思路：</strong> 下载题中文件，得到两张jpg，放到kali中用binwalk查看，发现boki.jpg隐藏zip，foremost分离，得到zip需要密码。<br />
+用fcrackzip破解</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">fcrackzip -D -p /usr/share/wordlists/rockyou.txt -u 00000345.zip</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200402202351213.PNG" alt="在这里插入图片描述" /><br />
+得到密码888866，打开beisi.txt，发现一串字符：WVRKc2MySkhWbmxqV0Zac1dsYzBQUT09，用base64多次解码得到killerqueen，猜测其是加密密钥。想到outguess隐写</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">outguess -r jljy.jpg -k killerqueen 1.txt</span><br></pre></td></tr></table></figure>
+<p>得到flag，wctf2020{pretty_girl_alison_likes_jojo}。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200402202407616.PNG#pic_center" alt="在这里插入图片描述" /></p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>WriteUp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>libnum库的安装与使用</title>
     <url>/Python/libnum%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="1-安装"><a class="markdownIt-Anchor" href="#1-安装"></a> 1. 安装</h1>
