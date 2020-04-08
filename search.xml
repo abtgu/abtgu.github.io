@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>中国菜刀的简单使用</title>
+    <url>/CTF/%E4%B8%AD%E5%9B%BD%E8%8F%9C%E5%88%80%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h1>
+<p>说到菜刀，普通人肯定想到家里切菜的菜刀，而对于程序员来说，首先想到的却是一款功能强大的webshell管理工具。中国菜刀小巧实用，具有文件管理，数据库管理，虚拟终端等功能，支持PHP，ASP的服务端脚本。</p>
+<h1 id="简单使用"><a class="markdownIt-Anchor" href="#简单使用"></a> 简单使用</h1>
+<ol>
+<li>新建一个PHP文件，写入一句话<code>&lt;?php eval($_POST['a']);?&gt;</code>将这个文件上传到站点里。</li>
+<li>打开菜刀，在空白处右键点击“添加”，按照图中指示进行填写，填写完成后点击添加。<br />
+<img src="https://img-blog.csdnimg.cn/20200408154201770.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /><br />
+<img src="https://img-blog.csdnimg.cn/20200408154222587.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></li>
+<li>添加成功后就会产生一条新的记录，点击鼠标右键，选择文件管理（或双击），就会看到站点的文件信息。选中文件击鼠标右键即可进行文件的添加，删除，更改等操作。</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20200408154305897.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+<img src="https://img-blog.csdnimg.cn/20200408154321238.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzc5MDc3OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /><br />
+5. 点击虚拟终端，即可进入菜刀的命令行。<br />
+6. 点击数据库管理，即可查看数据库中的数据。</p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>工具使用</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>WUST-CTF2020 writeup</title>
     <url>/CTF/writeup07/</url>
     <content><![CDATA[<h1 id="web"><a class="markdownIt-Anchor" href="#web"></a> WEB</h1>
