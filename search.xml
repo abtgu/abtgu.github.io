@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CTF关于ping命令注入问题</title>
+    <url>/CTF/CTF%E5%85%B3%E4%BA%8Eping%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<div id="content_views" class="markdown_views prism-atom-one-dark">
+                    <!-- flowchart 箭头图标 勿删 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                    </svg>
+                                            <h1><a name="t0"></a><a name="t0"></a><a id="_0"></a>题目样式</h1>
+<p>对于看到ping或者ping命令却没有弄waf时就要想到命令注入。</p>
+<h1><a name="t1"></a><a name="t1"></a><a id="_2"></a>具体注入方法</h1>
+<p>看到ping命令就可以利用截断来执行新的命令。<br>
+首先测试所有的截断符号：<br>
+‘$’<br>
+‘;’<br>
+‘|’<br>
+‘-’<br>
+‘(’<br>
+‘)’<br>
+‘反引号’<br>
+‘||’<br>
+‘&amp;&amp;’<br>
+‘&amp;’<br>
+‘}’<br>
+‘{’<br>
+'%0a’可以当作空格来用；<br>
+利用截断符号配合普通命令简单问题基本就出来；<br>
+例如：<code>ip=127.0.0.1;cat /home/flag.txt</code><br>
+简单的flag就出来了，也可以配合其他的进行；</p>
+<h2><a name="t2"></a><a name="t2"></a><a id="_21"></a>命令注入原因</h2>
+<p>系统提供命令执行类函数主要方便处理相关应用场景的功能.而当不合理的使用这类函数，同时调用的变量未考虑安全因素，就会执行恶意的命令调用，被攻击利用。</p>
+<h2><a name="t3"></a><a name="t3"></a><a id="_23"></a>方法</h2>
+<p>此类命令执行函数依赖PHP配置文件的设置，如果配置选项 safe_mode 设置为 off，此类命令不可执行，必须设置为 On<br>
+的情况下，才可执行。PHP 默认是关闭的。在安全模式下，只有在特定目录中的外部程序才可以被执行，对其它程序的调用将被拒绝。这个目录可以在php.ini文件中用 safe_mode_exec_dir指令，或在编译PHP是加上 –with-exec-dir选项来指定，默认是/usr/local/php /bin。<br>
+1：检测一阶命令注入的最佳方式是尝试执行一个sleep命令<br>
+2：在外部可以访问的端口上生成一个shell（仅适用于自定义netcat构建）：nc -l -n -vv -p 80 -e /bin/bash (unix) 或 nc -l -n -vv -p 80 -e cmd.exe (windows)。<br>
+3：如果想要知道目标主机名的长度，我们可以将主机名的输出通过管道符传递给wc -c命令。<br>
+另外还有很多方法来进行命令注入。等我详细阅读之后继续整理</p>
+<p>​</p>
+<blockquote>
+<p>转载于：<a href="https://blog.csdn.net/qq_41079177/article/details/88321816" target="_blank" rel="noopener">https://blog.csdn.net/qq_41079177/article/details/88321816</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>ping</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>公钥密码所需的数学基础</title>
     <url>/%E5%AF%86%E7%A0%81%E5%AD%A6/%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81%E6%89%80%E9%9C%80%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<ol>
