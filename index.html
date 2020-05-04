@@ -354,7 +354,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-05-04T15:29:41+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-04T15:59:47+08:00">
                 2020-05-04
               </time>
             
@@ -412,14 +412,12 @@
       
         
           
-          PHP反序列化漏洞老夫不才关注0.2852019.05.11 03:49:46字数 795阅读 907
+          PHP反序列化漏洞
+PHP反序列化漏洞原理概述-FIRST
+1.绕过魔法函数
+wakeup()魔法函数
 
-0x00 何为类和对象
-说到序列化和反序列化就不得不提到两个词：类和对象
-那么什么是类，什么是对象
-教科书式的答案是类是对象的抽象，对象是类的实例
-那啥叫个抽象，啥叫个实例呢
-简单的说，类就是对
+在unserialize()反序列化函数执行时会检测是否存在wakeup()方法，如果存在会先调用wakeup()方法作为预先准备对象需要的资源，经常用于执行一些初始化操作，或者重现建立数据库连
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2152,7 +2150,7 @@ libnu
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共15.3k字</span>
+  <span class="post-count">博客全站共13.9k字</span>
 </div>
 
 <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>

