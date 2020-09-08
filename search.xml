@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>gmpy2常见函数使用</title>
-    <url>/Python/%E5%AF%86%E7%A0%81%E5%AD%A6/gmpy2%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8/</url>
+    <url>/%E5%AF%86%E7%A0%81%E5%AD%A6/gmpy2%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><strong>1.初始化大整数</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">gmpy2.mpz(<span class="number">909090</span>)</span><br><span class="line"></span><br><span class="line">result:mpz(<span class="number">909090</span>)</span><br></pre></td></tr></table></figure>
 <p><strong>2.求大整数a,b的最大公因数</strong></p>
@@ -20,7 +20,6 @@
 <p><strong>8.求大整数x的y次幂模m取余</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="comment">#2^4 mod 15</span></span><br><span class="line">gmpy2.powmod(<span class="number">2</span>,<span class="number">4</span>,<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line">result:mpz(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Python</category>
         <category>密码学</category>
       </categories>
       <tags>
